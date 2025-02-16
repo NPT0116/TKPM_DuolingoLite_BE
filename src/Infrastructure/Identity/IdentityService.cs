@@ -1,8 +1,10 @@
 using System;
+using Application.Features.User.Queries.GetMe;
 using Application.Interface;
 using Domain.Entities.User;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
@@ -14,18 +16,21 @@ public class IdentityService : IIdentityService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
     private readonly IAuthorizationService _authorizationService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly JwtService _jwtService;
 
     public IdentityService(
         UserManager<ApplicationUser> userManager,
         IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
         IAuthorizationService authorizationService,
-        JwtService jwtService)
+        JwtService jwtService,
+        IHttpContextAccessor httpContextAccessor)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
         _jwtService = jwtService;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<string?> GetUserNameAsync(Guid userId)
@@ -115,5 +120,24 @@ public class IdentityService : IIdentityService
         }
 
         return (Result.Success(), _jwtService.GenerateToken(user));
+    }
+
+    public async Task<UserDto?> GetCurrentUserAsync()
+    {
+        var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+        Console.WriteLine(user);
+        if (user == null)
+        {
+            return null;
+        }
+
+        return new UserDto
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        };
     }
 }

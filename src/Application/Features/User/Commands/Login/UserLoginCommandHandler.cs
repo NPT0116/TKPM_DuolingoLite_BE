@@ -17,7 +17,12 @@ public class UserLoginCommandHandler : ICommandHandler<UserLoginCommand, string>
 
         var (result, token) = await _identityService.LoginAsync(request.UserLoginRequestDto.Email, request.UserLoginRequestDto.Password);
 
-        return Result<>
+        if (result.IsFailure)
+        {
+            return result.Error;
+        }
+
+        return token;
     }
 
 
