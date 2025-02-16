@@ -1,4 +1,5 @@
 using System;
+using Application.Features.User.Queries.GetMe;
 using SharedKernel;
 
 namespace Application.Interface;
@@ -15,4 +16,7 @@ public interface IIdentityService
     Task<(Result Result, Guid UserId)> CreateUserAsync(string FirstName, string LastName, string Email, string userName, string password);
 
     Task<Result> DeleteUserAsync(Guid userId);
+    Task<(Result Result, string Token)> LoginAsync(string email, string password);
+
+    Task<UserDto?> GetCurrentUserAsync();
 }
