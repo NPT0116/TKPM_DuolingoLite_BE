@@ -1,5 +1,7 @@
 using System;
 using Application.Interface;
+using Domain.Entities.User;
+using Infrastructure.Token;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +14,18 @@ public class IdentityService : IIdentityService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
     private readonly IAuthorizationService _authorizationService;
+    private readonly JwtService _jwtService;
 
     public IdentityService(
         UserManager<ApplicationUser> userManager,
         IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-        IAuthorizationService authorizationService)
+        IAuthorizationService authorizationService,
+        JwtService jwtService)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
+        _jwtService = jwtService;
     }
 
     public async Task<string?> GetUserNameAsync(Guid userId)
@@ -91,5 +96,24 @@ public class IdentityService : IIdentityService
     public async Task<bool> UserNameExistsAsync(string userName)
     {
         return await _userManager.Users.AnyAsync(u => u.UserName == userName);
+    }
+
+    public async Task<(Result Result, string Token)> LoginAsync(string email, string password)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null)
+        {
+            return (Result.Failure(UserError.NotFoundByEmail), string.Empty);
+        }
+
+        var result = await _userManager.CheckPasswordAsync(user, password);
+
+        if (!result)
+        {
+            return (Result.Failure(UserError.InvalidPassword), string.Empty);
+        }
+
+        return (Result.Success(), _jwtService.GenerateToken(user));
     }
 }

@@ -23,4 +23,8 @@ public static class UserError
     public static readonly Error UserNameNotUnique = Error.Conflict(
         "Users.UserNameNotUnique",
         "The provided username is not unique");
+    public static readonly Error InvalidPassword = Error.Validation(
+        "Users.InvalidPassword",
+        "The provided password is invalid");
+        
 }
