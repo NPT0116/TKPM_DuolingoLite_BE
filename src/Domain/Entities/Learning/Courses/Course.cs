@@ -46,12 +46,10 @@ namespace Domain.Entities.Course
         {
             _lessons.Add(lesson);
         }
-
+        
         public void RemoveLesson(Lesson lesson)
         {
             _lessons.Remove(lesson);
         }
-        
-        
     }
 }
