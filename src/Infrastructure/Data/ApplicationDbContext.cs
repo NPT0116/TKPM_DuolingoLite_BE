@@ -19,6 +19,7 @@ using Domain.Entities.Learning.Questions.Configurations;
 using Domain.Entities.Learning.Questions.Options;
 using Domain.Entities.Learning.Words;
 using Domain.Entities.Subscriptions;
+using Domain.Entities.Users;
 
 namespace Infrastructure.Data
 {
@@ -35,6 +36,9 @@ namespace Infrastructure.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionOptionBase> QuestionOptions { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserActivity> UserActivities { get; set; }
+        public DbSet<UserStats> UserStats { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LearningProgress> LearningProgresses { get; set; }

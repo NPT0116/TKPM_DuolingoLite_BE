@@ -31,5 +31,7 @@ public static class UserError
         "Users.Unauthorized",
         "You are not authorized to perform this action.");
 
-        
+    public static Error UserProfileNotFound(Guid userId) => Error.NotFound(
+        "Users.UserProfileNotFound",
+        $"The user profile with the Id = '{userId}' was not found");
 }
