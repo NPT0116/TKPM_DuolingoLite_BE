@@ -1,6 +1,7 @@
 using Application.Abstractions.Messaging;
 using Application.Interface;
 using Domain.Entities.User;
+using Domain.Entities.Users;
 using SharedKernel;
 using System;
 

@@ -6,6 +6,7 @@ using Application.Interface;
 using Application.Features.User.Queries.GetMe;
 using SharedKernel;
 using Domain.Entities.User;
+using Domain.Entities.Users;
 
 namespace Application.Features.User.Queries.GetMe;
 
@@ -23,7 +24,7 @@ public class GetMeQueryHandler : IRequestHandler<GetMeQuery, Result<UserDto>>
         var currentUser = await _identityService.GetCurrentUserAsync();
         
         if (currentUser is null)
-            return UserError.UnauthorizedUser;
+            return Result.Failure<UserDto>(UserError.UnauthorizedUser);
 
         return currentUser;
     }
