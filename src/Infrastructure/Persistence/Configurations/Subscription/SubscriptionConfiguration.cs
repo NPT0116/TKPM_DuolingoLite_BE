@@ -1,12 +1,12 @@
-using Domain.Entities.Subscription;
+using Domain.Entities.Subscriptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations.Subscription
 {
-    public class SubscriptionConfiguration : IEntityTypeConfiguration<Domain.Entities.Subscription.Subscription>
+    public class SubscriptionConfiguration : IEntityTypeConfiguration<Domain.Entities.Subscriptions.Subscription>
     {
-        public void Configure(EntityTypeBuilder<Domain.Entities.Subscription.Subscription> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Subscriptions.Subscription> builder)
         {
             builder.HasKey(s => s.Id);
 

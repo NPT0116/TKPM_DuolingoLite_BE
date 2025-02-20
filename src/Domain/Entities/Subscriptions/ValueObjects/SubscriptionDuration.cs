@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using SharedKernel;
 
-namespace Domain.Entities.Subscription.ValueObjects
+namespace Domain.Entities.Subscriptions.ValueObjects
 {
     public record SubscriptionDuration
     {

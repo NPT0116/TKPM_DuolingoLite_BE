@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
-using Domain.Entities.Learning.LearningProgress;
+
+using Domain.Entities.Learning.LearningProgresses;
+using Domain.Entities.Subscriptions;
 using Domain.Entities.User.ValueObjects;
 using SharedKernel;
 
-namespace Domain.Entities.User
+namespace Domain.Entities.Users
 {
     public class User : Entity
     {
@@ -22,7 +19,7 @@ namespace Domain.Entities.User
         public int LongestStreak { get; private set; }
         public DateTime? LastActiveDate { get; private set; }
         public Media.Media? ProfileImage { get; private set; }
-        public Subscription.Subscription? Subscription { get; private set; }
+        public Subscription? Subscription { get; private set; }
         private readonly List<LearningProgress> _learningProgresses = new();
         public IReadOnlyList<LearningProgress> LearningProgresses => _learningProgresses.AsReadOnly();
         private readonly List<UserActivity> _userActivities = new();

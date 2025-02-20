@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SharedKernel;
 
-namespace Domain.Entities.Learning.Question.Configuration
+namespace Domain.Entities.Learning.Questions.Configurations
 {
     public class Configuration : Entity
     {

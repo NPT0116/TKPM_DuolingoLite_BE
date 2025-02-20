@@ -9,17 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity;
-using Domain.Entities.Question;
-using Domain.Entities.Question.QuestionOption;
-using Domain.Entities.User;
-using Domain.Entities.Course;
-using Domain.Entities.Option;
-using Domain.Entities.Word;
 using Domain.Entities.Media;
-using Domain.Entities.Subscription;
-using Domain.Entities.Learning.LearningProgress;
-using Domain.Entities.Learning.Question.QuestionOption;
-using Domain.Entities.Learning.Question.Configuration;
+using Domain.Entities.Learning.Questions;
+using Domain.Entities.Learning.Questions.QuestionOptions;
+using Domain.Entities.Learning.Courses;
+using Domain.Entities.Learning.Lessons;
+using Domain.Entities.Learning.LearningProgresses;
+using Domain.Entities.Learning.Questions.Configurations;
+using Domain.Entities.Learning.Questions.Options;
+using Domain.Entities.Learning.Words;
+using Domain.Entities.Subscriptions;
 
 namespace Infrastructure.Data
 {
@@ -50,5 +49,10 @@ namespace Infrastructure.Data
         public DbSet<Media> Medias { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

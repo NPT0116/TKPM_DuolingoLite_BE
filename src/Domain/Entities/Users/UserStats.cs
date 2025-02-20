@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SharedKernel;
 
-namespace Domain.Entities.User
+namespace Domain.Entities.Users
 {
     public class UserStats : Entity
     {

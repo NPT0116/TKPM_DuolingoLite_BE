@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SharedKernel;
 
-namespace Domain.Entities.Word
+namespace Domain.Entities.Learning.Words
 {
     public class WordError
     {

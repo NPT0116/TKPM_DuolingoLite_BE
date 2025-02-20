@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities.Learning.Question.Configuration;
-using Domain.Entities.Learning.Question.QuestionOption;
 using Domain.Entities.Media;
-using Domain.Entities.Question.QuestionOption;
+using Domain.Entities.Learning.Questions.QuestionOptions;
 using SharedKernel;
+using Domain.Entities.Learning.Questions.Enums;
+using Domain.Entities.Learning.Questions.Configurations;
 
-namespace Domain.Entities.Question
+namespace Domain.Entities.Learning.Questions
 {
     public class Question : Entity
     {

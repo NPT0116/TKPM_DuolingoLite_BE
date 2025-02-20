@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Domain.Entities.Question;
+using Domain.Entities.Learning.Questions;
 using SharedKernel;
 
-namespace Domain.Entities.Course
+namespace Domain.Entities.Learning.Lessons
 {
     public class Lesson : Entity
     {
         public string Title { get; private set; } = string.Empty;
         public int XpEarned { get; private set; }
         public int Order { get; private set; }
-        public readonly List<Question.Question> _questions = new();
-        public IReadOnlyList<Question.Question> Questions => _questions.AsReadOnly();
+        public readonly List<Question> _questions = new();
+        public IReadOnlyList<Question> Questions => _questions.AsReadOnly();
         
 
         private Lesson() { }

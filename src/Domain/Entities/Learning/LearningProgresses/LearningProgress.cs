@@ -2,23 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.Learning.Courses;
 using Domain.Entities.User;
 using SharedKernel;
 
-namespace Domain.Entities.Learning.LearningProgress
+namespace Domain.Entities.Learning.LearningProgresses
 {
     public class LearningProgress : Entity
     {
         public int LessonOrder { get; private set; }
         public bool IsCompleted { get; private set; }
-        public Course.Course Course { get; private set; }
+        public Course Course { get; private set; }
         
         private LearningProgress() 
         {
         }
 
         private LearningProgress(
-            Course.Course course
+            Course course
         )
         {
             Course = course;
@@ -27,7 +28,7 @@ namespace Domain.Entities.Learning.LearningProgress
         }
 
         public static Result<LearningProgress> Create(
-            Course.Course course
+            Course course
         )
         {
             return Result.Success(new LearningProgress(course));

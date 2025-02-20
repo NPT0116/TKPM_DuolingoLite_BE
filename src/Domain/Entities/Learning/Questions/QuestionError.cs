@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SharedKernel;
 
-namespace Domain.Entities.Question
+namespace Domain.Entities.Learning.Questions
 {
     public class QuestionError
     {

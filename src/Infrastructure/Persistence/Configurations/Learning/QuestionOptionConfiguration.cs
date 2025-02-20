@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities.Question.QuestionOption;
+using Domain.Entities.Learning.Questions.QuestionOptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Configurations.Learning

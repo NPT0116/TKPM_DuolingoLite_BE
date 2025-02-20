@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Media;
+using Domain.Entities.Subscriptions;
 using SharedKernel;
 
-namespace Domain.Entities.User
+namespace Domain.Entities.Users
 {
     public class UserProfile : Entity
     {
@@ -14,11 +15,11 @@ namespace Domain.Entities.User
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public Media.Media? ProfileImage { get; private set; }
-        public Subscription.Subscription? Subscription { get; private set; }
+        public Subscription? Subscription { get; private set; }
 
         private UserProfile() { }
 
-        public UserProfile(string email, string nickName, string firstName, string lastName, Media.Media? profileImage, Subscription.Subscription? subscription)
+        public UserProfile(string email, string nickName, string firstName, string lastName, Media.Media? profileImage, Subscription? subscription)
         {
             Email = email;
             NickName = nickName;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Domain.Entities.Media;
 using SharedKernel;
 
-namespace Domain.Entities.Word
+namespace Domain.Entities.Learning.Words
 {
     public class Word : Entity
     {

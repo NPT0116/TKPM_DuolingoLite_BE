@@ -1,7 +1,7 @@
 using System;
 using Application.Features.User.Queries.GetMe;
 using Application.Interface;
-using Domain.Entities.User;
+using Domain.Entities.Users;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

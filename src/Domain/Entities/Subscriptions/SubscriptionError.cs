@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities.Subscription.ValueObjects;
+using Domain.Entities.Subscriptions.ValueObjects;
 using SharedKernel;
 
-namespace Domain.Entities.Subscription
+namespace Domain.Entities.Subscriptions
 {
     public class SubscriptionError
     {

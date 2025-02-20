@@ -1,7 +1,7 @@
 using System;
 using SharedKernel;
 
-namespace Domain.Entities.User;
+namespace Domain.Entities.Users;
  
 public static class UserError
 {

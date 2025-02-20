@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.Learning.Lessons;
 using SharedKernel;
 
-namespace Domain.Entities.Course
+namespace Domain.Entities.Learning.Courses
 {
     public class Course : Entity
     {

@@ -1,4 +1,4 @@
-namespace Domain.Entities.Question
+namespace Domain.Entities.Learning.Questions.Enums
 {
     public enum QuestionType
     {
