@@ -9,6 +9,7 @@ namespace Domain.Entities.User
 {
     public class UserProfile : Entity
     {
+        public string? Email { get; private set; }
         public string NickName { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -17,8 +18,9 @@ namespace Domain.Entities.User
 
         private UserProfile() { }
 
-        public UserProfile(string nickName, string firstName, string lastName, Media.Media? profileImage, Subscription.Subscription? subscription)
+        public UserProfile(string email, string nickName, string firstName, string lastName, Media.Media? profileImage, Subscription.Subscription? subscription)
         {
+            Email = email;
             NickName = nickName;
             FirstName = firstName;
             LastName = lastName;
