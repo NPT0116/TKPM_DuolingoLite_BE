@@ -17,7 +17,7 @@ namespace Infrastructure.Persistence.Configurations.Learning
 
             builder.HasOne<ApplicationUser>()
                 .WithMany()
-                .HasForeignKey("userId");
+                .HasForeignKey(lp => lp.UserId);
                 
             builder.HasOne(lp => lp.Course)
                 .WithMany()

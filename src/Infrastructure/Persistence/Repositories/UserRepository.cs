@@ -21,7 +21,7 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.UserProfiles
                 .Include(up => up.ProfileImage)
                 .Include(up => up.Subscription)
-                .FirstOrDefaultAsync(up => EF.Property<Guid>(up, "UserId") == userId);
+                .FirstOrDefaultAsync(up => up.UserId == userId);
         }
 
     }

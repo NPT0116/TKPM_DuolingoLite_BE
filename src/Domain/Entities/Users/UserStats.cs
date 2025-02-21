@@ -8,6 +8,7 @@ namespace Domain.Entities.Users
 {
     public class UserStats : Entity
     {
+        public Guid UserId { get; private set; }
         public int ExperiencePoint { get; private set; }
         public int Heart { get; private set; }
         public int CurrentStreak { get; private set; }
@@ -16,8 +17,9 @@ namespace Domain.Entities.Users
 
         private UserStats() { }
 
-        public UserStats(string userId)
+        public UserStats(Guid userId)
         {
+            UserId = userId;
             ExperiencePoint = 0;
             Heart = 5;
             CurrentStreak = 0;
