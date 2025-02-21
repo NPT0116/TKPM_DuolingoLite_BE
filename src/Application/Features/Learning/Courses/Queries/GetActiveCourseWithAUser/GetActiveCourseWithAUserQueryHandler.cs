@@ -9,11 +9,9 @@ namespace Application.Features.Learning.Courses.Queries.GetActiveCourseWithAUser
 public class GetActiveCourseWithAUserQueryHandler : IQueryHandler<GetActiveCourseWithAUserQuery, GetActiveCourseWithAUserResponseDto>
 {
     private readonly  ILearningProgressRepository _learningProgressRepository;
-    private readonly ICourseRepository _courseRepository;
-    public GetActiveCourseWithAUserQueryHandler(ILearningProgressRepository learningProgressRepository, ICourseRepository courseRepository)
+    public GetActiveCourseWithAUserQueryHandler(ILearningProgressRepository learningProgressRepository)
     {
         _learningProgressRepository = learningProgressRepository;
-        _courseRepository = courseRepository;
     }
     public async Task<Result<GetActiveCourseWithAUserResponseDto>> Handle(GetActiveCourseWithAUserQuery request, CancellationToken cancellationToken)
     {
