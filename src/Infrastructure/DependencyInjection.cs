@@ -74,6 +74,7 @@ public static class DependencyInjection
         services.AddHostedService<MigrationServices>();
         services.AddScoped<ILessonRepository, LessonRepository>();
         services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
+        services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         return services;
     }
 }

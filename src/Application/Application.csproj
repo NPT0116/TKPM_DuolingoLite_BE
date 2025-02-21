@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Learning\Configures\" />
     <Folder Include="Features\Learning\Lessons\" />
     <Folder Include="Features\Learning\Media\" />
     <Folder Include="Features\Learning\QuestionWords\" />
