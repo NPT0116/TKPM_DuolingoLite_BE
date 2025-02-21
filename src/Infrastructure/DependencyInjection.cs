@@ -72,7 +72,8 @@ public static class DependencyInjection
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddHostedService<MigrationServices>();
-        
+        services.AddScoped<ILessonRepository, LessonRepository>();
+        services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
         return services;
     }
 }
