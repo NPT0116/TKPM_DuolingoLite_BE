@@ -20,9 +20,10 @@ public class LearningProgressRepository : ILearningProgressRepository
     return lp;
     }
 
-    public async Task<LearningProgress> GetLearningProgressByUserIdAsync(Guid UserId)
+    public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid UserId)
     {
-        // var lp = await _context.LearningProgresses.FirstOrDefaultAsync(x => x. == UserId);
-        throw new NotImplementedException();
+        var lp = await _context.LearningProgresses.FirstOrDefaultAsync(x => x.UserId == UserId);
+
+        return lp;
     }
 }

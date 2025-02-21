@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Learning.Courses;
 using Application.Features.Learning.Courses.AddLesson;
+using Application.Features.Learning.Courses.Queries.GetActiveCourseWithAUser;
 using Application.Features.Learning.Courses.Queries.GetCourseDetail;
 using Application.Features.Learning.Courses.Queries.GetCourseList;
 using MediatR;
@@ -51,6 +52,13 @@ namespace WebApi.Controllers.Learning
         public async Task<IActionResult> GetCourseDetail([FromRoute] Guid id, CancellationToken cancellationToken = default)
         {
             var query = new GetCourseDetailQuery(id);
+            var result = await _mediator.Send(query, cancellationToken);
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpGet ("current/{userId}")]
+        public async Task<IActionResult> GetActiveCourseWithAUser([FromRoute] Guid userId, CancellationToken cancellationToken = default)
+        {
+            var query = new GetActiveCourseWithAUserQuery(userId);
             var result = await _mediator.Send(query, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }
