@@ -39,10 +39,10 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
-        [HttpPost("add-lesson")]
-        public async Task<IActionResult> AddLesson([FromBody] CreateLessonDto createLessonDto, CancellationToken cancellationToken = default)
+        [HttpPost("{id}/lesson")]
+        public async Task<IActionResult> AddLesson([FromRoute] Guid id, [FromBody] CreateLessonDto createLessonDto, CancellationToken cancellationToken = default)
         {
-            var command = new AddLessonCommand(createLessonDto);
+            var command = new AddLessonCommand(id, createLessonDto);
             var result = await _mediator.Send(command, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }

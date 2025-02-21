@@ -22,17 +22,17 @@ namespace Application.Features.Learning.Courses.AddLesson
         }
         public async Task<Result<Lesson>> Handle(AddLessonCommand request, CancellationToken cancellationToken = default)
         {
-            var (title, xpEarned, order, courseId) = request.CreateLessonDto;
+            var (title, xpEarned, order) = request.CreateLessonDto;
             var lesson = Lesson.Create(title, xpEarned, order);
             if(lesson.IsFailure)
             {
                 return Result.Failure<Lesson>(lesson.Error);
             }
-            var course = await _courseRepository.GetCourseById(courseId);
+            var course = await _courseRepository.GetCourseById(request.CourseId);
 
             if(course == null)
             {
-                return Result.Failure<Lesson>(CourseError.CourseNotFound(courseId));
+                return Result.Failure<Lesson>(CourseError.CourseNotFound(request.CourseId));
             }
             course.AddLesson(lesson.Value);
             await _context.SaveChangesAsync(cancellationToken);
