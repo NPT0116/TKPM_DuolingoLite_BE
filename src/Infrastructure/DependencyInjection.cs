@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using Application.Interface;
+using Domain.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Infrastructure.Persistence.Repositories;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -65,6 +67,9 @@ public static class DependencyInjection
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IIdentityService, IdentityService>();
+
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         
         return services;
     }
