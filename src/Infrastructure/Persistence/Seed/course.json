@@ -1,0 +1,406 @@
+{
+    "Name": "English for Beginners",
+    "Level": 1,
+    "NextCourse": null,
+    "Lessons": [
+        {
+            "Title": "Lesson 1",
+            "XpEarned": 100,
+            "Order": 1,
+            "Questions": [
+                {
+                    "Instruction": "Từ vựng mới",
+                    "VietnameseText": "Đâu là cà phê?",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 1,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": true
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": "Cà phê",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "EnglishText": "Coffee",
+                            "IsCorrect": true
+                        },
+                        {
+                            "VietnameseText": "Trà",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "EnglishText": "Tea",
+                            "IsCorrect": false
+                        },
+                        {
+                            "VietnameseText": "Nước",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "EnglishText": "Water",
+                            "IsCorrect": false
+                        }
+
+                    ]
+                },
+                {
+                    "Instruction": "Từ vựng mới",
+                    "VietnameseText": "Đâu là nước?",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 2,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": true
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": "Nước",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "EnglishText": "Water",
+                            "IsCorrect": true
+                        },
+                        {
+                            "VietnameseText": "Trà",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "EnglishText": "Tea",
+                            "IsCorrect": false
+                        },
+                        {
+                            "VietnameseText": "Cà phê",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "EnglishText": "Coffee",
+                            "IsCorrect": false
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Bạn nghe được gì?",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 3,
+                    "Audio": "https://drive.google.com/file/d/14lwRwq9-9Z4CrbCXwOY50RsGhTpV1mR3/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/14lwRwq9-9Z4CrbCXwOY50RsGhTpV1mR3/view?usp=drive_link",
+                            "EnglishText": "sea",
+                            "IsCorrect": true
+                        },
+                        {
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1vgMuIkba_Vs-O7WDWGDIV2NRxVZTZcvY/view?usp=drive_link",
+                            "EnglishText": "say",
+                            "IsCorrect": false
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Bạn nghe được gì?",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 4,
+                    "Audio": "https://drive.google.com/file/d/1GAEMgyno9cMc01ka-p_s6kVNcHIP6_IQ/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1PxEWoCpxIFvWkyWdQfbw23WjbXyQY8ei/view?usp=drive_link",
+                            "EnglishText": "got",
+                            "IsCorrect": false
+                        },
+                        {
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1GAEMgyno9cMc01ka-p_s6kVNcHIP6_IQ/view?usp=drive_link",
+                            "EnglishText": "go",
+                            "IsCorrect": true
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Từ vựng mới",
+                    "VietnameseText": "Đâu là trà?",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 5,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": true
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": "Nước",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "EnglishText": "Water",
+                            "IsCorrect": false
+                        },
+                        {
+                            "VietnameseText": "Trà",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "EnglishText": "Tea",
+                            "IsCorrect": true
+                        },
+                        {
+                            "VietnameseText": "Cà phê",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "EnglishText": "Coffee",
+                            "IsCorrect": false
+                        }
+                        
+                        
+
+                    ]
+                },
+                {
+                    "Instruction": "Viết lại bằng tiếng Việt",
+                    "VietnameseText": null,
+                    "EnglishText": "Hello",
+                    "Type": "BuildSentence",
+                    "Image": null,
+                    "Order": 6,
+                    "Audio": "https://drive.google.com/file/d/1tI0vYYaWOko_CD93NBEg1ofXDPSI7wYo/view?usp=drive_link",
+                    "Words": [
+                        {
+                            "Content": "Hello",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1tI0vYYaWOko_CD93NBEg1ofXDPSI7wYo/view?usp=drive_link"
+                        }
+                    ],
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": "Cà phê",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "EnglishText": "Coffee",
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "Nước",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "EnglishText": "Water",
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "Xin",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": 1
+                        },
+                        {
+                            "VietnameseText": "cà",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "chào",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order":2
+                        },
+                        {
+                            "VietnameseText": "và",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Viết lại bằng tiếng Việt",
+                    "VietnameseText": null,
+                    "EnglishText": "coffee and tea",
+                    "Type": "BuildSentence",
+                    "Image": null,
+                    "Order": 7,
+                    "Audio": "https://drive.google.com/file/d/1R6wIsbAHbRHPlgDZfWmHPRfnAMDe_oIX/view?usp=drive_link",
+                    "Words": [
+                        {
+                            "Content": "coffee",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "and",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1QMCVVtThVa5fGdntZ2Wqzq0_msbmdXOX/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "tea",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link"
+                        }
+                    ],
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "VietnameseText": "chào",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "sữa",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "nước",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "và",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": 3
+                        },
+                        {
+                            "VietnameseText": "phê",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": 2
+                        },
+                        {
+                            "VietnameseText": "trà",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": 4
+                        },
+                        {
+                            "VietnameseText": "xin",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": -1
+                        },
+                        {
+                            "VietnameseText": "cà",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "Order": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
