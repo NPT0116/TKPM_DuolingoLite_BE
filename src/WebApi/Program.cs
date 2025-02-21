@@ -65,11 +65,10 @@ logger.LogInformation($"Environment: {app.Environment.EnvironmentName}");
 logger.LogInformation($"Connection string: {builder.Configuration.GetConnectionString("DefaultConnection")}");
 
 // Configure middleware
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
