@@ -18,7 +18,7 @@ namespace Infrastructure.Persistence.Configurations.User
 
         builder.HasOne<ApplicationUser>()
             .WithOne()
-            .HasForeignKey<UserProfile>("userId");
+            .HasForeignKey<UserProfile>(up => up.UserId);
     }
 }
 
