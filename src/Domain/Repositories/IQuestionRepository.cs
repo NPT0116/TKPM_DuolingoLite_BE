@@ -5,9 +5,6 @@ namespace Domain.Repositories;
 
 public interface IQuestionRepository
 {
-    Task<Question> GetQuestionByIdAsync(Guid id);
-    Task<IEnumerable<Question>> GetQuestionsAsync();
-    Task AddQuestionAsync(Question question);
-    Task UpdateQuestionAsync(Question question);
-    Task DeleteQuestionAsync(Guid id);
+    Task<Question?> GetQuestionByIdAsync(Guid id);
+
 }
