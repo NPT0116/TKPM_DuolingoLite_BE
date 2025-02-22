@@ -75,6 +75,8 @@ public static class DependencyInjection
         services.AddScoped<ILessonRepository, LessonRepository>();
         services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+        services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
         return services;
     }
 }
