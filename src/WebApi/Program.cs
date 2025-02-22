@@ -3,6 +3,8 @@ using Infrastructure;
 using Serilog;
 using WebApi.Infrastructure;
 using Microsoft.OpenApi.Models;
+using WebApi.Swagger;
+using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "API for DuolingoLite"
     });
+    c.OperationFilter<FileUploadOperationFilter>();
 
     // Adding Authentication for Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -56,7 +59,15 @@ builder.Services.AddApplication()
 
 builder.Host.UseSerilog((context, configuration) => 
         configuration.ReadFrom.Configuration(context.Configuration));
+// check api key exists
+string credentialsPath = builder.Configuration["Google:CredentialsPath"];
+
+if (string.IsNullOrEmpty(credentialsPath) || !File.Exists(credentialsPath))
+{
+    throw new Exception("Chưa cấu hình file API key hợp lệ. Vui lòng thiết lập biến môi trường Google__CredentialsPath hoặc cấu hình trong user secrets.");
+}
 var app = builder.Build();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // Log startup information
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
