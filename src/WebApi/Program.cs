@@ -3,6 +3,8 @@ using Infrastructure;
 using Serilog;
 using WebApi.Infrastructure;
 using Microsoft.OpenApi.Models;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +72,27 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        context.Database.Migrate(); // Áp dụng migrations nếu cần
+        var seedResult = SeedData.Initialize(services); // Chạy seed
+        if(seedResult.IsFailure)
+        {
+            logger.LogError(seedResult.Error.ToString());
+        }
+    }
+    catch (Exception ex)
+    {
+        // var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

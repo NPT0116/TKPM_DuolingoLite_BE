@@ -12,18 +12,16 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions
 
         private MatchingQuestionOption() { } // For EF Core
 
-        private MatchingQuestionOption(Question question, Option option, Option matchWithOption, MatchingQuestionOptionType sourceType, MatchingQuestionOptionType targetType, int order) 
+        private MatchingQuestionOption(Question question, Option option, MatchingQuestionOptionType sourceType, MatchingQuestionOptionType targetType, int order) 
             : base(question, option, order)
         {
-            MatchWithOptionId = matchWithOption.Id;
-            MatchWithOption = matchWithOption;
             SourceType = sourceType;
             TargetType = targetType;
         }
 
-        public static Result<MatchingQuestionOption> Create(Question question, Option option, Option matchWithOption, MatchingQuestionOptionType sourceType, MatchingQuestionOptionType targetType, int order)
+        public static Result<MatchingQuestionOption> Create(Question question, Option option, MatchingQuestionOptionType sourceType, MatchingQuestionOptionType targetType, int order)
         {
-            return Result.Success(new MatchingQuestionOption(question, option, matchWithOption, sourceType, targetType, order));
+            return Result.Success(new MatchingQuestionOption(question, option, sourceType, targetType, order));
         }
     }
 

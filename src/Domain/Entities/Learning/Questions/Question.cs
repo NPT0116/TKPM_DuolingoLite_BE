@@ -94,6 +94,9 @@ namespace Domain.Entities.Learning.Questions
             };
         }
 
-        // Tương tự cho các loại khác...
+        public void AddWord(QuestionWord word)
+        {
+            _words.Add(word);
+        }
     }
 }

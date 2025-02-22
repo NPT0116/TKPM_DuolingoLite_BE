@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Seed.JsonModels
 {
-    public class Configuration
+    public class ConfigurationJsonModel
     {
         public bool Audio { get; set; }
         public bool EnglishText { get; set; }
