@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Application.Interface;
 using Domain.Repositories;
+using Domain.Service;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
@@ -77,6 +78,7 @@ public static class DependencyInjection
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         return services;
     }
 }
