@@ -13,6 +13,8 @@ namespace Infrastructure.Persistence.Configurations.Learning
         {
             builder.HasKey(o => o.Id);
 
+            builder.Property(o => o.VietnameseText).IsRequired(false);
+
             builder.HasOne(o => o.Image)
                 .WithMany()
                 .HasForeignKey("ImageId")
