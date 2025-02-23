@@ -1464,8 +1464,8 @@
                 },
                 {
                     "Instruction": "Hoàn thành hội thoại",
-                    "VietnameseText": "đợi",
-                    "EnglishText": null,
+                    "VietnameseText": null,
+                    "EnglishText": "What's he doing?",
                     "Type": "MultipleChoice",
                     "Image": "https://simg-ssl.duolingo.com/world-characters/avatars/lin_avatar_icon.svg",
                     "Order": 4,
@@ -1664,7 +1664,382 @@
                 }
                 
             ]
+        },
+        {
+            "Title": "Lesson 5",
+            "XpEarned": 100,
+            "Order": 5,
+            "Questions": [
+                {
+                    "Instruction": "Đọc câu này",
+                    "VietnameseText": null,
+                    "EnglishText": "My boss was on a business trip last week",
+                    "Type": "Pronunciation",
+                    "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+                    "Order": 1,
+                    "Words": [
+                        {
+                            "Content": "My",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1Np9oxmNiNyZXrqgzs-7wfgD6H7D2Luwb/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "boss",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/112z8Hpe7J4KNzZCOQ_yRFgZnfR7VrLuE/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "was",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/155uFO20B7G8KknagoLpP6uCbIQfMAbQH/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "on",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1xQ9WIp7FbYBQ6-Q5_Xl9Vst9zZGOyrPF/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "a",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "business",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/13kSJd6HS3lDYVJM6BZgqOtTeOhATbdzv/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "trip",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1w8ZXvuPYwJIaJ5KfUJaPSu2sUla7tQJW/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "last",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/10mrvqAwZRzm_FCZQp-oHTYK0pdQjimfe/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "week",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1zrkuTcTdoorZkNhe91WeRx40W46RpH_N/view?usp=drive_link"
+                        }
+                    ],
+                    "Audio": "https://drive.google.com/file/d/1aQHtLferOvvwenvayXywjDmDK8-g4KLx/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": true
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                    ]
+                },
+                {
+                    "Instruction": "Chọn nghĩa đúng",
+                    "VietnameseText": "vấn đề",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+                    "Order": 2,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "trang web",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1iwrN5EieElFTfF9iMXMfkda84rkT39Pt/view?usp=drive_link",
+                            "EnglishText": "website",
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "máy tính",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1UVp1Oqb6TPPQUpcDKV5a9zJyBegYDLj_/view?usp=drive_link",
+                            "EnglishText": "laptop",
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "vấn đề",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1ERaCEU6P3KBVP78egtQbIlHDVtE_X_x8/view?usp=drive_link",
+                            "EnglishText": "problem",
+                            "IsCorrect": true
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Viết lại bằng tiếng Anh",
+                    "VietnameseText": "một vấn đề lớn",
+                    "EnglishText": null,
+                    "Type": "BuildSentence",
+                    "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c",
+                    "Order": 3,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": true
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "thức dậy",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1YAtfjqaRmoDzS2pt7jYSFNNl35xK0F2P/view?usp=drive_link",
+                            "EnglishText": "got up",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "một",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link",
+                            "EnglishText": "a",
+                            "Order": 1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "lớn",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1F9iMZfqUGpPCmBSPsM6uG0J05BYIrXEL/view?usp=drive_link",
+                            "EnglishText": "big",
+                            "Order": 2
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "vấn đề",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1ERaCEU6P3KBVP78egtQbIlHDVtE_X_x8/view?usp=drive_link",
+                            "EnglishText": "problem",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "giáo viên",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1yAMn1GlG7M6Mpcq8LitCQG79G3QiyvCW/view?usp=drive_link",
+                            "EnglishText": "teacher",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "thăm",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1eW464W1zUHNQIeYUCZcMIX3lnspIoQPB/view?usp=drive_link",
+                            "EnglishText": "visits",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "làm kinh doanh",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1LiQyLkzuvgzpZ3DL5eMAvF2BSEFyU_9D/view?usp=drive_link",
+                            "EnglishText": "do business",
+                            "Order": -1
+                        }
+                    ]
+                    
+                },
+                {
+                    "Instruction": "Hoàn thành hội thoại",
+                    "VietnameseText": null,
+                    "EnglishText": "I'm sorry, that's not possible",
+                    "Type": "MultipleChoice",
+                    "Image": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg",
+                    "Order": 4,
+                    "Audio": "https://drive.google.com/file/d/1Hc-tE0s33k5acu2tFX2r-XZeR1xglZtL/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": true
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Words": [
+                        {
+                            "Content": "I'm",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/17V67Z7Q3oLLPfhHINqaurQkF8GIYntHH/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "sorry",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1wSv4wBK2GaLTuv0G_WkoqUj6UOAOFJFr/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "that's",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1W25D_uh3qT_agbn-hrlTkJDEMFPfGR7w/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "not",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1-W1CpUVm278r1O8dGVJHLzLIT08JbK7y/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "possible",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1gO8vZa0VH8OCj_btcP7An1UM9lpiyUpj/view?usp=drive_link"
+                        }
+                    ],
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": "Can you speak to the boss?",
+                            "IsCorrect": true
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": null,
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": "Is the wedding in December?",
+                            "IsCorrect": false
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Nghe và trả lời",
+                    "VietnameseText": "Người nói...",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 5,
+                    "Audio": "https://drive.google.com/file/d/1DqFqCimqw4fb4Wjik1WNx1iZTVFDfbqk/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "hay vào trang web công ty",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": true
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "không có thắc mắc nào",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "không biết dùng Internet",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": false
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Nghe và trả lời",
+                    "VietnameseText": "Công ty này...",
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 6,
+                    "Audio": "https://drive.google.com/file/d/1ZCQ_Ckv5nNee8Vp0CYBC8i1-AxFEKPkA/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "không có chiếc máy tính nào",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "có một văn phòng đắt tiền",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "sản xuất máy tính đắt tiền",
+                            "Image": null,
+                            "Audio": null,
+                            "EnglishText": null,
+                            "IsCorrect": true
+                        }
+                    ]
+                }
+            ]
         }
-                
     ]
 }
