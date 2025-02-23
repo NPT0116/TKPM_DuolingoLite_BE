@@ -5,8 +5,6 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions
 {
     public class MatchingQuestionOption : QuestionOptionBase
     {
-        public Guid MatchWithOptionId { get; private set; }
-        public Option MatchWithOption { get; private set; }
         public MatchingQuestionOptionType SourceType { get; private set; }
         public MatchingQuestionOptionType TargetType { get; private set; }
 

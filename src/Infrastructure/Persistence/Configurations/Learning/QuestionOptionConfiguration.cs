@@ -11,7 +11,7 @@ namespace Infrastructure.Persistence.Configurations.Learning
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<QuestionOptionBase> builder)
         {
-            builder.ToTable("QuestionOptions");
+            builder.ToTable("QuestionOptions"); 
             
             builder.HasDiscriminator<string>("OptionType")
                 .HasValue<MultipleChoiceQuestionOption>("MultipleChoice")

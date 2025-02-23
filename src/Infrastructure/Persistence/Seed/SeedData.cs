@@ -21,6 +21,8 @@ using Infrastructure.Persistence;
     using Domain.Entities.Learning.Questions.Options;
     using Domain.Entities.Learning.Questions.QuestionOptions;
     using Domain.Entities.Learning.Words;
+    using System.Text.Json.Serialization;
+    using Newtonsoft.Json;
 
     public static class SeedData
 {
@@ -41,7 +43,7 @@ using Infrastructure.Persistence;
         // Đọc file JSON
         var json = File.ReadAllText(filePath);
 
-            var courseModel = JsonSerializer.Deserialize<CourseJsonModel>(json);
+            var courseModel = JsonConvert.DeserializeObject<CourseJsonModel>(json);
 
             if(courseModel == null)
             {
@@ -135,47 +137,83 @@ using Infrastructure.Persistence;
                     var options = question.Options;
                     foreach(var option in options)
                     {
-                        var optionImage = option.Image == null ? null : Media.Create("optionImage", MediaType.Image, 100000, option.Image);
-                        if(optionImage != null && optionImage.IsFailure)
+                        Option newOption;
+                        var existingOption = context.Options.FirstOrDefault(o => o.VietnameseText == option.VietnameseText);
+                        if(existingOption != null)
                         {
-                            return Result.Failure(optionImage.Error);
+                            newOption = existingOption;
+                        }
+                        else
+                        {
+                            var optionImage = option.Image == null ? null : Media.Create("optionImage", MediaType.Image, 100000, option.Image);
+                            if(optionImage != null && optionImage.IsFailure)
+                            {
+                                return Result.Failure(optionImage.Error);
+                            }
+
+                            var optionAudio = option.Audio == null ? null : Media.Create("optionAudio", MediaType.Audio, 10000, option.Audio);
+                            if(optionAudio != null && optionAudio.IsFailure)
+                            {
+                                return Result.Failure(optionAudio.Error);
+                            }
+
+                            var newOptionResult = Option.Create(
+                                option.VietnameseText,
+                                optionImage != null ? optionImage.Value : null,
+                                optionAudio != null ? optionAudio.Value : null,
+                                option.EnglishText
+                            );
+
+                            if(newOptionResult.IsFailure)
+                            {
+                                return Result.Failure(newOptionResult.Error);
+                            }
+
+                            newOption = newOptionResult.Value;
+                            context.Options.Add(newOption);
+                            context.SaveChanges();
                         }
 
-                        var optionAudio = option.Audio == null ? null : Media.Create("optionAudio", MediaType.Audio, 10000, option.Audio);
-                        if(optionAudio != null && optionAudio.IsFailure)
+                        if(option == null)
                         {
-                            return Result.Failure(optionAudio.Error);
+                            Console.WriteLine("Option is null");
                         }
 
-                        var newOption = Option.Create(
-                            option.VietnameseText,
-                            optionImage != null ? optionImage.Value : null,
-                            optionAudio != null ? optionAudio.Value : null,
-                            option.EnglishText
-                        );
-
-                        if(newOption.IsFailure)
+                        if(newQuestion.Value == null)
                         {
-                            return Result.Failure(newOption.Error);
+                            Console.WriteLine("New question is null");
                         }
 
-                        if(!option.IsReused)
+                        if(newOption == null)
                         {
-                            context.Options.Add(newOption.Value);
+                            Console.WriteLine("New option is null");
+                        }
+
+                        if (question.Type == "MultipleChoice")
+                        {
+                            var _settings = new JsonSerializerSettings
+                            {
+                                Formatting = Formatting.Indented, // Format dễ đọc hơn
+                                NullValueHandling = NullValueHandling.Include // Không bỏ qua giá trị null
+                            };
+
+                            Console.WriteLine(JsonConvert.SerializeObject(option, _settings)); // ✅ Dùng JsonConvert
+
+                            Console.WriteLine(JsonConvert.SerializeObject(option as MatchingOptionJsonModel, _settings)); // ✅ Dùng JsonConvert
                         }
 
                         QuestionOptionBase newQuestionOption = question.Type switch
                         {
-                            "MultipleChoice" => MultipleChoiceQuestionOption.Create(newQuestion.Value, newOption.Value, (option as MultipleChoiceOptionJsonModel)?.IsCorrect ?? false, 1).Value,
+                            "MultipleChoice" => MultipleChoiceQuestionOption.Create(newQuestion.Value, newOption, (option as MultipleChoiceOptionJsonModel)?.IsCorrect ?? false, 1).Value,
 
-                            // "Matching" => MatchingQuestionOption.Create(newQuestion.Value, newOption.Value, 
-                            //                                             new Option((option as MatchingOptionJsonModel)?.MatchWith, null, null, null), 
-                            //                                             MatchingQuestionOptionType.EnglishText, 
-                            //                                             MatchingQuestionOptionType.VietnameseText, 1),
+                            "Matching" => MatchingQuestionOption.Create(newQuestion.Value, newOption,  
+                                                                        Enum.Parse<MatchingQuestionOptionType>((option as MatchingOptionJsonModel).SourceType), 
+                                                                        Enum.Parse<MatchingQuestionOptionType>((option as MatchingOptionJsonModel).TargetType), 
+                                                                        1).Value,
 
-                            "BuildSentence" => BuildSentenceQuestionOption.Create(newQuestion.Value, newOption.Value, 1, (option as BuildSentenceOptionJsonModel)?.Order ?? -1).Value,
+                            "BuildSentence" => BuildSentenceQuestionOption.Create(newQuestion.Value, newOption, 1, (option as BuildSentenceOptionJsonModel)?.Order ?? -1).Value,
 
-                            "Pronunication" => PronunciationQuestionOption.Create(newQuestion.Value, newOption.Value, 1).Value,
+                            "Pronunication" => PronunciationQuestionOption.Create(newQuestion.Value, newOption, 1).Value,
 
                             _ => throw new InvalidOperationException("Invalid question type")
                         };

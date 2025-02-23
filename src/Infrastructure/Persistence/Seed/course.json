@@ -32,6 +32,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
                             "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
@@ -39,6 +40,7 @@
                             "IsCorrect": true
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
                             "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
@@ -46,6 +48,7 @@
                             "IsCorrect": false
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
                             "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
@@ -79,6 +82,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
                             "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
@@ -86,6 +90,7 @@
                             "IsCorrect": true
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
                             "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
@@ -93,6 +98,7 @@
                             "IsCorrect": false
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
                             "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
@@ -125,6 +131,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
                             "Audio": "https://drive.google.com/file/d/14lwRwq9-9Z4CrbCXwOY50RsGhTpV1mR3/view?usp=drive_link",
@@ -132,6 +139,7 @@
                             "IsCorrect": true
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
                             "Audio": "https://drive.google.com/file/d/1vgMuIkba_Vs-O7WDWGDIV2NRxVZTZcvY/view?usp=drive_link",
@@ -164,6 +172,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
                             "Audio": "https://drive.google.com/file/d/1PxEWoCpxIFvWkyWdQfbw23WjbXyQY8ei/view?usp=drive_link",
@@ -171,6 +180,7 @@
                             "IsCorrect": false
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
                             "Audio": "https://drive.google.com/file/d/1GAEMgyno9cMc01ka-p_s6kVNcHIP6_IQ/view?usp=drive_link",
@@ -203,6 +213,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
                             "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
@@ -210,6 +221,7 @@
                             "IsCorrect": false
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
                             "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
@@ -217,6 +229,7 @@
                             "IsCorrect": true
                         },
                         {
+                            "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
                             "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
@@ -259,6 +272,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
                             "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
@@ -266,6 +280,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
                             "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
@@ -273,6 +288,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "Xin",
                             "Image": null,
                             "Audio": null,
@@ -280,6 +296,7 @@
                             "Order": 1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "cà",
                             "Image": null,
                             "Audio": null,
@@ -287,6 +304,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "chào",
                             "Image": null,
                             "Audio": null,
@@ -294,6 +312,7 @@
                             "Order":2
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "và",
                             "Image": null,
                             "Audio": null,
@@ -343,6 +362,7 @@
                     },
                     "Options": [
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "chào",
                             "Image": null,
                             "Audio": null,
@@ -350,6 +370,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "sữa",
                             "Image": null,
                             "Audio": null,
@@ -357,6 +378,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "nước",
                             "Image": null,
                             "Audio": null,
@@ -364,6 +386,7 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "và",
                             "Image": null,
                             "Audio": null,
@@ -371,6 +394,7 @@
                             "Order": 3
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "phê",
                             "Image": null,
                             "Audio": null,
@@ -378,6 +402,7 @@
                             "Order": 2
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "trà",
                             "Image": null,
                             "Audio": null,
@@ -385,6 +410,7 @@
                             "Order": 4
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "xin",
                             "Image": null,
                             "Audio": null,
@@ -392,11 +418,434 @@
                             "Order": -1
                         },
                         {
+                            "Type": "BuildSentence",
                             "VietnameseText": "cà",
                             "Image": null,
                             "Audio": null,
                             "EnglishText": null,
                             "Order": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+          "Title": "Lesson 2",
+            "XpEarned": 100,
+            "Order": 2,  
+            "Questions": [
+                {
+                    "Instruction": "Đọc câu này",
+                    "VietnameseText": null,
+                    "EnglishText": "Goodbye, have a nice day!",
+                    "Type": "Pronunciation",
+                    "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/3749d548da7d349c89c158483beaff29",
+                    "Order": 1,
+                    "Words": [
+                        {
+                            "Content": "Goodbye",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1el8YQRHinT0ebvWlZv_uEZF5_4A1_SE0/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "have",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/12WIGS5duom0cLBI-OAUkwzwmBgX4YfH0/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "a",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "nice",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1jGl8IWjSXN_qA71ApBdXSyakwHJpYaDt/view?usp=drive_link"
+                        },
+                        {
+                            "Content": "day",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/17tOGRiwrLFrkFxsow-hvecRM3TiSTjqh/view?usp=drive_link"
+                        }
+                    ],
+                    "Audio": "https://drive.google.com/file/d/1-5VTQB0zUxgp2jYxBBqFzl7LL4z-ShF4/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": true
+                    },
+                    "OptionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                    ]
+                },
+                {
+                    "Instruction": "Chọn cặp từ",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "Matching",
+                    "Image": null,
+                    "Order": 2,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": true,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "Matching",
+                            "VietnameseText": "thực đơn",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1MJNy_FHlc6HZIM4aYU5Dc4H0nQfzy9Rm/view?usp=drive_link",
+                            "EnglishText": "menu",
+                            "SourceType": "VietnameseText",
+                            "TargetType": "EnglishText"
+                        },
+                        {
+                            "Type": "Matching",
+                            "VietnameseText": "giàu",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1MqY47ms1E2Exz0AOzfx0AtO-Otkd2Bc_/view?usp=drive_link",
+                            "EnglishText": "rich",
+                            "SourceType": "VietnameseText",
+                            "TargetType": "EnglishText"
+                        },
+                        {
+                            "Type": "Matching",
+                            "VietnameseText": "bác sĩ",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1-Tex6gcG4y0Eld8c7NknUwRNvymAZt7r/view?usp=drive_link",
+                            "EnglishText": "doctor",
+                            "SourceType": "VietnameseText",
+                            "TargetType": "EnglishText"
+                        },
+                        {
+                            "Type": "Matching",
+                            "VietnameseText": "mèo",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1o5QhOUIveGIH0jLi1qKDizrpph-nF5ka/view?usp=drive_link",
+                            "EnglishText": "cat",
+                            "SourceType": "VietnameseText",
+                            "TargetType": "EnglishText"
+                        },
+                        {
+                            "Type": "Matching",
+                            "VietnameseText": "nước Mỹ",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1ZgnTbPaUVnAXg2KZh6_xwl8NVYEBc7mZ/view?usp=drive_link",
+                            "EnglishText": "America",
+                            "SourceType": "VietnameseText",
+                            "TargetType": "EnglishText"
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Nhấn vào những gì bạn nghe được",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "BuildSentence",
+                    "Image": null,
+                    "Order": 3,
+                    "Audio": "https://drive.google.com/file/d/1PM8xjKkcfV1wwErQAVN_NXAQYDC6BGCo/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "nhà hàng",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "EnglishText": "restaurant",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "chào buổi tối",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1oAFuHV9li9ofwvcUzrCfTACJZSgrXGJf/view?usp=drive_link",
+                            "EnglishText": "good evening",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "nhiều hơn",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1iGngDU2CU9qIBkeRyn4C3BSJbDP9ez-4/view?usp=drive_link",
+                            "EnglishText": "more",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "bánh pizza",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
+                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link",
+                            "EnglishText": "pizzas",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "kiểm tra",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/16oRTC3iVLsE2ReH_8G8vu6HrUkrSGNMX/view?usp=drive_link",
+                            "EnglishText": "check",
+                            "Order": 1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "vui lòng",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1OM9S1Z1GlRmmL-X0lnmheXAqodSJH5Ti/view?usp=drive_link",
+                            "EnglishText": "please",
+                            "Order": 2
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Đâu là \"bánh pizza\"?",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 4,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": true
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "nhà hàng",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "EnglishText": "restaurant",
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "bánh pizza",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
+                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link",
+                            "EnglishText": "pizzas",
+                            "IsCorrect": true
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "cái bàn",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
+                            "Audio": "https://drive.google.com/file/d/1AwvpJH5ps3c9m-p-T-IfDu1JiVnY1Ruu/view?usp=drive_link",
+                            "EnglishText": "table",
+                            "IsCorrect": false
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Viết lại bằng tiếng Anh",
+                    "VietnameseText": "Vâng, cho hai người",
+                    "EnglishText": null,
+                    "Type": "BuildSentence",
+                    "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+                    "Order": 5,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": true,
+                        "Instruction": true,
+                        "Image": true
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "cho",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1jNk0RLEz5vm0H7Y_ZcPeFgB42OVDvCL0/view?usp=drive_link",
+                            "EnglishText": "for",
+                            "Order": 2
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "cho một",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1_DYVWO1301Hquldc9H_G8OlyFXVr6Nab/view?usp=drive_link",
+                            "EnglishText": "for one",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "hai",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1Ke0NMiJ9P1wh9o-T4P_tXd1U1I42h4Aq/view?usp=drive_link",
+                            "EnglishText": "two",
+                            "Order": 3
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "ngày mới tốt lành",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1GElfSgGKPJEc50SyP5wOYoGadkyrRItG/view?usp=drive_link",
+                            "EnglishText": "have a nice day",
+                            "Order": -1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "chào buổi sáng",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/17PP3OjD6nGpw03rrVBUG5PPxB4KOxAzr/view?usp=drive_link",
+                            "EnglishText": "good morning",
+                            "Order":2
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "vâng",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/199R72CidJ0d2TAz4s_QTWONT6v3jW8c1/view?usp=drive_link",
+                            "EnglishText": "yes",
+                            "Order": 1
+                        },
+                        {
+                            "Type": "BuildSentence",
+                            "VietnameseText": "đường",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1T97kD617KcybfmXF4EvYP_pW6SodJKJ4/view?usp=drive_link",
+                            "EnglishText": "sugar",
+                            "Order": -1
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Đâu là \"bia\"?",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 6,
+                    "Audio": null,
+                    "QuestionConfiguration": {
+                        "Audio": false,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": true
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "nhà hàng",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "EnglishText": "restaurant",
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "cái bàn",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
+                            "Audio": "https://drive.google.com/file/d/1AwvpJH5ps3c9m-p-T-IfDu1JiVnY1Ruu/view?usp=drive_link",
+                            "EnglishText": "table",
+                            "IsCorrect": false
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "bia",
+                            "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/2dec4af32d8151fb1af50a25d436bba6",
+                            "Audio": "https://drive.google.com/file/d/1bzS63y8BimtzBWdDkfPoJp9QM-fodTLj/view?usp=drive_link",
+                            "EnglishText": "beer",
+                            "IsCorrect": true
+                        }
+                    ]
+                },
+                {
+                    "Instruction": "Bạn nghe được gì?",
+                    "VietnameseText": null,
+                    "EnglishText": null,
+                    "Type": "MultipleChoice",
+                    "Image": null,
+                    "Order": 7,
+                    "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                    "QuestionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": false,
+                        "VietnameseText": false,
+                        "Instruction": true,
+                        "Image": false
+                    },
+                    "OptionConfiguration": {
+                        "Audio": true,
+                        "EnglishText": true,
+                        "VietnameseText": false,
+                        "Instruction": false,
+                        "Image": false
+                    },
+                    "Options": [
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "thời gian",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                            "EnglishText": "time",
+                            "IsCorrect": true
+                        },
+                        {
+                            "Type": "MultipleChoice",
+                            "VietnameseText": "đồng xu",
+                            "Image": null,
+                            "Audio": "https://drive.google.com/file/d/1okKSUbJTbfwUb4CKmf6Rx7QBfvTr_m5i/view?usp=drive_link",
+                            "EnglishText": "dime",
+                            "IsCorrect": false
                         }
                     ]
                 }
