@@ -1,9 +1,11 @@
 ﻿using System.Text;
 using Application.Interface;
 using Domain.Repositories;
+using Domain.Service;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Services;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +21,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-        // Console.WriteLine(connectionString);
+        Console.WriteLine(connectionString);
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(connectionString));
 
@@ -70,7 +72,13 @@ public static class DependencyInjection
 
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
-        
+        services.AddHostedService<MigrationServices>();
+        services.AddScoped<ILessonRepository, LessonRepository>();
+        services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
+        services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+        services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         return services;
     }
 }

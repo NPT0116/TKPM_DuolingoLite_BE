@@ -62,14 +62,14 @@ namespace Infrastructure.Migrations
                     b.Property<int>("LessonOrder")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("LearningProgresses");
                 });
@@ -368,12 +368,12 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserActivities");
                 });
@@ -405,7 +405,7 @@ namespace Infrastructure.Migrations
                     b.Property<Guid?>("SubscriptionId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -414,7 +414,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SubscriptionId");
 
-                    b.HasIndex("userId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("UserProfiles");
@@ -441,12 +441,12 @@ namespace Infrastructure.Migrations
                     b.Property<int>("LongestStreak")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("UserStats");
@@ -714,7 +714,9 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Course");
                 });
@@ -838,7 +840,9 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.UserProfile", b =>
@@ -853,7 +857,9 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Users.UserProfile", "userId");
+                        .HasForeignKey("Domain.Entities.Users.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ProfileImage");
 
@@ -864,7 +870,9 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Users.UserStats", "userId");
+                        .HasForeignKey("Domain.Entities.Users.UserStats", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

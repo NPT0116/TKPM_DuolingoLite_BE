@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Learning\Lessons\" />
+    <Folder Include="Features\Learning\Media\" />
+    <Folder Include="Features\Learning\QuestionWords\" />
+    <Folder Include="Features\Learning\Question\" />
     <Folder Include="Features\User\Commands\Login\" />
   </ItemGroup>
 

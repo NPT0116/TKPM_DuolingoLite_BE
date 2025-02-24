@@ -3,8 +3,8 @@ using Infrastructure;
 using Serilog;
 using WebApi.Infrastructure;
 using Microsoft.OpenApi.Models;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using WebApi.Middlewares;
+using WebApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "API for DuolingoLite"
     });
+    c.OperationFilter<FileUploadOperationFilter>();
 
     // Adding Authentication for Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -58,7 +59,15 @@ builder.Services.AddApplication()
 
 builder.Host.UseSerilog((context, configuration) => 
         configuration.ReadFrom.Configuration(context.Configuration));
+// check api key exists
+string credentialsPath = builder.Configuration["Google:CredentialsPath"];
+
+if (string.IsNullOrEmpty(credentialsPath) || !File.Exists(credentialsPath))
+{
+    throw new Exception("Chưa cấu hình file API key hợp lệ. Vui lòng thiết lập biến môi trường Google__CredentialsPath hoặc cấu hình trong user secrets.");
+}
 var app = builder.Build();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // Log startup information
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
@@ -67,32 +76,9 @@ logger.LogInformation($"Environment: {app.Environment.EnvironmentName}");
 logger.LogInformation($"Connection string: {builder.Configuration.GetConnectionString("DefaultConnection")}");
 
 // Configure middleware
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<ApplicationDbContext>();
-        context.Database.Migrate(); // Áp dụng migrations nếu cần
-        var seedResult = SeedData.Initialize(services); // Chạy seed
-        if(seedResult.IsFailure)
-        {
-            logger.LogError(seedResult.Error.ToString());
-        }
-    }
-    catch (Exception ex)
-    {
-        // var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while seeding the database.");
-    }
-}
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

@@ -12,5 +12,9 @@ namespace Domain.Entities.Learning.Questions
             "Question.AllPromptsNull",
             "At least one prompt must be provided"
         );
+        public static Error QuestionNotFound => Error.NotFound(
+            "Question.QuestionNotFound",
+            "Question not found."
+        );
     }
 }
