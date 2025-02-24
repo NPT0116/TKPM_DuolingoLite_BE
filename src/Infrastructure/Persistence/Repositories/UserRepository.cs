@@ -16,6 +16,25 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
+
+        public async Task<UserActivity?> CreateUserActivity(UserActivity userActivity)
+        {
+            await _context.UserActivities.AddAsync(userActivity);
+            return userActivity;
+        }
+
+        public async Task<UserProfile?> CreateUserProfile(UserProfile userProfile)
+        {
+            await _context.UserProfiles.AddAsync(userProfile);
+            return userProfile;
+        }
+
+        public async Task<UserStats?> CreateUserStats(UserStats userStats)
+        {
+            await _context.UserStats.AddAsync(userStats);
+            return userStats;
+        }
+
         public async Task<UserProfile?> GetUserProfileById(Guid userId)
         {
             return await _context.UserProfiles
@@ -24,5 +43,16 @@ namespace Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(up => up.UserId == userId);
         }
 
+        public async Task<UserStats?> GetUserStatsById(Guid userId)
+        {
+            return await _context.UserStats.FirstOrDefaultAsync(us => us.UserId == userId);
+        }
+
+        public async Task<List<UserActivity>> GetUserActivitiesByUserId(Guid userId)
+        {
+            return await _context.UserActivities.Where(ua => ua.UserId == userId).ToListAsync();
+        }
+        
+        
     }
 }
