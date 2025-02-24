@@ -32,6 +32,11 @@ namespace Application.Features.User.Queries.GetUserProfile
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UserProfileNotFound(user.Id));
             }
+
+            var userStats = await _userRepository.GetUserStatsById(user.Id);
+
+            var userActivities = await _userRepository.GetUserActivitiesByUserId(user.Id);
+
             return new UserWithProfileResponseDto(
                 user.Id, 
                 user.FirstName, 
@@ -39,7 +44,9 @@ namespace Application.Features.User.Queries.GetUserProfile
                 user.Email, 
                 userProfile.NickName, 
                 userProfile.ProfileImage?.Url, 
-                userProfile.Subscription
+                userProfile.Subscription,
+                userActivities,
+                userStats
             );
         }
     }

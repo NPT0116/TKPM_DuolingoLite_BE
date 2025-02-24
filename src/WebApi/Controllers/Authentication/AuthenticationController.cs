@@ -1,6 +1,7 @@
 using Application.Features.User.Commands.Login;
 using Application.Features.User.Commands.Register;
 using Application.Features.User.Queries.GetMe;
+using Application.Features.User.Queries.GetUserProfile;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -44,7 +45,7 @@ namespace WebApi.Controllers.Authentication
         [Authorize]
         public async Task<IActionResult> GetMe()
         {
-            var query = new GetMeQuery();
+            var query = new GetUserProfileQuery();
             var result = await _mediator.Send(query);
             return result.Match(Ok, CustomResults.Problem);
         }

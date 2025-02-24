@@ -1,4 +1,5 @@
 using Domain.Entities.Subscriptions;
+using Domain.Entities.Users;
 using MediatR;
 using SharedKernel;
 
@@ -11,6 +12,8 @@ public record UserWithProfileResponseDto(
     string Email,
     string NickName,
     string ProfileImageUrl,
-    Subscription Subscription
+    Subscription Subscription,
+    List<UserActivity> UserActivities,
+    UserStats UserStats
 );
-public record GetUserProfileQuery(Guid UserId) : IRequest<Result<UserWithProfileResponseDto>>;
+public record GetUserProfileQuery() : IRequest<Result<UserWithProfileResponseDto>>;
