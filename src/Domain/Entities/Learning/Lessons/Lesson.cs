@@ -44,5 +44,10 @@ namespace Domain.Entities.Learning.Lessons
             return Result.Success(new Lesson(title, xpEarned, order));
 
         }
+
+        public void AddQuestion(Question question)
+        {
+            _questions.Add(question);
+        }
     }
 }

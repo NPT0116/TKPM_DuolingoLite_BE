@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250220075203_AddEmailToUserProfile")]
-    partial class AddEmailToUserProfile
+    [Migration("20250224094045_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Course.Course", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Courses.Course", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,34 @@ namespace Infrastructure.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Course.Lesson", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.LearningProgresses.LearningProgress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("LessonOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LearningProgresses");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Learning.Lessons.Lesson", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,34 +104,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Lessons");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Learning.LearningProgress.LearningProgress", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("LessonOrder")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("userId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("LearningProgresses");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Learning.Question.Configuration.Configuration", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Configurations.Configuration", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,62 +130,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Configurations");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Learning.Question.QuestionOption.QuestionWord", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("QuestionId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("WordId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("WordId");
-
-                    b.ToTable("QuestionWords");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Media.Media", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("MimeType")
-                        .HasColumnType("integer");
-
-                    b.Property<long>("Size")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medias");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Option.Option", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Options.Option", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,7 +146,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("VietnameseText")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -213,7 +157,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Options");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.Question", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Question", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,7 +210,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.QuestionOptionBase", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -299,7 +243,83 @@ namespace Infrastructure.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("Domain.Entities.Subscription.Subscription", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.QuestionWord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("QuestionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("WordId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("WordId");
+
+                    b.ToTable("QuestionWords");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Learning.Words.Word", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AudioId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AudioId");
+
+                    b.ToTable("Words");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Media.Media", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("MimeType")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Medias");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Subscriptions.Subscription", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -322,7 +342,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Subscriptions");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Subscription.SubscriptionType", b =>
+            modelBuilder.Entity("Domain.Entities.Subscriptions.SubscriptionType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -339,7 +359,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("SubscriptionTypes");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserActivity", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserActivity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -351,17 +371,17 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("UserActivity");
+                    b.ToTable("UserActivities");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserProfile", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -388,7 +408,7 @@ namespace Infrastructure.Migrations
                     b.Property<Guid?>("SubscriptionId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -397,13 +417,13 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SubscriptionId");
 
-                    b.HasIndex("userId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserProfile");
+                    b.ToTable("UserProfiles");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserStats", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserStats", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -424,41 +444,15 @@ namespace Infrastructure.Migrations
                     b.Property<int>("LongestStreak")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("userId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("UserStats");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Word.Word", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("AudioId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AudioId");
-
-                    b.HasIndex("ImageId");
-
-                    b.ToTable("Words");
                 });
 
             modelBuilder.Entity("Infrastructure.Identity.ApplicationUser", b =>
@@ -664,9 +658,9 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.BuildSentenceQuestionOption", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.BuildSentenceQuestionOption", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Question.QuestionOption.QuestionOptionBase");
+                    b.HasBaseType("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase");
 
                     b.Property<int>("Position")
                         .HasColumnType("integer");
@@ -674,12 +668,9 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("BuildSentence");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.MatchingQuestionOption", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.MatchingQuestionOption", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Question.QuestionOption.QuestionOptionBase");
-
-                    b.Property<Guid>("MatchWithOptionId")
-                        .HasColumnType("uuid");
+                    b.HasBaseType("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase");
 
                     b.Property<int>("SourceType")
                         .HasColumnType("integer");
@@ -687,14 +678,12 @@ namespace Infrastructure.Migrations
                     b.Property<int>("TargetType")
                         .HasColumnType("integer");
 
-                    b.HasIndex("MatchWithOptionId");
-
                     b.HasDiscriminator().HasValue("Matching");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.MultipleChoiceQuestionOption", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.MultipleChoiceQuestionOption", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Question.QuestionOption.QuestionOptionBase");
+                    b.HasBaseType("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase");
 
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("boolean");
@@ -702,34 +691,25 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("MultipleChoice");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.PronunciationQuestionOption", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.PronunciationQuestionOption", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Question.QuestionOption.QuestionOptionBase");
+                    b.HasBaseType("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase");
 
                     b.HasDiscriminator().HasValue("Pronunciation");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Course.Course", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Courses.Course", b =>
                 {
-                    b.HasOne("Domain.Entities.Course.Course", "NextCourse")
+                    b.HasOne("Domain.Entities.Learning.Courses.Course", "NextCourse")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Course.Course", "NextCourseId");
+                        .HasForeignKey("Domain.Entities.Learning.Courses.Course", "NextCourseId");
 
                     b.Navigation("NextCourse");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Course.Lesson", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.LearningProgresses.LearningProgress", b =>
                 {
-                    b.HasOne("Domain.Entities.Course.Course", null)
-                        .WithMany("Lessons")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Learning.LearningProgress.LearningProgress", b =>
-                {
-                    b.HasOne("Domain.Entities.Course.Course", "Course")
+                    b.HasOne("Domain.Entities.Learning.Courses.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -737,29 +717,23 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Learning.Question.QuestionOption.QuestionWord", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Lessons.Lesson", b =>
                 {
-                    b.HasOne("Domain.Entities.Question.Question", "Question")
-                        .WithMany("Words")
-                        .HasForeignKey("QuestionId");
-
-                    b.HasOne("Domain.Entities.Word.Word", "Word")
-                        .WithMany()
-                        .HasForeignKey("WordId")
+                    b.HasOne("Domain.Entities.Learning.Courses.Course", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Question");
-
-                    b.Navigation("Word");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Option.Option", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Options.Option", b =>
                 {
                     b.HasOne("Domain.Entities.Media.Media", "Audio")
                         .WithMany()
@@ -774,7 +748,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.Question", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Question", b =>
                 {
                     b.HasOne("Domain.Entities.Media.Media", "Audio")
                         .WithMany()
@@ -784,19 +758,19 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ImageId");
 
-                    b.HasOne("Domain.Entities.Course.Lesson", null)
+                    b.HasOne("Domain.Entities.Learning.Lessons.Lesson", null)
                         .WithMany("Questions")
                         .HasForeignKey("LessonId");
 
-                    b.HasOne("Domain.Entities.Learning.Question.Configuration.Configuration", "OptionConfiguration")
+                    b.HasOne("Domain.Entities.Learning.Questions.Configurations.Configuration", "OptionConfiguration")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Question.Question", "OptionConfigurationId")
+                        .HasForeignKey("Domain.Entities.Learning.Questions.Question", "OptionConfigurationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Learning.Question.Configuration.Configuration", "QuestionConfiguration")
+                    b.HasOne("Domain.Entities.Learning.Questions.Configurations.Configuration", "QuestionConfiguration")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Question.Question", "QuestionConfigurationId")
+                        .HasForeignKey("Domain.Entities.Learning.Questions.Question", "QuestionConfigurationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -809,15 +783,15 @@ namespace Infrastructure.Migrations
                     b.Navigation("QuestionConfiguration");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.QuestionOptionBase", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase", b =>
                 {
-                    b.HasOne("Domain.Entities.Option.Option", "Option")
+                    b.HasOne("Domain.Entities.Learning.Questions.Options.Option", "Option")
                         .WithMany()
                         .HasForeignKey("OptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Question.Question", "Question")
+                    b.HasOne("Domain.Entities.Learning.Questions.Question", "Question")
                         .WithMany("Options")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -828,63 +802,80 @@ namespace Infrastructure.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Subscription.Subscription", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.QuestionWord", b =>
                 {
-                    b.HasOne("Domain.Entities.Subscription.SubscriptionType", "SubscriptionType")
+                    b.HasOne("Domain.Entities.Learning.Questions.Question", "Question")
+                        .WithMany("Words")
+                        .HasForeignKey("QuestionId");
+
+                    b.HasOne("Domain.Entities.Learning.Words.Word", "Word")
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("Word");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Learning.Words.Word", b =>
+                {
+                    b.HasOne("Domain.Entities.Media.Media", "Audio")
+                        .WithMany()
+                        .HasForeignKey("AudioId");
+
+                    b.Navigation("Audio");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Subscriptions.Subscription", b =>
+                {
+                    b.HasOne("Domain.Entities.Subscriptions.SubscriptionType", "SubscriptionType")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Subscription.Subscription", "SubscriptionTypeId")
+                        .HasForeignKey("Domain.Entities.Subscriptions.Subscription", "SubscriptionTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("SubscriptionType");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserActivity", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserActivity", b =>
                 {
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserProfile", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserProfile", b =>
                 {
                     b.HasOne("Domain.Entities.Media.Media", "ProfileImage")
                         .WithMany()
                         .HasForeignKey("ProfileImageId");
 
-                    b.HasOne("Domain.Entities.Subscription.Subscription", "Subscription")
+                    b.HasOne("Domain.Entities.Subscriptions.Subscription", "Subscription")
                         .WithMany()
                         .HasForeignKey("SubscriptionId");
 
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.User.UserProfile", "userId");
+                        .HasForeignKey("Domain.Entities.Users.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ProfileImage");
 
                     b.Navigation("Subscription");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserStats", b =>
+            modelBuilder.Entity("Domain.Entities.Users.UserStats", b =>
                 {
                     b.HasOne("Infrastructure.Identity.ApplicationUser", null)
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.User.UserStats", "userId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Word.Word", b =>
-                {
-                    b.HasOne("Domain.Entities.Media.Media", "Audio")
-                        .WithMany()
-                        .HasForeignKey("AudioId");
-
-                    b.HasOne("Domain.Entities.Media.Media", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
-                    b.Navigation("Audio");
-
-                    b.Navigation("Image");
+                        .HasForeignKey("Domain.Entities.Users.UserStats", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -938,28 +929,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.QuestionOption.MatchingQuestionOption", b =>
-                {
-                    b.HasOne("Domain.Entities.Option.Option", "MatchWithOption")
-                        .WithMany()
-                        .HasForeignKey("MatchWithOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MatchWithOption");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Course.Course", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Courses.Course", b =>
                 {
                     b.Navigation("Lessons");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Course.Lesson", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Lessons.Lesson", b =>
                 {
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Question.Question", b =>
+            modelBuilder.Entity("Domain.Entities.Learning.Questions.Question", b =>
                 {
                     b.Navigation("Options");
 

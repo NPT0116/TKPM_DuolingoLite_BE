@@ -16,11 +16,6 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.Property(w => w.Content).IsRequired().HasMaxLength(100);
 
-            builder.HasOne(w => w.Image)
-                .WithMany()
-                .HasForeignKey("ImageId")
-                .IsRequired(false);
-
             builder.HasOne(w => w.Audio)
                 .WithMany()
                 .HasForeignKey("AudioId")

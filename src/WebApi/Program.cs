@@ -3,8 +3,8 @@ using Infrastructure;
 using Serilog;
 using WebApi.Infrastructure;
 using Microsoft.OpenApi.Models;
-using WebApi.Swagger;
 using WebApi.Middlewares;
+using WebApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,9 +77,8 @@ logger.LogInformation($"Connection string: {builder.Configuration.GetConnectionS
 
 // Configure middleware
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

@@ -64,9 +64,12 @@ namespace Domain.Entities.Learning.Questions
             int order
         )
         {
-            if(string.IsNullOrEmpty(vietnameseText) 
+            if(
+                string.IsNullOrEmpty(instruction) 
+                && string.IsNullOrEmpty(vietnameseText) 
                 && audio == null 
-                && string.IsNullOrEmpty(englishText))
+                && string.IsNullOrEmpty(englishText)
+                && type != QuestionType.Matching)
             {
                 return Result.Failure<Question>(QuestionError.AllPromptsNull());
             }
@@ -94,6 +97,9 @@ namespace Domain.Entities.Learning.Questions
             };
         }
 
-        // Tương tự cho các loại khác...
+        public void AddWord(QuestionWord word)
+        {
+            _words.Add(word);
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace Domain.Entities.Learning.Words
             "Word.EmptyMeaning",
             "Meaning of word can not be empty"
         );
+
+        public static Error EmptyAudio() => Error.Validation(
+            "Word.EmptyAudio",
+            "Audio of word can not be empty"
+        );
     }
 }

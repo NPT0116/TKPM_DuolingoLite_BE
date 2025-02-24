@@ -41,6 +41,12 @@ public class MigrationServices: IHostedService
             {
                 _logger.LogError(ex, "An error occurred while applying migrations.");
             }
+
+            var seedResult = SeedData.Initialize(scope.ServiceProvider); // Chạy seed
+            if(seedResult.IsFailure)
+            {
+                _logger.LogError(seedResult.Error.ToString());
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

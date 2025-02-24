@@ -143,7 +143,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("VietnameseText")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -279,14 +278,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AudioId");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Words");
                 });
@@ -675,16 +669,11 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Domain.Entities.Learning.Questions.QuestionOptions.QuestionOptionBase");
 
-                    b.Property<Guid>("MatchWithOptionId")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("SourceType")
                         .HasColumnType("integer");
 
                     b.Property<int>("TargetType")
                         .HasColumnType("integer");
-
-                    b.HasIndex("MatchWithOptionId");
 
                     b.HasDiscriminator().HasValue("Matching");
                 });
@@ -833,13 +822,7 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("AudioId");
 
-                    b.HasOne("Domain.Entities.Media.Media", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
                     b.Navigation("Audio");
-
-                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("Domain.Entities.Subscriptions.Subscription", b =>
@@ -941,17 +924,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Learning.Questions.QuestionOptions.MatchingQuestionOption", b =>
-                {
-                    b.HasOne("Domain.Entities.Learning.Questions.Options.Option", "MatchWithOption")
-                        .WithMany()
-                        .HasForeignKey("MatchWithOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MatchWithOption");
                 });
 
             modelBuilder.Entity("Domain.Entities.Learning.Courses.Course", b =>
