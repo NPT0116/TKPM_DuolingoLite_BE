@@ -35,7 +35,11 @@ namespace Application.Features.User.Queries.GetUserProfile
 
             var userStats = await _userRepository.GetUserStatsById(user.Id);
 
-            var userActivities = await _userRepository.GetUserActivitiesByUserId(user.Id);
+            DateTime today = DateTime.UtcNow.Date;
+            DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            var userActivities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(user.Id, startOfWeek, endOfWeek);
 
             return new UserWithProfileResponseDto(
                 user.Id, 

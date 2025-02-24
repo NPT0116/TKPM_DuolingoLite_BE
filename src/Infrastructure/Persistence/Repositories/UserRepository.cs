@@ -52,6 +52,11 @@ namespace Infrastructure.Persistence.Repositories
         {
             return await _context.UserActivities.Where(ua => ua.UserId == userId).ToListAsync();
         }
+
+        public async Task<List<UserActivity>> GetUserActivitiesWithinDateRangeByUserId(Guid userId, DateTime startDate, DateTime endDate)
+        {
+            return await _context.UserActivities.Where(ua => ua.UserId == userId && ua.Date >= startDate && ua.Date <= endDate).ToListAsync();
+        }
         
         
     }
