@@ -68,6 +68,6 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return Result.Success(userId);
+        return userId;
     }
 }

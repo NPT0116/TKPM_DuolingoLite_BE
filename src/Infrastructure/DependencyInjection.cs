@@ -1,10 +1,12 @@
 ﻿using System.Text;
+using Application.Features.User.Commands.Register;
 using Application.Interface;
 using Domain.Repositories;
 using Domain.Service;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Persistence.Seed;
 using Infrastructure.Services;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -73,6 +75,9 @@ public static class DependencyInjection
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
+        services.AddScoped<UserRegisterCommandHandler>();
+
         services.AddScoped<ILessonRepository, LessonRepository>();
         services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();

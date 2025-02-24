@@ -58,6 +58,9 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.UserActivities.Where(ua => ua.UserId == userId && ua.Date >= startDate && ua.Date <= endDate).ToListAsync();
         }
         
-        
+        public async Task<int> GetTotalUsersCount()
+        {
+            return await _context.UserProfiles.CountAsync();
+        }
     }
 }

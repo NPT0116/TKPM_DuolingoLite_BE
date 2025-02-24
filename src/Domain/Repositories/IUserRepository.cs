@@ -15,5 +15,6 @@ namespace Domain.Repositories
         Task<UserStats?> GetUserStatsById(Guid userId);
         Task<List<UserActivity>> GetUserActivitiesByUserId(Guid userId);
         Task<List<UserActivity>> GetUserActivitiesWithinDateRangeByUserId(Guid userId, DateTime startDate, DateTime endDate);
+        Task<int> GetTotalUsersCount();
     }
 }
