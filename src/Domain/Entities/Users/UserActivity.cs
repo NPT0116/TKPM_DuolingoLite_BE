@@ -20,6 +20,17 @@ namespace Domain.Entities.Users
             Date = date;
             IsActive = isActive;
         }
+
+        public static Result<UserActivity> Create(Guid userId, DateTime date, bool isActive)
+        {
+            var userActivity = new UserActivity(userId, date, isActive);
+            return Result.Success(userActivity);
+        }
+
+        public void MarkAsActive()
+        {
+            IsActive = true;
+        }
     }
 
 }
