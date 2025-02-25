@@ -17,7 +17,9 @@ namespace WebApi.Swagger
             if (fileParams.Any())
             {
                 // Xóa các parameter được thêm từ IFormFile
-                operation.Parameters.Clear();
+                operation.Parameters = operation.Parameters
+                .Where(p => !fileParams.Any(fp => fp.Name == p.Name))
+                .ToList();
 
                 var properties = new Dictionary<string, OpenApiSchema>();
                 var required = new HashSet<string>();

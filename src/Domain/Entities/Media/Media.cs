@@ -64,5 +64,18 @@ namespace Domain.Entities.Media
             ));
         }
 
+        public static Result<MediaType> GetMediaType(string fileName)
+        {
+            var extension = Path.GetExtension(fileName);
+            return extension switch
+            {
+                ".jpg" or ".jpeg" or ".png" => MediaType.Image,
+                ".mp3" or ".wav" or ".m4a" => MediaType.Audio,
+                ".pdf" or ".doc" or ".docx" => MediaType.Document,
+                _ => MediaType.Other
+            };
+        }
+        
+
     }
 }
