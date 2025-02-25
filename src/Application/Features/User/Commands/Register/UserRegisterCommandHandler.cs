@@ -3,6 +3,8 @@ using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.Media.Commands.Upload;
 using Application.Interface;
+using Domain.Entities.Media;
+using Domain.Entities.Media.Enums;
 using Domain.Entities.User;
 using Domain.Entities.Users;
 using Domain.Repositories;
@@ -75,6 +77,10 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
 
         if(request.AvatarUploadRequest != null)
         {
+            if(Domain.Entities.Media.Media.GetMediaType(request.AvatarUploadRequest.ContentType).Value != MediaType.Image)
+            {
+                return Result.Failure<Guid>(MediaError.InvalidFileType());
+            }
             var avatarUploadRequest = new MediaUploadRequest(
                 _mediaSettings.AvatarPrefix,
                 request.AvatarUploadRequest.FileData, 

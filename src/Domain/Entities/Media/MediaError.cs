@@ -26,5 +26,10 @@ namespace Domain.Entities.Media
             "Media.BucketDoesNotExist",
             "Bucket does not exist"
         );
+
+        public static Error InvalidFileType() => Error.Validation(
+            "Media.InvalidFileType",
+            "Invalid file type"
+        );
     }
 }

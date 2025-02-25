@@ -1,4 +1,6 @@
 using System;
+using Domain.Entities.Media;
+using Domain.Entities.Media.Enums;
 using FluentValidation;
 
 namespace Application.Features.User.Commands.Register;
@@ -24,5 +26,13 @@ public class UserRegisterCommandValidator : AbstractValidator<UserRegisterComman
             .NotEmpty()
             .MinimumLength(6)
             .MaximumLength(100);
+
+        RuleFor(x => x.AvatarUploadRequest)
+        .Must(avatar => avatar == null || 
+                        Domain.Entities.Media.Media.GetMediaType(avatar.ContentType).IsSuccess && 
+                        Domain.Entities.Media.Media.GetMediaType(avatar.ContentType).Value == MediaType.Image)
+        .WithMessage("Invalid file type");
+
+
     }
 }
