@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Amazon.S3;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
 using Domain.Repositories;
@@ -84,6 +85,9 @@ public static class DependencyInjection
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
+
+        services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+        services.AddAWSService<IAmazonS3>();
         return services;
     }
 }
