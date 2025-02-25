@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Amazon.S3;
 using Application.Common.Interface;
+using Application.Common.Settings;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
 using Domain.Repositories;
@@ -10,6 +11,7 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.Seed;
 using Infrastructure.Services;
+using Infrastructure.Services.Settings;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -90,6 +92,10 @@ public static class DependencyInjection
         services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         services.AddAWSService<IAmazonS3>();
         services.AddScoped<IMediaStorageService, AwsS3StorageService>();
+
+        services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
+        services.AddSingleton(mediaSettings);
         return services;
     }
 }

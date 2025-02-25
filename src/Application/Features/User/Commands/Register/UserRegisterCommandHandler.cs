@@ -1,4 +1,7 @@
 using Application.Abstractions.Messaging;
+using Application.Common.Interface;
+using Application.Common.Settings;
+using Application.Features.Media.Commands.Upload;
 using Application.Interface;
 using Domain.Entities.User;
 using Domain.Entities.Users;
@@ -13,11 +16,23 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
     private readonly IIdentityService _identityService;
     private readonly IUserRepository _userRepository;
     private readonly IApplicationDbContext _context;
-    public UserRegisterCommandHandler(IIdentityService identityService, IUserRepository userRepository, IApplicationDbContext context)
+    private readonly IMediaStorageService _mediaStorageService;
+    private readonly IMediaRepository _mediaRepository;
+    private readonly MediaSettings _mediaSettings;
+    public UserRegisterCommandHandler(
+        IIdentityService identityService, 
+        IUserRepository userRepository, 
+        IApplicationDbContext context, 
+        IMediaStorageService mediaStorageService, 
+        IMediaRepository mediaRepository,
+        MediaSettings mediaSettings)
     {
         _identityService = identityService;
         _userRepository = userRepository;
         _context = context;
+        _mediaStorageService = mediaStorageService;
+        _mediaRepository = mediaRepository;
+        _mediaSettings = mediaSettings;
     }
 
     public async Task<Result<Guid>> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
@@ -56,7 +71,31 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
             return Result.Failure<Guid>(userStats.Error);
         }
 
-        var userProfile = UserProfile.Create(userId, request.UserRegisterDto.Email, request.UserRegisterDto.UserName, request.UserRegisterDto.FirstName, request.UserRegisterDto.LastName, null, null);
+        Domain.Entities.Media.Media? avatarMedia = null;
+
+        if(request.AvatarUploadRequest != null)
+        {
+            var avatarUploadRequest = new MediaUploadRequest(
+                _mediaSettings.AvatarPrefix,
+                request.AvatarUploadRequest.FileData, 
+                request.AvatarUploadRequest.FileName, 
+                request.AvatarUploadRequest.ContentType);
+            var avatarUploadResult = await _mediaStorageService.UploadFileAsync(avatarUploadRequest, cancellationToken);
+            if (avatarUploadResult.IsFailure)
+            {
+                return Result.Failure<Guid>(avatarUploadResult.Error);
+            }
+            avatarMedia = avatarUploadResult.Value;
+        }
+
+        var userProfile = UserProfile.Create(
+            userId, 
+            request.UserRegisterDto.Email, 
+            request.UserRegisterDto.UserName, 
+            request.UserRegisterDto.FirstName, 
+            request.UserRegisterDto.LastName, 
+            avatarMedia, 
+            null);
         if (userProfile.IsFailure)
         {
             return Result.Failure<Guid>(userProfile.Error);

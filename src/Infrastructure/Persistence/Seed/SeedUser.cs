@@ -35,7 +35,7 @@ namespace Infrastructure.Persistence.Seed
                 f.Internet.Email(),
                 f.Internet.UserName(),
                 password
-            )));
+            ), null));
 
 
 

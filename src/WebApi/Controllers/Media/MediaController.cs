@@ -24,7 +24,6 @@ namespace WebApi.Controllers.Media
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFileAsync(
             IFormFile file,
-            string bucketName, 
             string? prefix
         )
         {
@@ -32,7 +31,6 @@ namespace WebApi.Controllers.Media
             await file.CopyToAsync(memoryStream);
 
             var request = new MediaUploadRequest(
-                bucketName,
                 prefix ?? "",
                 memoryStream.ToArray(),
                 file.FileName,
