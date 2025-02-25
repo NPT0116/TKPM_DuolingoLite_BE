@@ -20,10 +20,10 @@ namespace Infrastructure.Services
         {
             _s3Client = s3Client;
         }
-        public async Task<Result<string>> UploadFileAsync(MediaUploadRequest request, CancellationToken cancellationToken)
+        public async Task<Result<Media>> UploadFileAsync(MediaUploadRequest request, CancellationToken cancellationToken)
         {
             var bucketExists = await AmazonS3Util.DoesS3BucketExistV2Async(_s3Client,request.BucketName);
-            if (!bucketExists) return Result.Failure<string>(MediaError.BucketDoesNotExist());
+            if (!bucketExists) return Result.Failure<Media>(MediaError.BucketDoesNotExist());
             var fileKey = Domain.Entities.Media.Media.GetFileKey(request.Prefix, request.FileName);
             var putObjectRequestrequest = new PutObjectRequest()
             {
@@ -36,7 +36,13 @@ namespace Infrastructure.Services
             await _s3Client.PutObjectAsync(putObjectRequestrequest);
             
             var fileUrl = $"https://{request.BucketName}.s3.amazonaws.com/{fileKey}";
-            return Result.Success<string>(fileUrl);
+
+            var createdMedia = Domain.Entities.Media.Media.Create(request.FileName, Media.GetMediaType(request.ContentType).Value, request.FileData.Length, fileUrl);
+            if (createdMedia.IsFailure)
+            {
+                return Result.Failure<Media>(createdMedia.Error);
+            }
+            return Result.Success<Media>(createdMedia.Value);
         }
     }
 }

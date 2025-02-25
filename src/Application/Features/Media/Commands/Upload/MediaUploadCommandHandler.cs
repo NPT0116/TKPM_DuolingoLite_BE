@@ -9,7 +9,7 @@ using MediatR;
 using SharedKernel;
 namespace Application.Features.Media.Commands.Upload
 {
-    public class MediaUploadCommandHandler : IRequestHandler<MediaUploadCommand, Result<string>>
+    public class MediaUploadCommandHandler : IRequestHandler<MediaUploadCommand, Result<Domain.Entities.Media.Media>>
     {
         private readonly IMediaStorageService _mediaStorageService;
         private readonly IMediaRepository _mediaRepository;
@@ -21,20 +21,20 @@ namespace Application.Features.Media.Commands.Upload
             _context = context;
         }
         
-        public async Task<Result<string>> Handle(MediaUploadCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Domain.Entities.Media.Media>> Handle(MediaUploadCommand request, CancellationToken cancellationToken)
         {
             var uploadResult = await _mediaStorageService.UploadFileAsync(request.Request, cancellationToken);
             if (uploadResult.IsFailure)
             {
-                return Result.Failure<string>(uploadResult.Error);
+                return Result.Failure<Domain.Entities.Media.Media>(uploadResult.Error);
             }
 
             var mediaType = Domain.Entities.Media.Media.GetMediaType(request.Request.FileName);
 
-            await _mediaRepository.UploadFileAsync(request.Request.FileName, uploadResult.Value, mediaType.Value, request.Request.FileData.Length, DateTime.UtcNow, DateTime.UtcNow, cancellationToken);    
+            await _mediaRepository.UploadFileAsync(request.Request.FileName, uploadResult.Value.Url, mediaType.Value, request.Request.FileData.Length, DateTime.UtcNow, DateTime.UtcNow, cancellationToken);    
             await _context.SaveChangesAsync(cancellationToken);
             
-            return Result.Success<string>(uploadResult.Value);
+            return Result.Success<Domain.Entities.Media.Media>(uploadResult.Value);
         }
     }
 }

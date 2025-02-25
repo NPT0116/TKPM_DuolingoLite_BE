@@ -14,4 +14,4 @@ public record MediaUploadRequest(
     string ContentType
 );
 
-public record MediaUploadCommand(MediaUploadRequest Request) : IRequest<Result<string>>;
+public record MediaUploadCommand(MediaUploadRequest Request) : IRequest<Result<Domain.Entities.Media.Media>>;
