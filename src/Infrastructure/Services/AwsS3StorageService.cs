@@ -24,7 +24,7 @@ namespace Infrastructure.Services
         {
             var bucketExists = await AmazonS3Util.DoesS3BucketExistV2Async(_s3Client,request.BucketName);
             if (!bucketExists) return Result.Failure<string>(MediaError.BucketDoesNotExist());
-            var fileKey = string.IsNullOrEmpty(request.Prefix) ? request.FileName : $"{request.Prefix?.TrimEnd('/')}/{request.FileName}";
+            var fileKey = Domain.Entities.Media.Media.GetFileKey(request.Prefix, request.FileName);
             var putObjectRequestrequest = new PutObjectRequest()
             {
                 BucketName = request.BucketName,

@@ -76,6 +76,17 @@ namespace Domain.Entities.Media
             };
         }
         
+        public static string GetFileKey(string? prefix, string fileName)
+        {
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff"); // Timestamp format: 20240225123045987
+            string fileExtension = Path.GetExtension(fileName); // Extract file extension
+            string fileNameWithoutExt = Path.GetFileNameWithoutExtension(fileName); // Extract file name without extension
+
+            string newFileName = $"{fileNameWithoutExt}_{timestamp}{fileExtension}"; // Append timestamp to filename
+
+            return string.IsNullOrEmpty(prefix) ? newFileName : $"{prefix.TrimEnd('/')}/{newFileName}";
+        }
+
 
     }
 }
