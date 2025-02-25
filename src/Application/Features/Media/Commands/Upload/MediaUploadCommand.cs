@@ -7,7 +7,6 @@ using SharedKernel;
 namespace Application.Features.Media.Commands.Upload;
 
 public record MediaUploadRequest(
-    string BucketName,
     string Prefix,
     byte[] FileData,
     string FileName,
