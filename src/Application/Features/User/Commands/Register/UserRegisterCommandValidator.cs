@@ -1,6 +1,7 @@
 using System;
 using Domain.Entities.Media;
 using Domain.Entities.Media.Enums;
+using Domain.Entities.Users.Constants;
 using FluentValidation;
 
 namespace Application.Features.User.Commands.Register;
@@ -11,21 +12,21 @@ public class UserRegisterCommandValidator : AbstractValidator<UserRegisterComman
     {
         RuleFor(x => x.UserRegisterDto.FirstName)
             .NotEmpty()
-            .MaximumLength(100);
+            .MaximumLength(UserConstants.MAXIMUM_FIRSTNAME_LENGTH);
         RuleFor(x => x.UserRegisterDto.LastName)
             .NotEmpty()
-            .MaximumLength(100);
+            .MaximumLength(UserConstants.MAXIMUM_LASTNAME_LENGTH);
         RuleFor(x => x.UserRegisterDto.Email)
             .NotEmpty()
             .EmailAddress();
         RuleFor(x => x.UserRegisterDto.UserName)
             .NotEmpty()
-            .MinimumLength(3)
-            .MaximumLength(50);
+            .MinimumLength(UserConstants.MINIMUM_USERNAME_LENGTH)
+            .MaximumLength(UserConstants.MAXIMUM_USERNAME_LENGTH);
         RuleFor(x => x.UserRegisterDto.Password)
             .NotEmpty()
-            .MinimumLength(6)
-            .MaximumLength(100);
+            .MinimumLength(UserConstants.MINIMUM_PASSWORD_LENGTH)
+            .MaximumLength(UserConstants.MAXIMUM_PASSWORD_LENGTH);
 
         RuleFor(x => x.AvatarUploadRequest)
         .Must(avatar => avatar == null || 
