@@ -19,21 +19,18 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
     private readonly IUserRepository _userRepository;
     private readonly IApplicationDbContext _context;
     private readonly IMediaStorageService _mediaStorageService;
-    private readonly IMediaRepository _mediaRepository;
     private readonly MediaSettings _mediaSettings;
     public UserRegisterCommandHandler(
         IIdentityService identityService, 
         IUserRepository userRepository, 
         IApplicationDbContext context, 
-        IMediaStorageService mediaStorageService, 
-        IMediaRepository mediaRepository,
+        IMediaStorageService mediaStorageService,
         MediaSettings mediaSettings)
     {
         _identityService = identityService;
         _userRepository = userRepository;
         _context = context;
         _mediaStorageService = mediaStorageService;
-        _mediaRepository = mediaRepository;
         _mediaSettings = mediaSettings;
     }
 

@@ -18,7 +18,10 @@ public class UserRegisterCommandValidator : AbstractValidator<UserRegisterComman
             .MaximumLength(UserConstants.MAXIMUM_LASTNAME_LENGTH);
         RuleFor(x => x.UserRegisterDto.Email)
             .NotEmpty()
-            .EmailAddress();
+            .Matches(@"^(?!.*\.\.)(?!.*\s)(?!.*@-)[A-Za-z0-9._%+-]+@(?!-)[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
+            .WithMessage("Invalid email format.");
+
+
         RuleFor(x => x.UserRegisterDto.UserName)
             .NotEmpty()
             .MinimumLength(UserConstants.MINIMUM_USERNAME_LENGTH)
