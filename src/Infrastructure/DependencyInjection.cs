@@ -1,11 +1,17 @@
 ﻿using System.Text;
+using Amazon.S3;
+using Application.Common.Interface;
+using Application.Common.Settings;
+using Application.Features.User.Commands.Register;
 using Application.Interface;
 using Domain.Repositories;
 using Domain.Service;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Persistence.Seed;
 using Infrastructure.Services;
+using Infrastructure.Services.Settings;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -69,16 +75,27 @@ public static class DependencyInjection
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IIdentityService, IdentityService>();
-
-        services.AddScoped<ICourseRepository, CourseRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
         services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
+        services.AddScoped<UserRegisterCommandHandler>();
+
         services.AddScoped<ILessonRepository, LessonRepository>();
         services.AddScoped<ILearningProgressRepository, LearningProgressRepository>();
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMediaRepository, MediaRepository>();
+
+        services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+        services.AddAWSService<IAmazonS3>();
+        services.AddScoped<IMediaStorageService, AwsS3StorageService>();
+
+        services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
+        services.AddSingleton(mediaSettings);
         return services;
     }
 }

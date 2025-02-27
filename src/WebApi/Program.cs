@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "API for DuolingoLite"
     });
-    c.OperationFilter<FileUploadOperationFilter>();
+    // c.OperationFilter<FileUploadOperationFilter>();
 
     // Adding Authentication for Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

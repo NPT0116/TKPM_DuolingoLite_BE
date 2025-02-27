@@ -21,5 +21,15 @@ namespace Domain.Entities.Media
             "Media.FilePathEmpty",
             "File path can not be empty"
         );
+
+        public static Error BucketDoesNotExist() => Error.NotFound(
+            "Media.BucketDoesNotExist",
+            "Bucket does not exist"
+        );
+
+        public static Error InvalidFileType() => Error.Validation(
+            "Media.InvalidFileType",
+            "Invalid file type"
+        );
     }
 }

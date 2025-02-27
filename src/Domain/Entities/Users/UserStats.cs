@@ -29,6 +29,12 @@ namespace Domain.Entities.Users
 
         public void EarnExperience(int points) => ExperiencePoint += points;
         public void LoseHeart() => Heart = Math.Max(Heart - 1, 0);
+
+        public static Result<UserStats> Create(Guid userId)
+        {
+            var userStats = new UserStats(userId);
+            return Result.Success(userStats);
+        }
     }
 
 }

@@ -32,6 +32,15 @@ namespace Application.Features.User.Queries.GetUserProfile
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UserProfileNotFound(user.Id));
             }
+
+            var userStats = await _userRepository.GetUserStatsById(user.Id);
+
+            DateTime today = DateTime.UtcNow.Date;
+            DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            var userActivities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(user.Id, startOfWeek, endOfWeek);
+
             return new UserWithProfileResponseDto(
                 user.Id, 
                 user.FirstName, 
@@ -39,7 +48,9 @@ namespace Application.Features.User.Queries.GetUserProfile
                 user.Email, 
                 userProfile.NickName, 
                 userProfile.ProfileImage?.Url, 
-                userProfile.Subscription
+                userProfile.Subscription,
+                userActivities,
+                userStats
             );
         }
     }

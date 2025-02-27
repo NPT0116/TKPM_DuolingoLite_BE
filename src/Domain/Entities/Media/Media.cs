@@ -64,5 +64,29 @@ namespace Domain.Entities.Media
             ));
         }
 
+        public static Result<MediaType> GetMediaType(string fileName)
+        {
+            var extension = Path.GetExtension(fileName);
+            return extension switch
+            {
+                ".jpg" or ".jpeg" or ".png" => MediaType.Image,
+                ".mp3" or ".wav" or ".m4a" => MediaType.Audio,
+                ".pdf" or ".doc" or ".docx" => MediaType.Document,
+                _ => MediaType.Other
+            };
+        }
+        
+        public static string GetFileKey(string? prefix, string fileName)
+        {
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff"); // Timestamp format: 20240225123045987
+            string fileExtension = Path.GetExtension(fileName); // Extract file extension
+            string fileNameWithoutExt = Path.GetFileNameWithoutExtension(fileName); // Extract file name without extension
+
+            string newFileName = $"{fileNameWithoutExt}_{timestamp}{fileExtension}"; // Append timestamp to filename
+
+            return string.IsNullOrEmpty(prefix) ? newFileName : $"{prefix.TrimEnd('/')}/{newFileName}";
+        }
+
+
     }
 }
