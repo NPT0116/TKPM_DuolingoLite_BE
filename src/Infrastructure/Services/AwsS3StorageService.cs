@@ -25,6 +25,16 @@ namespace Infrastructure.Services
             _s3Client = s3Client;
             _awsSettings = awsSettings.Value;
         }
+
+        public async Task<bool> DeleteFileAsync(string fileKey, CancellationToken cancellationToken)
+        {
+            var bucketName = _awsSettings.BucketName;
+            var bucketExists = await AmazonS3Util.DoesS3BucketExistV2Async(_s3Client,bucketName);
+            if (!bucketExists) return false;
+            await _s3Client.DeleteObjectAsync(bucketName, fileKey);
+            return true;
+        }
+
         public async Task<Result<Media>> UploadFileAsync(MediaUploadRequest request, CancellationToken cancellationToken)
         {   
             var bucketName = _awsSettings.BucketName;
@@ -43,7 +53,7 @@ namespace Infrastructure.Services
             
             var fileUrl = $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
 
-            var createdMedia = Domain.Entities.Media.Media.Create(request.FileName, Media.GetMediaType(request.ContentType).Value, request.FileData.Length, fileUrl);
+            var createdMedia = Domain.Entities.Media.Media.Create(request.FileName, Media.GetMediaType(request.ContentType).Value, request.FileData.Length, fileUrl, fileKey);
             if (createdMedia.IsFailure)
             {
                 return Result.Failure<Media>(createdMedia.Error);

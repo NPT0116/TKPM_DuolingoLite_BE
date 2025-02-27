@@ -36,81 +36,106 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
 
     public async Task<Result<Guid>> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
     {
-        if (await _identityService.UseEmailExistsAsync(request.UserRegisterDto.Email))
-        {
-            return Result.Failure<Guid>(UserError.EmailNotUnique) as Result<Guid>;
-        }
-        if (await _identityService.UserNameExistsAsync(request.UserRegisterDto.UserName))
-        {
-            return Result.Failure<Guid>(UserError.UserNameNotUnique);
-        }
-        var result = await _identityService.CreateUserAsync(
-            request.UserRegisterDto.FirstName, 
-            request.UserRegisterDto.LastName, 
-            request.UserRegisterDto.Email, 
-            request.UserRegisterDto.UserName, 
-            request.UserRegisterDto.Password);
-
-        if (result.Result.IsFailure)
-        {
-            return Result.Failure<Guid>(result.Result.Error);
-        }
-
-        var userId = result.UserId;
-
-        var userActivity = UserActivity.Create(userId, DateTime.UtcNow, true);
-        if (userActivity.IsFailure)
-        {
-            return Result.Failure<Guid>(userActivity.Error);
-        }
-
-        var userStats = UserStats.Create(userId);
-        if (userStats.IsFailure)
-        {
-            return Result.Failure<Guid>(userStats.Error);
-        }
-
         Domain.Entities.Media.Media? avatarMedia = null;
-
-        if(request.AvatarUploadRequest != null)
+        // Begin a transaction (assuming your _context implements BeginTransactionAsync)
+        using var transaction = await _context.BeginTransactionAsync(cancellationToken);
+        try
         {
-            Console.WriteLine($"Media type: {Domain.Entities.Media.Media.GetMediaTypeFromContentType(request.AvatarUploadRequest.ContentType).Value}");
-            if(Domain.Entities.Media.Media.GetMediaTypeFromContentType(request.AvatarUploadRequest.ContentType).Value != MediaType.Image)
+            if (await _identityService.UseEmailExistsAsync(request.UserRegisterDto.Email))
             {
-                return Result.Failure<Guid>(MediaError.InvalidFileType());
+                throw new ApplicationErrorException(UserError.EmailNotUnique);
             }
-            var avatarUploadRequest = new MediaUploadRequest(
-                _mediaSettings.AvatarPrefix,
-                request.AvatarUploadRequest.FileData, 
-                request.AvatarUploadRequest.FileName, 
-                request.AvatarUploadRequest.ContentType);
-            var avatarUploadResult = await _mediaStorageService.UploadFileAsync(avatarUploadRequest, cancellationToken);
-            if (avatarUploadResult.IsFailure)
+            if (await _identityService.UserNameExistsAsync(request.UserRegisterDto.UserName))
             {
-                return Result.Failure<Guid>(avatarUploadResult.Error);
+                throw new ApplicationErrorException(UserError.UserNameNotUnique);
             }
-            avatarMedia = avatarUploadResult.Value;
+
+            var result = await _identityService.CreateUserAsync(
+                request.UserRegisterDto.FirstName,
+                request.UserRegisterDto.LastName,
+                request.UserRegisterDto.Email,
+                request.UserRegisterDto.UserName,
+                request.UserRegisterDto.Password);
+
+            if (result.Result.IsFailure)
+            {
+                throw new ApplicationErrorException(result.Result.Error);
+            }
+
+            var userId = result.UserId;
+
+            var userActivity = UserActivity.Create(userId, DateTime.UtcNow, true);
+            if (userActivity.IsFailure)
+            {
+                throw new ApplicationErrorException(userActivity.Error);
+            }
+
+            var userStats = UserStats.Create(userId);
+            if (userStats.IsFailure)
+            {
+                throw new ApplicationErrorException(userStats.Error);
+            }
+
+            
+            if (request.AvatarUploadRequest != null)
+            {
+                // Validate the content type directly
+                var mediaTypeResult = Domain.Entities.Media.Media.GetMediaTypeFromContentType(request.AvatarUploadRequest.ContentType);
+                Console.WriteLine($"Media type: {mediaTypeResult.Value}");
+                if (mediaTypeResult.Value != MediaType.Image)
+                {
+                    throw new ApplicationErrorException(MediaError.InvalidFileType());
+                }
+                var avatarUploadRequest = new MediaUploadRequest(
+                    _mediaSettings.AvatarPrefix,
+                    request.AvatarUploadRequest.FileData,
+                    request.AvatarUploadRequest.FileName,
+                    request.AvatarUploadRequest.ContentType);
+                var avatarUploadResult = await _mediaStorageService.UploadFileAsync(avatarUploadRequest, cancellationToken);
+                if (avatarUploadResult.IsFailure)
+                {
+                    throw new ApplicationErrorException(avatarUploadResult.Error);
+                }
+                avatarMedia = avatarUploadResult.Value;
+            }
+
+            var userProfile = UserProfile.Create(
+                userId,
+                request.UserRegisterDto.Email,
+                request.UserRegisterDto.UserName,
+                request.UserRegisterDto.FirstName,
+                request.UserRegisterDto.LastName,
+                avatarMedia,
+                null);
+            if (userProfile.IsFailure)
+            {
+                // Optionally, if an avatar was uploaded, you might consider deleting it here.
+                throw new ApplicationErrorException(userProfile.Error);
+            }
+
+            await _userRepository.CreateUserActivity(userActivity.Value);
+            await _userRepository.CreateUserStats(userStats.Value);
+            await _userRepository.CreateUserProfile(userProfile.Value);
+
+            await _context.SaveChangesAsync(cancellationToken);
+            // Commit the transaction if all operations succeed.
+            await _context.CommitTransactionAsync(transaction, cancellationToken);
+            return userId;
+        }
+        catch (Exception ex)
+        {
+            if(avatarMedia != null)
+            {
+                await _mediaStorageService.DeleteFileAsync(avatarMedia.FileKey, cancellationToken);
+            }
+            await _context.RollbackTransactionAsync(transaction, cancellationToken);
+            if (ex is ApplicationErrorException appEx)
+            {
+                return Result.Failure<Guid>(appEx.AppError);
+            }
+            return Result.Failure<Guid>(new Error("UnhandledError", ex.Message, ErrorType.Validation));
         }
 
-        var userProfile = UserProfile.Create(
-            userId, 
-            request.UserRegisterDto.Email, 
-            request.UserRegisterDto.UserName, 
-            request.UserRegisterDto.FirstName, 
-            request.UserRegisterDto.LastName, 
-            avatarMedia, 
-            null);
-        if (userProfile.IsFailure)
-        {
-            return Result.Failure<Guid>(userProfile.Error);
-        }
-
-        await _userRepository.CreateUserActivity(userActivity.Value);
-        await _userRepository.CreateUserStats(userStats.Value);
-        await _userRepository.CreateUserProfile(userProfile.Value);
-
-        await _context.SaveChangesAsync(cancellationToken);
-
-        return userId;
     }
+
 }

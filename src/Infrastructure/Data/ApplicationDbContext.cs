@@ -20,6 +20,7 @@ using Domain.Entities.Learning.Questions.Options;
 using Domain.Entities.Learning.Words;
 using Domain.Entities.Subscriptions;
 using Domain.Entities.Users;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Data
 {
@@ -57,6 +58,22 @@ namespace Infrastructure.Data
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            return await Database.BeginTransactionAsync(cancellationToken);
+        }
+
+        public async Task CommitTransactionAsync(IDbContextTransaction transaction, CancellationToken cancellationToken = default)
+        {
+            // Ensure that the passed transaction is the current one (if you're tracking it)
+            await transaction.CommitAsync(cancellationToken);
+        }
+
+        public async Task RollbackTransactionAsync(IDbContextTransaction transaction, CancellationToken cancellationToken = default)
+        {
+            await transaction.RollbackAsync(cancellationToken);
         }
     }
 }
