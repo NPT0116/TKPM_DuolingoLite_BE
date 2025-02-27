@@ -74,7 +74,8 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
 
         if(request.AvatarUploadRequest != null)
         {
-            if(Domain.Entities.Media.Media.GetMediaType(request.AvatarUploadRequest.ContentType).Value != MediaType.Image)
+            Console.WriteLine($"Media type: {Domain.Entities.Media.Media.GetMediaTypeFromContentType(request.AvatarUploadRequest.ContentType).Value}");
+            if(Domain.Entities.Media.Media.GetMediaTypeFromContentType(request.AvatarUploadRequest.ContentType).Value != MediaType.Image)
             {
                 return Result.Failure<Guid>(MediaError.InvalidFileType());
             }

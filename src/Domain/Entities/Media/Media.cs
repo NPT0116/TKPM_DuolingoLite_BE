@@ -75,6 +75,18 @@ namespace Domain.Entities.Media
                 _ => MediaType.Other
             };
         }
+
+        public static Result<MediaType> GetMediaTypeFromContentType(string contentType)
+        {
+            return contentType switch
+            {
+                "image/jpeg" or "image/png" => MediaType.Image,
+                "audio/mpeg" or "audio/wav" or "audio/mp4" => MediaType.Audio,
+                "application/pdf" or "application/msword" or "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => MediaType.Document,
+                _ => MediaType.Other
+            };
+}
+
         
         public static string GetFileKey(string? prefix, string fileName)
         {

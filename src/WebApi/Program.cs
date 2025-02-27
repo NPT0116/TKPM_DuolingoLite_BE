@@ -7,7 +7,7 @@ using WebApi.Middlewares;
 using WebApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Configuration.AddJsonFile("awsSettings.json");
 // Add logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
