@@ -68,10 +68,10 @@ builder.Host.UseSerilog((context, configuration) =>
 // check api key exists
 string credentialsPath = builder.Configuration["Google:CredentialsPath"];
 
-if (string.IsNullOrEmpty(credentialsPath) || !File.Exists(credentialsPath))
-{
-    throw new Exception("Chưa cấu hình file API key hợp lệ. Vui lòng thiết lập biến môi trường Google__CredentialsPath hoặc cấu hình trong user secrets.");
-}
+// if (string.IsNullOrEmpty(credentialsPath) || !File.Exists(credentialsPath))
+// {
+//     throw new Exception("Chưa cấu hình file API key hợp lệ. Vui lòng thiết lập biến môi trường Google__CredentialsPath hoặc cấu hình trong user secrets.");
+// }
 var app = builder.Build();
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
