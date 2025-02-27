@@ -8,9 +8,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=thanh2004
-      - POSTGRES_DB=duolingolite
+      - POSTGRES_DB=DuolingoLite
     ports:
-      - "5432:5432"
+      - "5431:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

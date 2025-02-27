@@ -42,4 +42,14 @@ CMD dotnet ef database update --startup-project ../WebApi
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Tạm chuyển sang root để tạo thư mục và copy file
+USER root
+RUN mkdir -p /Infrastructure/Persistence/Seed
+COPY --from=build /src/Infrastructure/Persistence/Seed/course.json /Infrastructure/Persistence/Seed/course.json
+
+# Chuyển lại về user không phải root (nếu cần)
+USER $APP_UID
+
 ENTRYPOINT ["dotnet", "WebApi.dll"]
+
