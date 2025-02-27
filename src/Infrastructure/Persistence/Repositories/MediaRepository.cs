@@ -18,9 +18,9 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<Result<string>> UploadFileAsync(string fileName, string url, MediaType mimeType, long fileSize, DateTime createdAt, DateTime updatedAt, CancellationToken cancellationToken)
+        public async Task<Result<string>> UploadFileAsync(string fileName, string url, MediaType mimeType, long fileSize, DateTime createdAt, DateTime updatedAt, string fileKey, CancellationToken cancellationToken)
         {
-            var file = Media.Create(fileName, mimeType, fileSize, url);
+            var file = Media.Create(fileName, mimeType, fileSize, url, fileKey);
             if (file.IsFailure)
             {
                 return Result.Failure<string>(file.Error);

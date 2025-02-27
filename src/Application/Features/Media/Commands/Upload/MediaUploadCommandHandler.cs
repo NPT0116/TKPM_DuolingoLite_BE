@@ -31,7 +31,7 @@ namespace Application.Features.Media.Commands.Upload
 
             var mediaType = Domain.Entities.Media.Media.GetMediaType(request.Request.FileName);
 
-            await _mediaRepository.UploadFileAsync(request.Request.FileName, uploadResult.Value.Url, mediaType.Value, request.Request.FileData.Length, DateTime.UtcNow, DateTime.UtcNow, cancellationToken);    
+            await _mediaRepository.UploadFileAsync(request.Request.FileName, uploadResult.Value.Url, mediaType.Value, request.Request.FileData.Length, DateTime.UtcNow, DateTime.UtcNow, uploadResult.Value.FileKey, cancellationToken);    
             await _context.SaveChangesAsync(cancellationToken);
             
             return Result.Success<Domain.Entities.Media.Media>(uploadResult.Value);

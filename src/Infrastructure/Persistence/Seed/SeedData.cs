@@ -79,13 +79,13 @@ using Infrastructure.Persistence;
                 foreach(var question in questions)
                 {
                     
-                    var audio = question.Audio == null ? null :Media.Create("audio", MediaType.Audio, 10000, question.Audio);
+                    var audio = question.Audio == null ? null :Media.Create("audio", MediaType.Audio, 10000, question.Audio, question.Audio);
                     if(audio != null && audio.IsFailure)
                     {
                         return Result.Failure(audio.Error);
                     }
 
-                    var image = question.Image == null ? null : Media.Create("image", MediaType.Image, 100000, question.Image);
+                    var image = question.Image == null ? null : Media.Create("image", MediaType.Image, 100000, question.Image, question.Image);
                     if(image != null && image.IsFailure)
                     {
                         return Result.Failure(image.Error);
@@ -145,13 +145,13 @@ using Infrastructure.Persistence;
                         }
                         else
                         {
-                            var optionImage = option.Image == null ? null : Media.Create("optionImage", MediaType.Image, 100000, option.Image);
+                            var optionImage = option.Image == null ? null : Media.Create("optionImage", MediaType.Image, 100000, option.Image, option.Image);
                             if(optionImage != null && optionImage.IsFailure)
                             {
                                 return Result.Failure(optionImage.Error);
                             }
 
-                            var optionAudio = option.Audio == null ? null : Media.Create("optionAudio", MediaType.Audio, 10000, option.Audio);
+                            var optionAudio = option.Audio == null ? null : Media.Create("optionAudio", MediaType.Audio, 10000, option.Audio, option.Audio);
                             if(optionAudio != null && optionAudio.IsFailure)
                             {
                                 return Result.Failure(optionAudio.Error);
@@ -234,7 +234,7 @@ using Infrastructure.Persistence;
                                 {
                                     // Nếu Word chưa tồn tại, tạo mới và thêm vào DbContext
                                     var createdWord = Word.Create(word.Content,
-                                        word.Audio == null ? null : Media.Create("wordAudio", MediaType.Audio, 10000, word.Audio).Value);
+                                        word.Audio == null ? null : Media.Create("wordAudio", MediaType.Audio, 10000, word.Audio, "wordAudio").Value);
 
                                     if (createdWord.IsFailure)
                                     {

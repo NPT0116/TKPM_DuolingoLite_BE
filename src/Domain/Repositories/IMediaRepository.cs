@@ -16,6 +16,7 @@ namespace Domain.Repositories
             long fileSize,
             DateTime createdAt,
             DateTime updatedAt,
+            string fileKey,
             CancellationToken cancellationToken);
     }
 }

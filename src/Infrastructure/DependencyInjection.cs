@@ -89,11 +89,22 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
 
-        services.AddDefaultAWSOptions(configuration.GetAWSOptions());
-        services.AddAWSService<IAmazonS3>();
+        // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+        // services.AddAWSService<IAmazonS3>();
+        services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        
+        // Optionally, you can register the settings as a singleton:
+        var awsSettings = new AwsSettings();
+        configuration.GetSection("AWS").Bind(awsSettings);
+        services.AddSingleton(awsSettings);
+
+        // Register your AWS services using these settings (example for AmazonS3Client)
+        var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(awsSettings.Region);
+        var s3Client = new AmazonS3Client(awsSettings.AccessKey, awsSettings.SecretKey, regionEndpoint);
+        services.AddSingleton<IAmazonS3>(s3Client);
         services.AddScoped<IMediaStorageService, AwsS3StorageService>();
 
-        services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        // services.Configure<AwsSettings>(configuration.GetSection("AWS"));
         var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
         services.AddSingleton(mediaSettings);
         return services;

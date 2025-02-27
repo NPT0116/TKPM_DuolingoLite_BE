@@ -10,5 +10,6 @@ namespace Application.Common.Interface
     public interface IMediaStorageService
     {
         Task<Result<Media>> UploadFileAsync(MediaUploadRequest request, CancellationToken cancellationToken);
+        Task<bool> DeleteFileAsync(string fileName, CancellationToken cancellationToken);
     }
 }

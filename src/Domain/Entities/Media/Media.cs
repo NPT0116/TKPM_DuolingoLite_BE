@@ -9,6 +9,7 @@ namespace Domain.Entities.Media
 {
     public class Media : Entity
     {
+        public string FileKey { get; private set; } = String.Empty; 
         public string FileName { get; private set; } = String.Empty;
         public string Url { get; private set; } = String.Empty;
         public MediaType MimeType { get; private set; }
@@ -22,7 +23,8 @@ namespace Domain.Entities.Media
             string fileName,
             string url,
             MediaType mimeType,
-            long fileSize
+            long fileSize,
+            string fileKey
         )
         {
             Id = id;
@@ -30,6 +32,7 @@ namespace Domain.Entities.Media
             Url = url;
             MimeType = mimeType;
             Size = fileSize;
+            FileKey = fileKey;
             CreatedAt =  DateTime.UtcNow;
         }
 
@@ -37,7 +40,8 @@ namespace Domain.Entities.Media
             string fileName,
             MediaType mimeType,
             long fileSize,
-            string url
+            string url,
+            string fileKey
         )
         {
             if(string.IsNullOrEmpty(fileName))
@@ -60,7 +64,8 @@ namespace Domain.Entities.Media
                 fileName,
                 url,
                 mimeType,
-                fileSize
+                fileSize,
+                fileKey
             ));
         }
 
@@ -75,6 +80,18 @@ namespace Domain.Entities.Media
                 _ => MediaType.Other
             };
         }
+
+        public static Result<MediaType> GetMediaTypeFromContentType(string contentType)
+        {
+            return contentType switch
+            {
+                "image/jpeg" or "image/png" => MediaType.Image,
+                "audio/mpeg" or "audio/wav" or "audio/mp4" => MediaType.Audio,
+                "application/pdf" or "application/msword" or "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => MediaType.Document,
+                _ => MediaType.Other
+            };
+}
+
         
         public static string GetFileKey(string? prefix, string fileName)
         {
