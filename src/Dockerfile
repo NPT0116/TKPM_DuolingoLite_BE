@@ -1,29 +1,44 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# Stage 1: base
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
+RUN mkdir -p /app/wwwroot/profile-pictures && chmod -R 777 /app/wwwroot
 
-
-# This stage is used to build the service project
+# Stage 2: build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["WebApi/WebApi.csproj", "WebApi/"]
-RUN dotnet restore "./WebApi/WebApi.csproj"
-COPY . .
-WORKDIR "/src/WebApi"
-RUN dotnet build "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
+# Copy each csproj to subfolders that match
+COPY ["src/WebApi/WebApi.csproj", "WebApi/"]
+COPY ["src/Application/Application.csproj", "Application/"]
+COPY ["src/Domain/Domain.csproj", "Domain/"]
+COPY ["src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["src/SharedKernel/SharedKernel.csproj", "SharedKernel/"]
+
+# Restore, referencing the correct path
+RUN dotnet restore "WebApi/WebApi.csproj"
+
+# Copy the entire solution
+COPY . .
+
+# Build
+WORKDIR "/src/WebApi"
+RUN dotnet build "WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Stage 3: publish
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+WORKDIR /src/WebApi
+RUN dotnet publish "WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Stage 4: run EF migrations
+FROM build AS ef-migration
+WORKDIR "/src/Infrastructure"
+CMD dotnet ef database update --startup-project ../WebApi
+
+# Stage 5: final
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
