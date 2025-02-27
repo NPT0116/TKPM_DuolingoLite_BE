@@ -20,10 +20,12 @@ public class GetCourseDetailQueryHandler : IQueryHandler<GetCourseDetailQuery, C
         {
             return Result.Failure<CourseDetailDto>(CourseError.CourseNotFound(request.CourseId));
         }
+        Console.WriteLine(course.Name);
         return new CourseDetailDto(
             course.Id,
             course.Name,
-            course.NextCourse.Id
+            course.NextCourse?.Id ?? Guid.Empty // Trả về một giá trị hợp lệ nếu NextCourse là null
         );
+
     }
 }
