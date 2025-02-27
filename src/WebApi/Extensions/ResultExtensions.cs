@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SharedKernel;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel;
 
 namespace WebApi.Extensions
 {
@@ -11,11 +8,11 @@ namespace WebApi.Extensions
     {
         public static IActionResult Match<T>(
             this Result<T> result,
-            Func<T, IActionResult> onSuccess,
+            Func<Result<T>, IActionResult> onSuccess, // Chuyển từ Func<T, IActionResult> thành Func<Result<T>, IActionResult>
             Func<Result, IActionResult> onFailure)
         {
             return result.IsSuccess 
-                ? onSuccess(result.Value) 
+                ? onSuccess(result) // Trả về toàn bộ Result<T> thay vì chỉ result.Value
                 : onFailure(result);
         }
 
