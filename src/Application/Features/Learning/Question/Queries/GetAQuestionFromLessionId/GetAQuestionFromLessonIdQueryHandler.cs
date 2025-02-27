@@ -166,7 +166,7 @@ namespace Application.Features.Learning.Question.Queries.GetAQuestionFromLession
             }
 
             // 5. Debug in ra console
-            PrintUtils.PrintAsJson(question);
+            // PrintUtils.PrintAsJson(question);
 
             // 6. Trả về result
             return Result.Success(questionDto);
