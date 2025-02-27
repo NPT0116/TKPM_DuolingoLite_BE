@@ -32,28 +32,13 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
         IApplicationDbContext context, 
         IMediaStorageService mediaStorageService,
         MediaSettings mediaSettings)
-    private readonly IUserRepository _userRepository;
-    private readonly IApplicationDbContext _context;
-    private readonly IMediaStorageService _mediaStorageService;
-    private readonly MediaSettings _mediaSettings;
-    public UserRegisterCommandHandler(
-        IIdentityService identityService, 
-        IUserRepository userRepository, 
-        IApplicationDbContext context, 
-        IMediaStorageService mediaStorageService,
-        MediaSettings mediaSettings)
     {
         _identityService = identityService;
         _userRepository = userRepository;
         _context = context;
         _mediaStorageService = mediaStorageService;
         _mediaSettings = mediaSettings;
-        _userRepository = userRepository;
-        _context = context;
-        _mediaStorageService = mediaStorageService;
-        _mediaSettings = mediaSettings;
     }
-
     public async Task<Result<Guid>> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
     {
         Domain.Entities.Media.Media? avatarMedia = null;
