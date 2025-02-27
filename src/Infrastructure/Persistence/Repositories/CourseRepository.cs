@@ -33,7 +33,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Course?> GetCourseById(Guid id)
         {
-            return await _context.Courses.FindAsync(id);
+            return await _context.Courses.Include(c=> c.Lessons).ThenInclude(l=> l.Questions).FirstOrDefaultAsync(c=> c.Id == id);
         }
     }
 }

@@ -5,6 +5,7 @@ using WebApi.Infrastructure;
 using Microsoft.OpenApi.Models;
 using WebApi.Middlewares;
 using WebApi.Swagger;
+using WebApi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,12 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.Converters.Add(new OptionDtoPolymorphicConverter());
+        opts.JsonSerializerOptions.WriteIndented = true;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {

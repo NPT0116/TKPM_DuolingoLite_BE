@@ -84,12 +84,20 @@ namespace Infrastructure.Services
         /// </summary>
         private RecognitionConfig MapToGoogleRecognitionConfig(SpeechRecognitionConfig config)
         {
-            return new RecognitionConfig
+              var googleConfig =  new RecognitionConfig
             {
                 LanguageCode = config.LanguageCode,
                 SampleRateHertz = config.SampleRateHertz,
                 Encoding = RecognitionConfig.Types.AudioEncoding.Mp3
             };
+            if (!string.IsNullOrWhiteSpace(config.TargetWord))
+            {
+                var context = new SpeechContext();
+                context.Phrases.Add(config.TargetWord);
+                googleConfig.SpeechContexts.Add(context);
+
+            }
+            return googleConfig;
         }
     }
 }
