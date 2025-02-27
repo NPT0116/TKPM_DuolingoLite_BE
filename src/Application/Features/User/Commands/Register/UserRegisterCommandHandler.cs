@@ -2,11 +2,17 @@ using Application.Abstractions.Messaging;
 using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.Media.Commands.Upload;
+using Application.Common.Interface;
+using Application.Common.Settings;
+using Application.Features.Media.Commands.Upload;
 using Application.Interface;
+using Domain.Entities.Media;
+using Domain.Entities.Media.Enums;
 using Domain.Entities.Media;
 using Domain.Entities.Media.Enums;
 using Domain.Entities.User;
 using Domain.Entities.Users;
+using Domain.Repositories;
 using Domain.Repositories;
 using SharedKernel;
 using System;
@@ -26,8 +32,22 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
         IApplicationDbContext context, 
         IMediaStorageService mediaStorageService,
         MediaSettings mediaSettings)
+    private readonly IUserRepository _userRepository;
+    private readonly IApplicationDbContext _context;
+    private readonly IMediaStorageService _mediaStorageService;
+    private readonly MediaSettings _mediaSettings;
+    public UserRegisterCommandHandler(
+        IIdentityService identityService, 
+        IUserRepository userRepository, 
+        IApplicationDbContext context, 
+        IMediaStorageService mediaStorageService,
+        MediaSettings mediaSettings)
     {
         _identityService = identityService;
+        _userRepository = userRepository;
+        _context = context;
+        _mediaStorageService = mediaStorageService;
+        _mediaSettings = mediaSettings;
         _userRepository = userRepository;
         _context = context;
         _mediaStorageService = mediaStorageService;
