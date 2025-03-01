@@ -13,8 +13,6 @@ namespace Domain.Service
     {
         public string LanguageCode { get; set; } = "en-US";
         public int SampleRateHertz { get; set; } = 16000;
-        public string TargetWord { get; set; } = string.Empty;
-
     }
 
     public interface ISpeechToTextService
