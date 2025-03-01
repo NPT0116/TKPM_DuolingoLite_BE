@@ -80,7 +80,31 @@ namespace Domain.Entities.Media
                 _ => MediaType.Other
             };
         }
+public static Result<Media> CreateForTest(MediaType mimeType, string url, long fileSize)
+        {
+            if (string.IsNullOrEmpty(url))
+                return Result.Failure<Media>(MediaError.FilePathEmpty());
+            if (fileSize <= 0)
+                return Result.Failure<Media>(MediaError.InvalidFileFize());
 
+            // Lấy extension từ url (nếu có)
+            string extension = Path.GetExtension(url);
+            if (string.IsNullOrEmpty(extension))
+                extension = ".dat";
+
+            // fileName tạm
+            string fileName = "testFile" + extension;
+            // Tạo fileKey
+            string fileKey = GetFileKey(null, fileName);
+
+            return Create(
+                fileName,
+                mimeType,
+                fileSize,
+                url,
+                fileKey
+            );
+        }
         public static Result<MediaType> GetMediaTypeFromContentType(string contentType)
         {
             return contentType switch

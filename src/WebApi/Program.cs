@@ -9,6 +9,7 @@ using WebApi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("awsSettings.json");
+builder.Configuration.AddJsonFile("tkpm-speech-to-text-232c1ce8d4c3.json");
 // Add logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();

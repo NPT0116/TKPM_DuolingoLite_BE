@@ -50,7 +50,7 @@ namespace Infrastructure.Services
 
         public async Task<SpeechToTextResult> RecognizeFromStreamAsync(Stream audioStream, SpeechRecognitionConfig config)
         {
-            string credentialsPath = _configuration["Google:CredentialsPath"];
+            string credentialsPath = _configuration["Google:FileCredentialsPath"];
             var client = new SpeechClientBuilder
             {
                 CredentialsPath = credentialsPath
