@@ -23,12 +23,18 @@ using Infrastructure.Persistence;
     using Domain.Entities.Learning.Words;
     using System.Text.Json.Serialization;
     using Newtonsoft.Json;
+    using Infrastructure.Services;
+    using Amazon.Runtime.Internal.Auth;
+    using Application.Common.Interface;
 
     public static class SeedData
 {
-    public static Result Initialize(IServiceProvider serviceProvider)
+    public static async Task<Result> Initialize(IServiceProvider serviceProvider)
     {
         using var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
+        var dictionaryService = serviceProvider.GetRequiredService<IDictionaryService>();
+
+
         Console.WriteLine("SeedData Initialize");
         if (!context.Courses.Any())
         {
@@ -116,7 +122,7 @@ using Infrastructure.Persistence;
                     {
                         return Result.Failure(optionConfiguration.Error);
                     }
-
+                    
                     var newQuestion = Question.Create(
                         question.Instruction,
                         question.VietnameseText,
@@ -233,8 +239,22 @@ using Infrastructure.Persistence;
                                 if (existingWord == null)
                                 {
                                     // Nếu Word chưa tồn tại, tạo mới và thêm vào DbContext
+                                    var wordDefinitions = await dictionaryService.GetWordDefinition(word.Content);
+                                    string wordAudio = string.Empty;
+                                    if(wordDefinitions != null && wordDefinitions.Count > 0)
+                                    {   
+                                        var phonetics = wordDefinitions[0].Phonetics;
+                                        foreach(var phonetic in phonetics)
+                                        {
+                                            if(!string.IsNullOrEmpty(phonetic.Audio))
+                                            {
+                                                wordAudio = phonetic.Audio;
+                                                break;
+                                            }
+                                        }
+                                    }
                                     var createdWord = Word.Create(word.Content,
-                                        word.Audio == null ? null : Media.Create("wordAudio", MediaType.Audio, 10000, word.Audio, "wordAudio").Value);
+                                        wordAudio == string.Empty ? null : Media.Create("wordAudio", MediaType.Audio, 10000, wordAudio, "wordAudio").Value);
 
                                     if (createdWord.IsFailure)
                                     {
