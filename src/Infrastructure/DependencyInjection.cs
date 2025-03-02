@@ -12,6 +12,7 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.Seed;
 using Infrastructure.Services;
+using Infrastructure.Services.Payment;
 using Infrastructure.Services.Settings;
 using Infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using VNPAY.NET;
 
 namespace Infrastructure;
 
@@ -89,7 +91,8 @@ public static class DependencyInjection
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
-
+        services.AddScoped<IMomoService, MomoService>();
+        services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
