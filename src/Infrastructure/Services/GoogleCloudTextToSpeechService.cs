@@ -14,9 +14,9 @@ namespace Infrastructure.Services
             _configuration = configuration;
         }
 
-        public void GenerateAudioFileFromText(string text)
+        public byte[] GenerateAudioFileFromText(string text)
         {
-            if(string.IsNullOrEmpty(text)) return;
+            if(string.IsNullOrEmpty(text)) return [];
             var _client = new TextToSpeechClientBuilder
             {
                 CredentialsPath = _configuration["Google:FileCredentialsPath"]
@@ -29,7 +29,7 @@ namespace Infrastructure.Services
             var random = new Random();
             var genders = Enum.GetValues(typeof(SsmlVoiceGender));
             var randomGender = (SsmlVoiceGender)genders.GetValue(random.Next(genders.Length));
-            Console.WriteLine("Run here");
+            
             VoiceSelectionParams voiceSelectionParams = new ()
             {
                 LanguageCode = "en-US",
@@ -44,9 +44,10 @@ namespace Infrastructure.Services
             var response = _client.SynthesizeSpeech(synthesisInput, voiceSelectionParams, audioConfig);
             var content = response.AudioContent;
 
-            using (Stream output = File.Create("audio.mp3"))
+            using (var memoryStream = new MemoryStream())
             {
-                content.WriteTo(output);
+                content.WriteTo(memoryStream);
+                return memoryStream.ToArray();
             }
 
             // Process.Start(new ProcessStartInfo

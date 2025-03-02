@@ -7,6 +7,6 @@ namespace Application.Common.Interface
 {
     public interface ITextToSpeechService
     {
-        void GenerateAudioFileFromText(string text);
+        byte[] GenerateAudioFileFromText(string text);
     }
 }
