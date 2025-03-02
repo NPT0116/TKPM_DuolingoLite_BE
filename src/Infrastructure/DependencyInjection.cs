@@ -114,6 +114,12 @@ public static class DependencyInjection
         
         
         services.AddScoped<ITextToSpeechService, GoogleCloudTextToSpeechService>();
+        services.AddHttpClient<IDictionaryService, DictionaryService>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
+            // Optionally configure default headers, timeouts, etc.
+        });
+
         return services;
     }
 }
