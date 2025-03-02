@@ -24,13 +24,29 @@ namespace Infrastructure.Services
             var requestUrl = GetRequestUrl(word);
 
             var response = await _httpClient.GetAsync(requestUrl);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                response.EnsureSuccessStatusCode();
 
-            var jsonContent = await response.Content.ReadAsStringAsync();
+                var jsonContent = await response.Content.ReadAsStringAsync();
 
-            // Adjust the deserialization settings if needed (e.g., property naming policy)
-            var entries = JsonConvert.DeserializeObject<List<WordDefinitionDto>>(jsonContent);
-            return entries;
+                // Adjust the deserialization settings if needed (e.g., property naming policy)
+                var entries = JsonConvert.DeserializeObject<List<WordDefinitionDto>>(jsonContent);
+                return entries;
+                
+            }
+            catch (System.Exception ex)
+            {
+                var settings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    Formatting = Formatting.Indented
+                };
+
+                string errorJson = JsonConvert.SerializeObject(ex, settings);
+                Console.WriteLine(errorJson);
+                return new List<WordDefinitionDto>();
+            }
         }
     }
 }

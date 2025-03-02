@@ -254,7 +254,9 @@ using Infrastructure.Persistence;
                                         }
                                     }
                                     var createdWord = Word.Create(word.Content,
-                                        wordAudio == string.Empty ? null : Media.Create("wordAudio", MediaType.Audio, 10000, wordAudio, "wordAudio").Value);
+                                        wordAudio == string.Empty 
+                                            ? Media.Create("wordAudio", MediaType.Audio, 10000, word.Audio, "wordAudio").Value 
+                                            : Media.Create("wordAudio", MediaType.Audio, 10000, wordAudio, "wordAudio").Value);
 
                                     if (createdWord.IsFailure)
                                     {
