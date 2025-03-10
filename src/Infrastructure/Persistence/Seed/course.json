@@ -35,7 +35,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
-                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-uk.mp3",
                             "EnglishText": "Coffee",
                             "IsCorrect": true
                         },
@@ -43,7 +43,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
-                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3",
                             "EnglishText": "Tea",
                             "IsCorrect": false
                         },
@@ -51,7 +51,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
-                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
                             "EnglishText": "Water",
                             "IsCorrect": false
                         }
@@ -85,7 +85,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
-                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
                             "EnglishText": "Water",
                             "IsCorrect": true
                         },
@@ -93,7 +93,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
-                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3",
                             "EnglishText": "Tea",
                             "IsCorrect": false
                         },
@@ -101,7 +101,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
-                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
                             "EnglishText": "Coffee",
                             "IsCorrect": false
                         }
@@ -114,7 +114,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 3,
-                    "Audio": "https://drive.google.com/file/d/14lwRwq9-9Z4CrbCXwOY50RsGhTpV1mR3/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/sea_20250302095518733.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -134,7 +134,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/14lwRwq9-9Z4CrbCXwOY50RsGhTpV1mR3/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/sea_20250302095518733.mp3",
                             "EnglishText": "sea",
                             "IsCorrect": true
                         },
@@ -142,7 +142,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1vgMuIkba_Vs-O7WDWGDIV2NRxVZTZcvY/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/say-us.mp3",
                             "EnglishText": "say",
                             "IsCorrect": false
                         }
@@ -155,7 +155,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 4,
-                    "Audio": "https://drive.google.com/file/d/1GAEMgyno9cMc01ka-p_s6kVNcHIP6_IQ/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/go-1-au.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -175,7 +175,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1PxEWoCpxIFvWkyWdQfbw23WjbXyQY8ei/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/got-au.mp3",
                             "EnglishText": "got",
                             "IsCorrect": false
                         },
@@ -183,7 +183,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1GAEMgyno9cMc01ka-p_s6kVNcHIP6_IQ/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/go-1-au.mp3",
                             "EnglishText": "go",
                             "IsCorrect": true
                         }
@@ -216,7 +216,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
-                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
                             "EnglishText": "Water",
                             "IsCorrect": false
                         },
@@ -224,7 +224,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Trà",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
-                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-us.mp3",
                             "EnglishText": "Tea",
                             "IsCorrect": true
                         },
@@ -232,7 +232,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
-                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
                             "EnglishText": "Coffee",
                             "IsCorrect": false
                         }
@@ -248,12 +248,12 @@
                     "Type": "BuildSentence",
                     "Image": null,
                     "Order": 6,
-                    "Audio": "https://drive.google.com/file/d/1tI0vYYaWOko_CD93NBEg1ofXDPSI7wYo/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3",
                     "Words": [
                         {
                             "Content": "Hello",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1tI0vYYaWOko_CD93NBEg1ofXDPSI7wYo/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3"
                         }
                     ],
                     "QuestionConfiguration": {
@@ -275,7 +275,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "Cà phê",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
-                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
                             "EnglishText": "Coffee",
                             "Order": -1
                         },
@@ -283,7 +283,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "Nước",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
-                            "Audio": "https://drive.google.com/file/d/10GRPc8BYjSKwyfMFxSSWsKy2a86wzbrD/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
                             "EnglishText": "Water",
                             "Order": -1
                         },
@@ -328,22 +328,22 @@
                     "Type": "BuildSentence",
                     "Image": null,
                     "Order": 7,
-                    "Audio": "https://drive.google.com/file/d/1R6wIsbAHbRHPlgDZfWmHPRfnAMDe_oIX/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/coffee-and-tea_20250302095620999.mp3",
                     "Words": [
                         {
                             "Content": "coffee",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/12AV4usJFLn5Y1fWAmUowsyaeftAu5jH7/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-uk.mp3"
                         },
                         {
                             "Content": "and",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1QMCVVtThVa5fGdntZ2Wqzq0_msbmdXOX/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/and-us.mp3"
                         },
                         {
                             "Content": "tea",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/16U8wq9ATR7J1e-FtTk4SNXwS82lt016t/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3"
                         }
                     ],
                     "QuestionConfiguration": {
@@ -445,30 +445,30 @@
                         {
                             "Content": "Goodbye",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1el8YQRHinT0ebvWlZv_uEZF5_4A1_SE0/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/goodbye-us.mp3"
                         },
                         {
                             "Content": "have",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/12WIGS5duom0cLBI-OAUkwzwmBgX4YfH0/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/have-au.mp3"
                         },
                         {
                             "Content": "a",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/a-1-us.mp3"
                         },
                         {
                             "Content": "nice",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1jGl8IWjSXN_qA71ApBdXSyakwHJpYaDt/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/nice-us.mp3"
                         },
                         {
                             "Content": "day",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/17tOGRiwrLFrkFxsow-hvecRM3TiSTjqh/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/day-us.mp3"
                         }
                     ],
-                    "Audio": "https://drive.google.com/file/d/1-5VTQB0zUxgp2jYxBBqFzl7LL4z-ShF4/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/goodbye-have-a-nice-day_20250302095655536.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -513,7 +513,7 @@
                             "Type": "Matching",
                             "VietnameseText": "thực đơn",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/016b7b168e175683396980bdcf7cf0e0",
-                            "Audio": "https://drive.google.com/file/d/1MJNy_FHlc6HZIM4aYU5Dc4H0nQfzy9Rm/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/menu-us.mp3",
                             "EnglishText": "menu",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -522,7 +522,7 @@
                             "Type": "Matching",
                             "VietnameseText": "giàu",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1MqY47ms1E2Exz0AOzfx0AtO-Otkd2Bc_/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/rich-us.mp3",
                             "EnglishText": "rich",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -531,7 +531,7 @@
                             "Type": "Matching",
                             "VietnameseText": "bác sĩ",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1-Tex6gcG4y0Eld8c7NknUwRNvymAZt7r/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/doctor-uk.mp3",
                             "EnglishText": "doctor",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -540,7 +540,7 @@
                             "Type": "Matching",
                             "VietnameseText": "mèo",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1o5QhOUIveGIH0jLi1qKDizrpph-nF5ka/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/cat-uk.mp3",
                             "EnglishText": "cat",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -549,7 +549,7 @@
                             "Type": "Matching",
                             "VietnameseText": "nước Mỹ",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ZgnTbPaUVnAXg2KZh6_xwl8NVYEBc7mZ/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/america_20250302095722012.mp3",
                             "EnglishText": "America",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -563,7 +563,7 @@
                     "Type": "BuildSentence",
                     "Image": null,
                     "Order": 3,
-                    "Audio": "https://drive.google.com/file/d/1PM8xjKkcfV1wwErQAVN_NXAQYDC6BGCo/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/check-please_20250302095743150.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -583,7 +583,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "nhà hàng",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
-                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
                             "EnglishText": "restaurant",
                             "Order": -1
                         },
@@ -591,7 +591,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "chào buổi tối",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1oAFuHV9li9ofwvcUzrCfTACJZSgrXGJf/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/good%20evening-uk.mp3",
                             "EnglishText": "good evening",
                             "Order": -1
                         },
@@ -599,7 +599,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "nhiều hơn",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1iGngDU2CU9qIBkeRyn4C3BSJbDP9ez-4/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/more-uk.mp3",
                             "EnglishText": "more",
                             "Order": -1
                         },
@@ -607,7 +607,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "bánh pizza",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
-                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3",
                             "EnglishText": "pizzas",
                             "Order": -1
                         },
@@ -615,7 +615,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "kiểm tra",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/16oRTC3iVLsE2ReH_8G8vu6HrUkrSGNMX/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/check-us.mp3",
                             "EnglishText": "check",
                             "Order": 1
                         },
@@ -623,7 +623,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "vui lòng",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1OM9S1Z1GlRmmL-X0lnmheXAqodSJH5Ti/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/please-uk.mp3",
                             "EnglishText": "please",
                             "Order": 2
                         }
@@ -656,7 +656,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "nhà hàng",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
-                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
                             "EnglishText": "restaurant",
                             "IsCorrect": false
                         },
@@ -664,7 +664,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "bánh pizza",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
-                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3",
                             "EnglishText": "pizzas",
                             "IsCorrect": true
                         },
@@ -672,7 +672,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "cái bàn",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
-                            "Audio": "https://drive.google.com/file/d/1AwvpJH5ps3c9m-p-T-IfDu1JiVnY1Ruu/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/table-au.mp3",
                             "EnglishText": "table",
                             "IsCorrect": false
                         }
@@ -705,7 +705,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "cho",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1jNk0RLEz5vm0H7Y_ZcPeFgB42OVDvCL0/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/for_20250302095840359.mp3",
                             "EnglishText": "for",
                             "Order": 2
                         },
@@ -713,7 +713,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "cho một",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1_DYVWO1301Hquldc9H_G8OlyFXVr6Nab/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/for-one_20250302095917894.mp3",
                             "EnglishText": "for one",
                             "Order": -1
                         },
@@ -721,7 +721,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "hai",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1Ke0NMiJ9P1wh9o-T4P_tXd1U1I42h4Aq/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/two-uk.mp3",
                             "EnglishText": "two",
                             "Order": 3
                         },
@@ -729,7 +729,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "ngày mới tốt lành",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1GElfSgGKPJEc50SyP5wOYoGadkyrRItG/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/have-a-nice-day_20250302095939207.mp3",
                             "EnglishText": "have a nice day",
                             "Order": -1
                         },
@@ -737,7 +737,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "chào buổi sáng",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/17PP3OjD6nGpw03rrVBUG5PPxB4KOxAzr/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/good%20morning-uk.mp3",
                             "EnglishText": "good morning",
                             "Order":2
                         },
@@ -745,7 +745,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "vâng",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/199R72CidJ0d2TAz4s_QTWONT6v3jW8c1/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/yes.mp3",
                             "EnglishText": "yes",
                             "Order": 1
                         },
@@ -753,7 +753,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "đường",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1T97kD617KcybfmXF4EvYP_pW6SodJKJ4/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/sugar-uk.mp3",
                             "EnglishText": "sugar",
                             "Order": -1
                         }
@@ -786,7 +786,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "nhà hàng",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
-                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
                             "EnglishText": "restaurant",
                             "IsCorrect": false
                         },
@@ -794,7 +794,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "cái bàn",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
-                            "Audio": "https://drive.google.com/file/d/1AwvpJH5ps3c9m-p-T-IfDu1JiVnY1Ruu/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/table-au.mp3",
                             "EnglishText": "table",
                             "IsCorrect": false
                         },
@@ -802,7 +802,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "bia",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/2dec4af32d8151fb1af50a25d436bba6",
-                            "Audio": "https://drive.google.com/file/d/1bzS63y8BimtzBWdDkfPoJp9QM-fodTLj/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/beer-1-au.mp3",
                             "EnglishText": "beer",
                             "IsCorrect": true
                         }
@@ -815,7 +815,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 7,
-                    "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -835,7 +835,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "thời gian",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
                             "EnglishText": "time",
                             "IsCorrect": true
                         },
@@ -843,7 +843,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "đồng xu",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1okKSUbJTbfwUb4CKmf6Rx7QBfvTr_m5i/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/dime-au.mp3",
                             "EnglishText": "dime",
                             "IsCorrect": false
                         }
@@ -883,7 +883,7 @@
                             "Type": "Matching",
                             "VietnameseText": "chồng",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/10cc16n3BARH6zuI6CkNJzUh78HZTQSh5/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/husband-uk.mp3",
                             "EnglishText": "husband",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -892,7 +892,7 @@
                             "Type": "Matching",
                             "VietnameseText": "nước Mỹ",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ZgnTbPaUVnAXg2KZh6_xwl8NVYEBc7mZ/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/america_20250302095722012.mp3",
                             "EnglishText": "America",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -901,7 +901,7 @@
                             "Type": "Matching",
                             "VietnameseText": "con gái",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1VZ8ruf9RDbTZQp55TcuDxo9_U6d88uzI/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/daughter-uk.mp3",
                             "EnglishText": "daughter",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -910,7 +910,7 @@
                             "Type": "Matching",
                             "VietnameseText": "thực đơn",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1MJNy_FHlc6HZIM4aYU5Dc4H0nQfzy9Rm/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/menu-us.mp3",
                             "EnglishText": "menu",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -919,7 +919,7 @@
                             "Type": "Matching",
                             "VietnameseText": "nước ép",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1_HVwBE0jK7UPk3v_hYCEy_IwKbrFbJyl/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/juice-1-us.mp3",
                             "EnglishText": "juice",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -933,37 +933,37 @@
                     "Type": "BuildSentence",
                     "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b",
                     "Order": 2,
-                    "Audio": "https://drive.google.com/file/d/16lYIfmEbJe_edHuOZkwHoqbJBdZ4keo9/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/you-would-like-two-beers-right_20250302100053595.mp3",
                     "Words": [
                         {
                             "Content": "you",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1iYw5t4QB3mn6FU9nKWsn-8N-WJt8ygvo/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/you-uk-stressed.mp3"
                         },
                         {
                             "Content": "would",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1S_x9JrATAzvAmyyIDhVD5Qs3QLmcdN_E/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/would-us-stressed.mp3"
                         },
                         {
                             "Content": "like",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1J18d6cRW5Q2R1KBncq15anLyrsEKrR4j/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/like-us.mp3"
                         },
                         {
                             "Content": "two",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1Ke0NMiJ9P1wh9o-T4P_tXd1U1I42h4Aq/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/two-uk.mp3"
                         },
                         {
                             "Content": "beers",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ElEV4AchSaQDge-hLApmpccOv8BcQ-BR/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/beer-1-au.mp3"
                         },
                         {
                             "Content": "right",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1c4GhSjhv4UlH1fVuFmM-AnN9KkWqo1Fi/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/right-au.mp3"
                         }
                         
                         
@@ -989,7 +989,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "đúng",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1ldXEs9SLi9csa8CxGJbkp6xH8JjW9A-4/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/correct-us.mp3",
                                 "EnglishText": "correct",
                                 "Order": 5
                             },
@@ -997,7 +997,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "giáo viên",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1yAMn1GlG7M6Mpcq8LitCQG79G3QiyvCW/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/teacher-uk.mp3",
                                 "EnglishText": "teacher",
                                 "Order": -1
                             },
@@ -1005,7 +1005,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "Bạn",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1iYw5t4QB3mn6FU9nKWsn-8N-WJt8ygvo/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/you-au-us-unstressed.mp3",
                                 "EnglishText": "you",
                                 "Order": 1
                             },
@@ -1013,7 +1013,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "xe tắc-xi",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1G5U8HAc7pC5tBosfZCNwYATr_XjNcw-_/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/taxi-uk.mp3",
                                 "EnglishText": "taxi",
                                 "Order": -1
                             },
@@ -1021,7 +1021,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "không",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1-W1CpUVm278r1O8dGVJHLzLIT08JbK7y/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/not-uk.mp3",
                                 "EnglishText": "not",
                                 "Order": 6
                             },
@@ -1029,7 +1029,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "muốn",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1oWnZpcpwpYuJX0Gs6CzNeW_QZUYTNcfw/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/want-uk.mp3",
                                 "EnglishText": "want",
                                 "Order": 2
                             },
@@ -1037,7 +1037,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "nóng",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1371X8mbsoFINQqTIO4CGNSkWsN15unV5/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hot-uk.mp3",
                                 "EnglishText": "hot",
                                 "Order": -1
                             },
@@ -1045,7 +1045,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "bia",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1bzS63y8BimtzBWdDkfPoJp9QM-fodTLj/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/beer-1-uk.mp3",
                                 "EnglishText": "beer",
                                 "Order": 4
                             },
@@ -1053,7 +1053,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "hai",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1Ke0NMiJ9P1wh9o-T4P_tXd1U1I42h4Aq/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/two-us.mp3",
                                 "EnglishText": "two",
                                 "Order": 3
                             },
@@ -1061,7 +1061,7 @@
                                 "Type": "BuildSentence",
                                 "VietnameseText": "đơn",
                                 "Image": null,
-                                "Audio": "https://drive.google.com/file/d/1M8SBEbGNt7F4PZ4pF4ic2LHSLMMRzSAE/view?usp=drive_link",
+                                "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/single-us.mp3",
                                 "EnglishText": "single",
                                 "Order": -1
                             }
@@ -1096,7 +1096,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "thực đơn",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/016b7b168e175683396980bdcf7cf0e0",
-                            "Audio": "https://drive.google.com/file/d/1MJNy_FHlc6HZIM4aYU5Dc4H0nQfzy9Rm/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/menu-us.mp3",
                             "EnglishText": "menu",
                             "IsCorrect": false
                         },
@@ -1104,7 +1104,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "nhà hàng",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
-                            "Audio": "https://drive.google.com/file/d/1Mq_Hl_QATyyqhaqvgJzkForvD2lb1cC6/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
                             "EnglishText": "restaurant",
                             "IsCorrect": false
                         },
@@ -1112,7 +1112,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "bánh pizza",
                             "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
-                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3",
                             "EnglishText": "pizza",
                             "IsCorrect": true
                         }
@@ -1126,7 +1126,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 4,
-                    "Audio": "https://drive.google.com/file/d/1tExoBXqd9J1DdMSVWSGBoLasLzAs_cuJ/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/change-uk.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -1146,7 +1146,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1tExoBXqd9J1DdMSVWSGBoLasLzAs_cuJ/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/change-uk.mp3",
                             "EnglishText": "change",
                             "IsCorrect": true
                         },
@@ -1154,7 +1154,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/10wdNJXFLScqtrlWG5AQgur3kQtXk18L8/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/range-us.mp3",
                             "EnglishText": "range",
                             "IsCorrect": false
                         }
@@ -1171,25 +1171,25 @@
                         {
                             "Content": "a",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/a-1-us.mp3"
                         },
                         {
                             "Content": "pizza",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link"
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3"
                         },
                         {
                             "Content": "two",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1Ke0NMiJ9P1wh9o-T4P_tXd1U1I42h4Aq/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/two-uk.mp3"
                         },
                         {
                             "Content": "pizzas",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1BIjkfiZD3Fj5-jKcYH8-r2tZyLeWP2Pp/view?usp=drive_link"
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3"
                         }
                     ],
-                    "Audio": "https://drive.google.com/file/d/1bK05AronQSPxozEj_9UvssimMDxNYQ3M/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/a-pizza-two-pizzas_20250302100224387.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -1214,7 +1214,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 6,
-                    "Audio": "https://drive.google.com/file/d/1Qp0qVqlJ-J22hKM4tnfAtEw40egE4eAF/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/core-us.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -1234,7 +1234,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1Qp0qVqlJ-J22hKM4tnfAtEw40egE4eAF/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/core-us.mp3",
                             "EnglishText": "core",
                             "IsCorrect": true
                         },
@@ -1242,7 +1242,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1K4ed8DKinqoASh_xHYZCH7D2p6NZcez2/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/cork-au.mp3",
                             "EnglishText": "cork",
                             "IsCorrect": false
                         }
@@ -1255,7 +1255,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 7,
-                    "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                    "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -1275,7 +1275,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "đồng xu",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1okKSUbJTbfwUb4CKmf6Rx7QBfvTr_m5i/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/dime-au.mp3",
                             "EnglishText": "dime",
                             "IsCorrect": false
                         },
@@ -1283,7 +1283,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "thời gian",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1G6SdNuw9HIO4HXJ2fE54vpDdYgaCSphj/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
                             "EnglishText": "time",
                             "IsCorrect": true
                         }
@@ -1299,33 +1299,38 @@
                 {
                     "Instruction": "Đọc câu này",
                     "VietnameseText": null,
-                    "EnglishText": "You're too fast, Lisa",
+                    "EnglishText": "You are too fast, Lisa",
                     "Type": "Pronunciation",
                     "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c",
                     "Order": 1,
                     "Words": [
                         {
-                            "Content": "you're",
+                            "Content": "you",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1G9j9bb6nhPirTi5KTGUGsgqZ2gQgATWE/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/you-au-us-unstressed.mp3"
+                        },
+                        {
+                            "Content": "are",
+                            "Image": null,
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/are_20250302100246430.mp3"
                         },
                         {
                             "Content": "too",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/11H2CyQ3GILDWp6GARSzej34enTuB4_3Y/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/too-us.mp3"
                         },
                         {
                             "Content": "fast",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1miKDv19pbJOmohfpZ2AQAx9EB9GzZ9D9/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/fast-uk.mp3"
                         },
                         {
                             "Content": "Lisa",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1CYy7C00d1Ryy3ZrNkVVobVxtxW_Ib10g/view?usp=drive_link"
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/lisa_20250302100309705.mp3"
                         }
                     ],
-                    "Audio": "https://drive.google.com/file/d/153_Rym5SKEqvP1-2aQOKaskDLfz4cG13/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/youre-too-fast-lisa_20250302100328134.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -1370,7 +1375,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "đợi",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1xTOcc4d9h9NV5GWnrDi0QQ-MZt_BoKtu/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/wait-uk.mp3",
                             "EnglishText": "wait",
                             "IsCorrect": true
                         },
@@ -1378,7 +1383,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "nhìn",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1mJKVzHQqb1IpkkeJyHf4VdPfpA-EWIZx/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/see-us.mp3",
                             "EnglishText": "see",
                             "IsCorrect": true
                         },
@@ -1386,7 +1391,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "đi bộ",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ROXBhOrFok97tLLWIjEnbhZDWusF59BF/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/walk-au.mp3",
                             "EnglishText": "walk",
                             "IsCorrect": false
                         }
@@ -1419,7 +1424,7 @@
                             "Type": "Matching",
                             "VietnameseText": "ở đâu",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ZXn2YwNvtChSyAC8m-KA-YVFLsjeShTq/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/where-us.mp3",
                             "EnglishText": "where",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1428,7 +1433,7 @@
                             "Type": "Matching",
                             "VietnameseText": "đợi",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1xTOcc4d9h9NV5GWnrDi0QQ-MZt_BoKtu/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/wait-uk.mp3",
                             "EnglishText": "wait",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1437,7 +1442,7 @@
                             "Type": "Matching",
                             "VietnameseText": "màu xám",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1AU05gR4LdUDEyLrIUE0RSwL072qOxJCI/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/gray-1-uk.mp3",
                             "EnglishText": "gray",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1446,7 +1451,7 @@
                             "Type": "Matching",
                             "VietnameseText": "ảnh",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1EI_VTwoe98fIJ9MjRuLyDcgb8vnvpoyR/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/photo-uk.mp3",
                             "EnglishText": "photo",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1455,7 +1460,7 @@
                             "Type": "Matching",
                             "VietnameseText": "ngủ",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/10pUZZfmSgI0RAfVPz-CDkPqqpSUaJcmP/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/sleep-us.mp3",
                             "EnglishText": "sleep",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1469,7 +1474,7 @@
                     "Type": "MultipleChoice",
                     "Image": "https://simg-ssl.duolingo.com/world-characters/avatars/lin_avatar_icon.svg",
                     "Order": 4,
-                    "Audio": "https://drive.google.com/file/d/1SN3d2vexWvM_ThBcVWK5uBXYn2tt9bmn/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/ElevenLabs_2025-02-23T03_21_53_Rachel_pre_s50_sb75_se0_b_m2_20250302100515058.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -1489,7 +1494,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1xTOcc4d9h9NV5GWnrDi0QQ-MZt_BoKtu/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/i'm-not-wearing-a-t-shirt_20250302100629909.mp3",
                             "EnglishText": "I'm not wearing a T-shirt",
                             "IsCorrect": false
                         },
@@ -1497,7 +1502,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": null,
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1mJKVzHQqb1IpkkeJyHf4VdPfpA-EWIZx/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/He's-running-in-the-park_20250302100648022.mp3",
                             "EnglishText": "He's running in the park",
                             "IsCorrect": true
                         }
@@ -1530,7 +1535,7 @@
                             "Type": "Matching",
                             "VietnameseText": "chạy",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/15j125pqfabuiFGar7iQ71B0sWulYp2bt/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/run-au.mp3",
                             "EnglishText": "run",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1539,7 +1544,7 @@
                             "Type": "Matching",
                             "VietnameseText": "tại sao",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/11penz4xXXEs_V2tghtA1NV5BtDM7C5sa/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/why-1-uk.mp3",
                             "EnglishText": "why",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1548,7 +1553,7 @@
                             "Type": "Matching",
                             "VietnameseText": "nhanh",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1miKDv19pbJOmohfpZ2AQAx9EB9GzZ9D9/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/fast-uk.mp3",
                             "EnglishText": "fast",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1557,7 +1562,7 @@
                             "Type": "Matching",
                             "VietnameseText": "đợi",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1xTOcc4d9h9NV5GWnrDi0QQ-MZt_BoKtu/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/wait-uk.mp3",
                             "EnglishText": "wait",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1566,7 +1571,7 @@
                             "Type": "Matching",
                             "VietnameseText": "bảy muơi",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1UcQryaHY0OSUpsaRP8QM7GYMQNFFht-5/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/seventy-us.mp3",
                             "EnglishText": "seventy",
                             "SourceType": "VietnameseText",
                             "TargetType": "EnglishText"
@@ -1600,7 +1605,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "đang làm",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1dAx2wl84tellIgArxYfixBkWCNZJ-lxN/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/doing-1-ca.mp3",
                             "EnglishText": "doing",
                             "Order": 4
                         },
@@ -1608,7 +1613,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "bạn",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1iYw5t4QB3mn6FU9nKWsn-8N-WJt8ygvo/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/you-au-us-unstressed.mp3",
                             "EnglishText": "you",
                             "Order": 3
                         },
@@ -1616,7 +1621,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "là",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/11LzwxeHfxJORjEuu9Eg0TOju6qJMNK8X/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/are_20250302100246430.mp3",
                             "EnglishText": "are",
                             "Order": 2
                         },
@@ -1624,7 +1629,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "chúng ta hãy",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1DsdJe4jS3pbXnKMat28jZUjQG96kaOD6/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/let's-us.mp3",
                             "EnglishText": "let's",
                             "Order": -1
                         },
@@ -1632,7 +1637,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "thú vị",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ZAuwTNIKKYMRFqtKRbDdcLiLI30NqGNl/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/interesting-us.mp3",
                             "EnglishText": "interesting",
                             "Order": -1
                         },
@@ -1640,7 +1645,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "gì",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1pv1DIQo62GeOb-wbz0HiqCtJazvKIzJV/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/what-uk.mp3",
                             "EnglishText": "What",
                             "Order": 1
                         },
@@ -1648,7 +1653,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "đợi",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1vTUx55d-B1xPLbRZJ49V5pcTr5CkhpER/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/waiting-us.mp3",
                             "EnglishText": "waiting",
                             "Order": -1
                         },
@@ -1656,7 +1661,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "chạy",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1HE7HWCwu8fqFNvabvdNsnRerVeR9b7gD/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/runs-us.mp3",
                             "EnglishText": "runs",
                             "Order": -1
                         }
@@ -1681,50 +1686,50 @@
                         {
                             "Content": "My",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1Np9oxmNiNyZXrqgzs-7wfgD6H7D2Luwb/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/my-us.mp3"
                         },
                         {
                             "Content": "boss",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/112z8Hpe7J4KNzZCOQ_yRFgZnfR7VrLuE/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/boss-uk.mp3"
                         },
                         {
                             "Content": "was",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/155uFO20B7G8KknagoLpP6uCbIQfMAbQH/view?usp=drive_link"
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/was_20250302100753298.mp3"
                         },
                         {
                             "Content": "on",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1xQ9WIp7FbYBQ6-Q5_Xl9Vst9zZGOyrPF/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/on-au.mp3"
                         },
                         {
                             "Content": "a",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/a-1-us.mp3"
                         },
                         {
                             "Content": "business",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/13kSJd6HS3lDYVJM6BZgqOtTeOhATbdzv/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/business-us.mp3"
                         },
                         {
                             "Content": "trip",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1w8ZXvuPYwJIaJ5KfUJaPSu2sUla7tQJW/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/trip-1-uk.mp3"
                         },
                         {
                             "Content": "last",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/10mrvqAwZRzm_FCZQp-oHTYK0pdQjimfe/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/last-us.mp3"
                         },
                         {
                             "Content": "week",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1zrkuTcTdoorZkNhe91WeRx40W46RpH_N/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/week-uk.mp3"
                         }
                     ],
-                    "Audio": "https://drive.google.com/file/d/1aQHtLferOvvwenvayXywjDmDK8-g4KLx/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/My-boss-was-on-a-business-trip-last-week_20250302100844774.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -1769,7 +1774,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "trang web",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1iwrN5EieElFTfF9iMXMfkda84rkT39Pt/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/website-uk.mp3",
                             "EnglishText": "website",
                             "IsCorrect": false
                         },
@@ -1777,7 +1782,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "máy tính",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1UVp1Oqb6TPPQUpcDKV5a9zJyBegYDLj_/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/laptop_20250302100923267.mp3",
                             "EnglishText": "laptop",
                             "IsCorrect": false
                         },
@@ -1785,7 +1790,7 @@
                             "Type": "MultipleChoice",
                             "VietnameseText": "vấn đề",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ERaCEU6P3KBVP78egtQbIlHDVtE_X_x8/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/problem-us.mp3",
                             "EnglishText": "problem",
                             "IsCorrect": true
                         }
@@ -1818,7 +1823,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "thức dậy",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1YAtfjqaRmoDzS2pt7jYSFNNl35xK0F2P/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/got-up_20250302100944834.mp3",
                             "EnglishText": "got up",
                             "Order": -1
                         },
@@ -1826,7 +1831,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "một",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1x8n9b8jT6B-SKRc8w76js6wmord6F1ou/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/a-1-us.mp3",
                             "EnglishText": "a",
                             "Order": 1
                         },
@@ -1834,7 +1839,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "lớn",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1F9iMZfqUGpPCmBSPsM6uG0J05BYIrXEL/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/big-uk.mp3",
                             "EnglishText": "big",
                             "Order": 2
                         },
@@ -1842,7 +1847,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "vấn đề",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1ERaCEU6P3KBVP78egtQbIlHDVtE_X_x8/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/problem-us.mp3",
                             "EnglishText": "problem",
                             "Order": -1
                         },
@@ -1850,7 +1855,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "giáo viên",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1yAMn1GlG7M6Mpcq8LitCQG79G3QiyvCW/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/teacher-uk.mp3",
                             "EnglishText": "teacher",
                             "Order": -1
                         },
@@ -1858,7 +1863,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "thăm",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1eW464W1zUHNQIeYUCZcMIX3lnspIoQPB/view?usp=drive_link",
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/visits-us.mp3",
                             "EnglishText": "visits",
                             "Order": -1
                         },
@@ -1866,7 +1871,7 @@
                             "Type": "BuildSentence",
                             "VietnameseText": "làm kinh doanh",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1LiQyLkzuvgzpZ3DL5eMAvF2BSEFyU_9D/view?usp=drive_link",
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/do-business_20250302101001411.mp3",
                             "EnglishText": "do business",
                             "Order": -1
                         }
@@ -1876,11 +1881,11 @@
                 {
                     "Instruction": "Hoàn thành hội thoại",
                     "VietnameseText": null,
-                    "EnglishText": "I'm sorry, that's not possible",
+                    "EnglishText": "I am sorry, that is not possible",
                     "Type": "MultipleChoice",
                     "Image": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg",
                     "Order": 4,
-                    "Audio": "https://drive.google.com/file/d/1Hc-tE0s33k5acu2tFX2r-XZeR1xglZtL/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/I'm-sorry-that's-not-possible_20250302101040571.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": true,
@@ -1897,29 +1902,39 @@
                     },
                     "Words": [
                         {
-                            "Content": "I'm",
+                            "Content": "I",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/17V67Z7Q3oLLPfhHINqaurQkF8GIYntHH/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/i-1-us.mp3"
+                        },
+                        {
+                            "Content": "am",
+                            "Image": null,
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/am-us.mp3"
                         },
                         {
                             "Content": "sorry",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1wSv4wBK2GaLTuv0G_WkoqUj6UOAOFJFr/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/sorry-ca.mp3"
                         },
                         {
-                            "Content": "that's",
+                            "Content": "that",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1W25D_uh3qT_agbn-hrlTkJDEMFPfGR7w/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/that-us.mp3"
+                        },
+                        {
+                            "Content": "is",
+                            "Image": null,
+                            "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/is_20250302101121715.mp3"
                         },
                         {
                             "Content": "not",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1-W1CpUVm278r1O8dGVJHLzLIT08JbK7y/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/not-uk.mp3"
                         },
                         {
                             "Content": "possible",
                             "Image": null,
-                            "Audio": "https://drive.google.com/file/d/1gO8vZa0VH8OCj_btcP7An1UM9lpiyUpj/view?usp=drive_link"
+                            "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/possible-us.mp3"
                         }
                     ],
                     "Options": [
@@ -1948,7 +1963,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 5,
-                    "Audio": "https://drive.google.com/file/d/1DqFqCimqw4fb4Wjik1WNx1iZTVFDfbqk/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/Yes, I visit the company's website often. It is very interesting. Can I ask some questions about it (1)_20250302101139557.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,
@@ -1997,7 +2012,7 @@
                     "Type": "MultipleChoice",
                     "Image": null,
                     "Order": 6,
-                    "Audio": "https://drive.google.com/file/d/1ZCQ_Ckv5nNee8Vp0CYBC8i1-AxFEKPkA/view?usp=drive_link",
+                    "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/Our laptops are too expensive. We need to make better and cheaper laptops. What do you think about this problem_20250302101252102.mp3",
                     "QuestionConfiguration": {
                         "Audio": true,
                         "EnglishText": false,

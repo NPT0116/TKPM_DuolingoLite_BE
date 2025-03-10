@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace Infrastructure.Services;
 
@@ -48,8 +49,15 @@ public class MigrationServices: IHostedService
                 _logger.LogError(ex, "An error occurred while applying migrations.");
             }
 
-            var seedResult = SeedData.Initialize(scope.ServiceProvider); // Chạy seed
-            
+            var seedResult = await SeedData.Initialize(scope.ServiceProvider); // Chạy seed
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+
+            string jsonResult = JsonConvert.SerializeObject(seedResult, settings);
+            Console.WriteLine(jsonResult);
             try
             {
                 var seedUser = scope.ServiceProvider.GetRequiredService<SeedUser>();
