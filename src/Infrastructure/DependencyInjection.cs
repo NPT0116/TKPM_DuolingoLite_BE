@@ -110,6 +110,18 @@ public static class DependencyInjection
         // services.Configure<AwsSettings>(configuration.GetSection("AWS"));
         var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
         services.AddSingleton(mediaSettings);
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetValue<string>("ConnectionStrings:Redis");
+            options.InstanceName = "SampleInstance:";
+            options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
+            {
+                AbortOnConnectFail = true,
+                EndPoints = { options.Configuration }
+            };
+        });
+
         return services;
     }
 }
