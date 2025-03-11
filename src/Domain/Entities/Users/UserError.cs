@@ -34,4 +34,8 @@ public static class UserError
     public static Error UserProfileNotFound(Guid userId) => Error.NotFound(
         "Users.UserProfileNotFound",
         $"The user profile with the Id = '{userId}' was not found");
+    
+    public static Error UserStatsNotFound(Guid userId) => Error.NotFound(
+        "Users.UserStatsNotFound",
+        $"The user stats with the Id = '{userId}' was not found");
 }
