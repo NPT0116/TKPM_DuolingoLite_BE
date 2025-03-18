@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using WebApi.Middlewares;
 using WebApi.Swagger;
 using WebApi.Utils;
+using Domain.Entities.Payment;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("awsSettings.json");
@@ -14,6 +15,16 @@ builder.Configuration.AddJsonFile("tkpm-speech-to-text-232c1ce8d4c3.json");
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Information);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 // Add services to the container.
 
@@ -68,12 +79,13 @@ builder.Host.UseSerilog((context, configuration) =>
         configuration.ReadFrom.Configuration(context.Configuration));
 // check api key exists
 string credentialsPath = builder.Configuration["Google:CredentialsPath"];
+// connect momo api
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
 
-// if (string.IsNullOrEmpty(credentialsPath) || !File.Exists(credentialsPath))
-// {
-//     throw new Exception("Chưa cấu hình file API key hợp lệ. Vui lòng thiết lập biến môi trường Google__CredentialsPath hoặc cấu hình trong user secrets.");
-// }
+
 var app = builder.Build();
+app.UseCors("AllowAll");
+
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // Log startup information
