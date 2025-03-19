@@ -35,6 +35,11 @@ namespace Domain.Entities.Users
             var userStats = new UserStats(userId);
             return Result.Success(userStats);
         }
+        public void UpdateLastActiveDate() => LastActiveDate = DateTime.UtcNow;
+        public void UpdateCurrentStreak(int streak) => CurrentStreak = streak;
+        public void UpdateLongestStreak(int streak) => LongestStreak = streak;
+        public void AddExperiencePoints(int points) => ExperiencePoint += points;
+        
     }
 
 }

@@ -11,4 +11,7 @@ public interface ILearningProgressRepository
     // Task<LearningProgress> AddLearningProgressAsync(LearningProgress learningProgress);
     // Task<LearningProgress> UpdateLearningProgressAsync(LearningProgress learningProgress);
     // Task DeleteLearningProgressAsync(Guid id);
+    Task UpdateAsync(LearningProgress learningProgress);
+    Task <LearningProgress> GetLearningProgressByUserIdAndCourseIdAsync(Guid userId, Guid courseId);
+    Task<LearningProgress> AddAsync(LearningProgress learningProgress);
 }

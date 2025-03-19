@@ -62,5 +62,11 @@ namespace Infrastructure.Persistence.Repositories
         {
             return await _context.UserProfiles.CountAsync();
         }
+
+        public async Task<UserStats?> UpdateUserStats(UserStats userStats)
+        {
+             _context.UserStats.Update(userStats);
+            return userStats;
+        }
     }
 }

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Learning.Courses;
 using Application.Features.Learning.Courses.AddLesson;
+using Application.Features.Learning.Courses.Commands.UserRegisterCourse;
 using Application.Features.Learning.Courses.Queries.GetActiveCourseWithAUser;
 using Application.Features.Learning.Courses.Queries.GetCourseDetail;
 using Application.Features.Learning.Courses.Queries.GetCourseList;
+using Application.Features.Learning.Lessons.Commands;
+using Application.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Extensions;
@@ -19,9 +22,11 @@ namespace WebApi.Controllers.Learning
     public class CourseController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public CourseController(IMediator mediator)
+        private readonly IIdentityService _identityService;
+        public CourseController(IMediator mediator, IIdentityService identityService)
         {
             _mediator = mediator;
+            _identityService = identityService;
         }
 
         [HttpGet]
@@ -62,5 +67,22 @@ namespace WebApi.Controllers.Learning
             var result = await _mediator.Send(query, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }
+        [HttpPost("finish-lesson")]
+
+        public async Task<IActionResult> FinishLesson([FromBody] UserFinishLessonRequestDto requestDto, CancellationToken cancellationToken = default)
+        {   
+            var command = new UserFinishLessonCommand(new UserFinishLessonRequestDto{
+                CourseId = requestDto.CourseId,
+            });
+            var result = await _mediator.Send(command, cancellationToken);
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterCourse([FromBody] UserRegisterCourseRequestDto userRegisterCourseDto, CancellationToken cancellationToken = default)
+        {
+            var command = new UserRegisterCourseCommand(userRegisterCourseDto);
+            var result = await _mediator.Send(command, cancellationToken);
+            return result.Match(Ok, CustomResults.Problem);
+        }        
     }
 }
