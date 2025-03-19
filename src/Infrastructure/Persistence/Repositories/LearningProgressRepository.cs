@@ -32,12 +32,15 @@ public class LearningProgressRepository : ILearningProgressRepository
         return learningProgress;
     }
 
-    public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid UserId)
-    {
-        var lp = await _context.LearningProgresses.FirstOrDefaultAsync(x => x.UserId == UserId);
+public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid userId)
+{
+    var lp = await _context.LearningProgresses
+        .Include(lp => lp.Course)
+        .FirstOrDefaultAsync(x => x.UserId == userId);
 
-        return lp;
-    }
+    return lp;
+}
+
 
     public Task UpdateAsync(LearningProgress learningProgress)
     {

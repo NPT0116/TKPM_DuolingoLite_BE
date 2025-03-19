@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Abstractions.Messaging;
+using Application.Common.Utls;
 using Application.Interface;
 using Domain.Entities.Learning.Courses;
 using Domain.Entities.Learning.LearningProgresses;
@@ -47,6 +48,7 @@ public class UserRegisterCourseCommandHandler : ICommandHandler<UserRegisterCour
 
         // Validate course exists
         var course = await _courseRepository.GetCourseById(request.UserRegisterCourseDto.CourseId);
+
         if (course == null)
         {
             return Result.Failure<UserRegisterCourseResponseDto>(
@@ -56,7 +58,7 @@ public class UserRegisterCourseCommandHandler : ICommandHandler<UserRegisterCour
         // Check if user is already enrolled in the course
         var existingProgress = await _learningProgressRepository.GetLearningProgressByUserIdAndCourseIdAsync(
             user.Id, request.UserRegisterCourseDto.CourseId);
-
+        PrintUtils.PrintAsJson(existingProgress);
         if (existingProgress != null)
         {
             return Result.Failure<UserRegisterCourseResponseDto>(
