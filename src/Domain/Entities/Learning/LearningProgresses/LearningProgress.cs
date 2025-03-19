@@ -29,7 +29,14 @@ namespace Domain.Entities.Learning.LearningProgresses
             LessonOrder = 1;
             IsCompleted = false;
         }
-
+        public void UpdateLessonOrder(int lessonOrder)
+        {
+            LessonOrder = lessonOrder;
+        }
+        public void MarkAsCompleted()
+        {
+            IsCompleted = true;
+        }
         public static Result<LearningProgress> Create(
             Guid userId,
             Course course
