@@ -24,13 +24,16 @@ services:
     depends_on:
       - postgres
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "5142:8080"
+      - "5143:8081"
     environment:
       # Example connection string to Postgres
       - ConnectionStrings__Postgres=Host=postgres;Database=duolingolite;Username=postgres;Password=thanh2004
       # If you need to override ASP.NET port binding
       - ASPNETCORE_URLS=http://+:8080
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
 volumes:
   postgres_data:

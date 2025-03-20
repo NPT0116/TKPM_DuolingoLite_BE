@@ -1,3 +1,4 @@
+using Application.Common.Utls;
 using Infrastructure.Services.Payment.Vnpay;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,8 +32,10 @@ namespace WebApi.Controllers.Payment
 public ActionResult<string> CreatePaymentUrl(double moneyToPay, string description)
 {
 
+        PrintUtils.PrintAsJson(moneyToPay);
+        PrintUtils.PrintAsJson(description);
         var ipAddress = NetworkHelper.GetIpAddress(HttpContext); // Lấy địa chỉ IP của thiết bị thực hiện giao dịch
-
+        PrintUtils.PrintAsJson(ipAddress);
         var request = new PaymentRequest
         {
             PaymentId = DateTime.Now.Ticks,
@@ -44,6 +47,7 @@ public ActionResult<string> CreatePaymentUrl(double moneyToPay, string descripti
             Currency = Currency.VND, // Tùy chọn. Mặc định là VND (Việt Nam đồng)
             Language = DisplayLanguage.Vietnamese // Tùy chọn. Mặc định là tiếng Việt
         };
+        PrintUtils.PrintAsJson(request);
 
         var paymentUrl = _vnpay.GetPaymentUrl(request);
 
