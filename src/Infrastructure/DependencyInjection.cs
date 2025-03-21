@@ -92,6 +92,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
         services.AddScoped<IMomoService, MomoService>();
+        services.AddScoped<IStreakService, StreakService>();
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
