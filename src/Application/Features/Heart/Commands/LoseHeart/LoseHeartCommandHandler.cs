@@ -1,5 +1,6 @@
 using Application.Features.Heart.Dtos;
 using Application.Interface;
+using Domain.Entities.Subscriptions;
 using Domain.Entities.Users;
 using Domain.Entities.Users.Constants;
 using Domain.Repositories;
@@ -24,6 +25,15 @@ namespace Application.Features.Heart.Commands.LoseHeart
         public async Task<Result<UserHeartDto>> Handle(LoseHeartCommand request, CancellationToken cancellationToken)
         {
             var userId = request.userId;
+            var userProfile = await _userRepository.GetUserProfileById(userId);
+            if(userProfile == null)
+            {
+                return Result.Failure<UserHeartDto>(UserError.UserProfileNotFound(userId));
+            }
+            if(userProfile.Subscription != null && !userProfile.Subscription.IsExpired)
+            {
+                return Result.Failure<UserHeartDto>(HeartError.PremiumUserHeartDecreaseNotAllowedException);
+            }
             var heartKey = Cache.GetUserHeartKey(userId);
             var isCachedHit = _cache.TryGetValue<int>(heartKey, out int heart);
             

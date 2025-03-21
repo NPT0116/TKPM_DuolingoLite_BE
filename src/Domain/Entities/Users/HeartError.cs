@@ -20,5 +20,9 @@ namespace Domain.Entities.Users
         public static Error OutOfRange => Error.Validation(
         "Hearts.OutOfRange",
         $"Heart must be in range {HeartConstants.MINIMUM_HEART} and {HeartConstants.MAXIMUM_HEART}");
+
+        public static Error PremiumUserHeartDecreaseNotAllowedException => Error.Forbidden(
+        "Hearts.PremiumUserHeartDecreaseNotAllowedException",
+        $"Can not decrease heart of a premium user");
     }
 }
