@@ -7,6 +7,7 @@ using WebApi.Middlewares;
 using WebApi.Swagger;
 using WebApi.Utils;
 using Domain.Entities.Payment;
+using Infrastructure.Worker;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("awsSettings.json");
@@ -74,6 +75,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddApplication()
     .AddInfrastructure(builder.Configuration);
+builder.Services.AddHostedService<HeartSyncBackgroundService>();
+
 
 builder.Host.UseSerilog((context, configuration) => 
         configuration.ReadFrom.Configuration(context.Configuration));
