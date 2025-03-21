@@ -18,15 +18,12 @@ namespace Application.Features.Heart.Commands.GainHeart
     {
         private readonly IDistributedCache _cache;
         private readonly IUserRepository _userRepository;
-        private readonly IApplicationDbContext _context;
         public GainHeartCommandHandler(
             IDistributedCache cache,
-            IUserRepository userRepository,
-            IApplicationDbContext context)
+            IUserRepository userRepository)
         {
             _cache = cache;
             _userRepository = userRepository;
-            _context = context;
         }
         public async Task<Result<UserHeartDto>> Handle(GainHeartCommand request, CancellationToken cancellationToken)
         {
@@ -42,8 +39,6 @@ namespace Application.Features.Heart.Commands.GainHeart
                     return Result.Failure<UserHeartDto>(UserError.UserStatsNotFound(userId));
                 }
                 heart = userStats.Heart;
-                userStats.GainHeart();
-                await _context.SaveChangesAsync();
             }
 
             if(heart >= HeartConstants.MAXIMUM_HEART)

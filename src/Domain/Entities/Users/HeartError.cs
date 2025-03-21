@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.Users.Constants;
 using SharedKernel;
 
 namespace Domain.Entities.Users
@@ -15,5 +16,9 @@ namespace Domain.Entities.Users
         public static Error CannotIncreaseHeartWhenAtMaximum => Error.Validation(
         "Hearts.CannotIncreaseHeartWhenAtMaximum",
         $"Can not increase heart when it reaches maximum value");
+
+        public static Error OutOfRange => Error.Validation(
+        "Hearts.OutOfRange",
+        $"Heart must be in range {HeartConstants.MINIMUM_HEART} and {HeartConstants.MAXIMUM_HEART}");
     }
 }

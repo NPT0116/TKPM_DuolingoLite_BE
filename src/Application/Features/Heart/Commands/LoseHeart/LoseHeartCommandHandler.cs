@@ -14,15 +14,12 @@ namespace Application.Features.Heart.Commands.LoseHeart
     {
         private readonly IDistributedCache _cache;
         private readonly IUserRepository _userRepository;
-        private readonly IApplicationDbContext _context;
         public LoseHeartCommandHandler(
             IDistributedCache cache,
-            IUserRepository userRepository,
-            IApplicationDbContext context)
+            IUserRepository userRepository)
         {
             _cache = cache;
             _userRepository = userRepository;
-            _context = context;
         }
         public async Task<Result<UserHeartDto>> Handle(LoseHeartCommand request, CancellationToken cancellationToken)
         {
@@ -38,8 +35,6 @@ namespace Application.Features.Heart.Commands.LoseHeart
                     return Result.Failure<UserHeartDto>(UserError.UserStatsNotFound(userId));
                 }
                 heart = userStats.Heart;
-                userStats.LoseHeart();
-                await _context.SaveChangesAsync();
             }
 
             if(heart <= HeartConstants.MINIMUM_HEART)
