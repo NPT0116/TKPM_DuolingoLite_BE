@@ -104,7 +104,7 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
                 avatarMedia = avatarUploadResult.Value;
             }
 
-            var userProfile = UserProfile.Create(
+            var userProfile = Domain.Entities.Users.UserProfile.Create(
                 userId,
                 request.UserRegisterDto.Email,
                 request.UserRegisterDto.UserName,
