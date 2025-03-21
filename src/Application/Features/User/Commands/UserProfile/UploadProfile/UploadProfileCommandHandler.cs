@@ -22,6 +22,7 @@ namespace Application.Features.User.Commands.UserProfile.UploadProfile
         private readonly IMediaStorageService _uploadService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _userRepository;
+        private readonly IMediaRepository _mediaRepository;
         private readonly IApplicationDbContext _dbContext;
         private readonly MediaSettings _mediaSettings;
 
@@ -30,12 +31,14 @@ namespace Application.Features.User.Commands.UserProfile.UploadProfile
             MediaSettings mediaSettings,
             IHttpContextAccessor accessor,
             IUserRepository userRepository,
+            IMediaRepository mediaRepository,
             IApplicationDbContext dbContext)
         {
             _uploadService = uploadService;
             _mediaSettings = mediaSettings;
             _httpContextAccessor = accessor;
             _userRepository = userRepository;
+            _mediaRepository = mediaRepository;
             _dbContext = dbContext;
         }
         public async Task<Result<string>> Handle(UploadProfileCommand command, CancellationToken cancellationToken)
@@ -66,6 +69,15 @@ namespace Application.Features.User.Commands.UserProfile.UploadProfile
 
             var userProfile = await _userRepository.GetUserProfileById(Guid.Parse(userId));
             if(userProfile == null) return Result.Failure<string>(UserError.UserProfileNotFound(Guid.Parse(userId)));
+
+            if(userProfile.ProfileImage != null)
+            {
+                var deleteExistingProfileImage = await _uploadService.DeleteFileAsync(userProfile.ProfileImage.FileKey, cancellationToken);
+                if(deleteExistingProfileImage)
+                {
+                    await _mediaRepository.DeleteFile(userProfile.ProfileImage);
+                }
+            }
 
             userProfile.UpdateProfileImage(avatarUploadResult.Value);
             await _dbContext.SaveChangesAsync();

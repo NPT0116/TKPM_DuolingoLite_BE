@@ -19,5 +19,7 @@ namespace Domain.Repositories
             DateTime updatedAt,
             string fileKey,
             CancellationToken cancellationToken);
+
+        Task<Result<Media>> DeleteFile(Media media);
     }
 }

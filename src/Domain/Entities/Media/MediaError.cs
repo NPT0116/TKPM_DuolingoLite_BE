@@ -12,6 +12,10 @@ namespace Domain.Entities.Media
             "Media.NameEmpty",
             $"File name can not be empty");
 
+        public static Error NotFound() => Error.NotFound(
+            "Media.NotFound",
+            $"File not found");
+
         public static Error InvalidFileFize() => Error.Validation(
             "Media.InvalidFileSize",
             "File size must be greater than 0"

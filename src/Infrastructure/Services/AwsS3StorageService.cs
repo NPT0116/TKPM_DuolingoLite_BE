@@ -60,12 +60,6 @@ namespace Infrastructure.Services
             
             var fileUrl = $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
 
-            // var createdMedia = Domain.Entities.Media.Media.Create(request.FileName, Media.GetMediaType(request.ContentType).Value, request.FileData.Length, fileUrl, fileKey);
-            // if (createdMedia.IsFailure)
-            // {
-            //     return Result.Failure<Media>(createdMedia.Error);
-            // }
-
             var createdMedia = await _mediaRepository.UploadFileAsync(
                 request.FileName,
                 fileUrl,
