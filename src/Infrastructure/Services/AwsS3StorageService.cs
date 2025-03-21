@@ -9,6 +9,8 @@ using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.Media.Commands.Upload;
 using Domain.Entities.Media;
+using Domain.Entities.Media.Enums;
+using Domain.Repositories;
 using Infrastructure.Services.Settings;
 using Microsoft.Extensions.Options;
 using SharedKernel;
@@ -19,11 +21,16 @@ namespace Infrastructure.Services
     {
         private readonly IAmazonS3 _s3Client;
         private readonly AwsSettings _awsSettings;
+        private readonly IMediaRepository _mediaRepository;
 
-        public AwsS3StorageService(IAmazonS3 s3Client, IOptions<AwsSettings> awsSettings)
+        public AwsS3StorageService(
+            IAmazonS3 s3Client, 
+            IOptions<AwsSettings> awsSettings,
+            IMediaRepository mediaRepository)
         {
             _s3Client = s3Client;
             _awsSettings = awsSettings.Value;
+            _mediaRepository = mediaRepository;
         }
 
         public async Task<bool> DeleteFileAsync(string fileKey, CancellationToken cancellationToken)
@@ -53,11 +60,16 @@ namespace Infrastructure.Services
             
             var fileUrl = $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
 
-            var createdMedia = Domain.Entities.Media.Media.Create(request.FileName, Media.GetMediaType(request.ContentType).Value, request.FileData.Length, fileUrl, fileKey);
-            if (createdMedia.IsFailure)
-            {
-                return Result.Failure<Media>(createdMedia.Error);
-            }
+            var createdMedia = await _mediaRepository.UploadFileAsync(
+                request.FileName,
+                fileUrl,
+                MediaType.Image,
+                request.FileData.Length,
+                DateTime.UtcNow,
+                DateTime.UtcNow,
+                fileKey,
+                cancellationToken
+            );
             return Result.Success<Media>(createdMedia.Value);
         }
     }

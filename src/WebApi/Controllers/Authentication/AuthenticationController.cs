@@ -1,4 +1,5 @@
 using Application.Features.Media.Commands.Upload;
+using Application.Features.User.Commands.Common;
 using Application.Features.User.Commands.Login;
 using Application.Features.User.Commands.Register;
 using Application.Features.User.Queries.GetMe;

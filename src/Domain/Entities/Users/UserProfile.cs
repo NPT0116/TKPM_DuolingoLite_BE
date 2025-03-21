@@ -44,6 +44,11 @@ namespace Domain.Entities.Users
             var userProfile = new UserProfile(userId, emailResult.Value, nickName, firstName, lastName, profileImage, subscription);
             return Result.Success(userProfile);
         }
+
+        public void UpdateProfileImage(Media.Media newProfileImage)
+        {
+            ProfileImage = newProfileImage;
+        }
     }
 
 }
