@@ -47,6 +47,7 @@ namespace Infrastructure.Services
             try
             {
                 await _userRepository.CreateUserActivity(activityResult.Value);
+                await _context.SaveChangesAsync();
                 await CalculateAndUpdateStreaksAsync(userId);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
@@ -54,7 +55,7 @@ namespace Infrastructure.Services
             catch (Exception)
             {
                 await transaction.RollbackAsync();
-                return Result.Failure<bool>(new Error("ActivityCreationFailed", "Failed to create activity", ErrorType.InternalError));
+                throw new Exception("Failed to record activity");
             }
             
             // Calculate and update streaks
@@ -62,61 +63,65 @@ namespace Infrastructure.Services
             return Result.Success(true);
         }
 
-        public async Task<Result<(int currentStreak, int longestStreak)>> CalculateAndUpdateStreaksAsync(Guid userId)
+     public async Task<Result<(int currentStreak, int longestStreak)>> CalculateAndUpdateStreaksAsync(Guid userId)
+{
+    var today = _dateTimeProvider.UtcNow.Date;
+    // Lấy hoạt động trong 30 ngày gần nhất
+    var activities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(
+        userId, today.AddDays(-30), today);
+
+    var userStats = await _userRepository.GetUserStatsById(userId);
+    if (userStats == null)
+    {
+        return Result.Failure<(int, int)>(new Error("UserStatsNotFound", "User stats not found", ErrorType.NotFound));
+    }
+
+    // Lấy danh sách các ngày hoạt động duy nhất và sắp xếp giảm dần
+    var activeDates = activities
+        .Where(a => a.IsActive)
+        .Select(a => a.Date.Date)
+        .Distinct()
+        .OrderByDescending(d => d)
+        .ToList();
+
+    int currentStreak = 0;
+
+    // Nếu không có hoạt động nào hoặc hoạt động mới nhất không phải hôm nay thì streak = 0
+    if (activeDates.Count == 0 || activeDates.First() != today)
+    {
+        currentStreak = 0;
+    }
+    else
+    {
+        currentStreak = 1;
+        var lastDate = today;
+        // Lặp qua các ngày còn lại để tính streak liên tục
+        for (int i = 1; i < activeDates.Count; i++)
         {
-            var today = _dateTimeProvider.UtcNow.Date;
-            var startDate = today.AddDays(-30); // Look back 30 days to calculate streak
-
-            var activities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(
-                userId, startDate, today);
-
-            var userStats = await _userRepository.GetUserStatsById(userId);
-            if (userStats == null)
+            var diff = (lastDate - activeDates[i]).Days;
+            if (diff == 1) // Nếu cách nhau đúng 1 ngày
             {
-                return Result.Failure<(int, int)>(new Error("UserStatsNotFound", "User stats not found", ErrorType.NotFound));
+                currentStreak++;
+                lastDate = activeDates[i];
             }
-
-            var orderedActivities = activities
-                .Where(a => a.IsActive)
-                .OrderByDescending(a => a.Date)
-                .ToList();
-
-            int currentStreak = 0;
-            var lastDate = today;
-
-            // Calculate current streak
-            foreach (var activity in orderedActivities)
+            else
             {
-                var daysDiff = (lastDate - activity.Date.Date).Days;
-                
-                if (daysDiff <= 1) // Consecutive day or same day
-                {
-                    currentStreak++;
-                    lastDate = activity.Date.Date;
-                }
-                else // Streak broken
-                {
-                    break;
-                }
+                // Nếu có khoảng cách hơn 1 ngày, dừng lại
+                break;
             }
-
-            // If no activity today, and last activity was yesterday, reduce streak by 1
-            if (!orderedActivities.Any(a => a.Date.Date == today) && 
-                orderedActivities.Any(a => a.Date.Date == today.AddDays(-1)))
-            {
-                currentStreak--;
-            }
-
-            // Update streaks in user stats
-            userStats.UpdateCurrentStreak(currentStreak);
-            if (currentStreak > userStats.LongestStreak)
-            {
-                userStats.UpdateLongestStreak(currentStreak);
-            }
-
-            await _userRepository.UpdateUserStats(userStats);
-            return Result.Success((currentStreak, userStats.LongestStreak));
         }
+    }
+
+    // Cập nhật streak cho userStats
+    userStats.UpdateCurrentStreak(currentStreak);
+    if (currentStreak > userStats.LongestStreak)
+    {
+        userStats.UpdateLongestStreak(currentStreak);
+    }
+
+    await _userRepository.UpdateUserStats(userStats);
+    return Result.Success((currentStreak, userStats.LongestStreak));
+}
 
         public async Task<Result<(int currentStreak, int longestStreak, bool hasActivityToday)>> GetStreakStatusAsync(Guid userId)
         {

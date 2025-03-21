@@ -38,22 +38,5 @@ namespace WebApi.Controllers
             return Ok(result.Value);
         }
 
-        [HttpGet("streak-status")]
-        public async Task<ActionResult<(int currentStreak, int longestStreak, bool hasActivityToday)>> GetStreakStatus()
-        {
-            var user = await _identityService.GetCurrentUserAsync();
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            var result = await _streakService.GetStreakStatusAsync(user.Id);
-            if (result.IsFailure)
-            {
-                return BadRequest(result.Error);
-            }
-
-            return Ok(result.Value);
-        }
     }
 } 
