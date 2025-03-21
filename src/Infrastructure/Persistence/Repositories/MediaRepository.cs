@@ -18,16 +18,16 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<Result<string>> UploadFileAsync(string fileName, string url, MediaType mimeType, long fileSize, DateTime createdAt, DateTime updatedAt, string fileKey, CancellationToken cancellationToken)
+        public async Task<Result<Media>> UploadFileAsync(string fileName, string url, MediaType mimeType, long fileSize, DateTime createdAt, DateTime updatedAt, string fileKey, CancellationToken cancellationToken)
         {
             var file = Media.Create(fileName, mimeType, fileSize, url, fileKey);
             if (file.IsFailure)
             {
-                return Result.Failure<string>(file.Error);
+                return Result.Failure<Media>(file.Error);
             }
             _context.Medias.Add(file.Value);
             await _context.SaveChangesAsync(cancellationToken);
-            return Result.Success<string>(file.Value.Id.ToString());
+            return Result.Success<Media>(file.Value);
         }
     }
 }
