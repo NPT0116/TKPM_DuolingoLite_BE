@@ -66,13 +66,13 @@ namespace Infrastructure.Services
                 _logger.LogInformation("Seeding data...");
 
                 // 1) Seed các dữ liệu chung
-                // var seedResult = await SeedData.Initialize(scope.ServiceProvider);
+                var seedResult = await SeedData.Initialize(scope.ServiceProvider);
                 var settings = new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     Formatting = Formatting.Indented
                 };
-                // string jsonResult = JsonConvert.SerializeObject(seedResult, settings);
+                string jsonResult = JsonConvert.SerializeObject(seedResult, settings);
                 // Console.WriteLine(jsonResult);
 
                 // 2) Seed user + hoạt động

@@ -10,6 +10,6 @@ namespace Infrastructure.Persistence.Seed.JsonModels
         public string Content { get; set; }
         public string Image { get; set; }
         public string Audio { get; set; }
-        
+        public string Definition { get; set; }
     }
 }
