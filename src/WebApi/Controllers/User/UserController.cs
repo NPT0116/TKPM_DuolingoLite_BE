@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Heart.Commands.LoseHeart;
+using Application.Features.Heart.Queries.GetUserHeart;
 using Application.Features.User.Commands.Common;
 using Application.Features.User.Commands.UserProfile.UploadProfile;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel;
 using WebApi.Contracts.Requests;
+using WebApi.Extensions;
+using WebApi.Infrastructure;
 
 namespace WebApi.Controllers.User
 {
@@ -45,6 +50,26 @@ namespace WebApi.Controllers.User
                 return BadRequest(result.Error);
             }
             return Ok(result);
+        }
+
+        [HttpPost("lose-heart")]
+        [Authorize]
+        public async Task<IActionResult> UserLoseHeart()
+        {
+            var command = new LoseHeartCommand();
+            var result = await _mediator.Send(command);
+
+            return result.Match(Ok, CustomResults.Problem);
+        }
+
+        [HttpGet("heart")]
+        [Authorize]
+        public async Task<IActionResult> GetUserCurrentHeart()
+        {
+            var query = new GetUserHeartQuery();
+            var result = await _mediator.Send(query);
+
+            return result.Match(Ok, CustomResults.Problem);
         }
     }
 }
