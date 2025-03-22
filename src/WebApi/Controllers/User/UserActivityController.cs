@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Interface;
 using SharedKernel;
 using Application.Common.Interface;
+using Application.Features.User.Queries.GetUserActivityRange;
+using MediatR;
 
 namespace WebApi.Controllers
 {
@@ -13,11 +15,13 @@ namespace WebApi.Controllers
     {
         private readonly IStreakService _streakService;
         private readonly IIdentityService _identityService;
+        private readonly IMediator _mediator;
 
-        public UserActivityController(IStreakService streakService, IIdentityService identityService)
+        public UserActivityController(IStreakService streakService, IIdentityService identityService, IMediator mediator)
         {
             _streakService = streakService;
             _identityService = identityService;
+            _mediator = mediator;
         }
 
         [HttpPost("record-activity")]
@@ -36,6 +40,12 @@ namespace WebApi.Controllers
             }
 
             return Ok(result.Value);
+        }
+        [HttpGet("get-user-activity-range")]
+        public async Task<ActionResult<int>> GetStreak([FromQuery]GetUserAcitivityRangeQueryParam getUserAcitivityRangeQueryParam)
+        {
+            var activities = await _mediator.Send(new GetUserAcitivityRangeQuery(getUserAcitivityRangeQueryParam));
+            return Ok(activities);
         }
 
     }

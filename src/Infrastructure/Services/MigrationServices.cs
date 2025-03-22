@@ -73,7 +73,7 @@ namespace Infrastructure.Services
                     Formatting = Formatting.Indented
                 };
                 string jsonResult = JsonConvert.SerializeObject(seedResult, settings);
-                // Console.WriteLine(jsonResult);
+                Console.WriteLine(jsonResult);
 
                 // 2) Seed user + hoạt động
                 try
