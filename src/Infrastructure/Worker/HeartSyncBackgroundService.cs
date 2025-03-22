@@ -7,11 +7,12 @@ using Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Quartz;
 using StackExchange.Redis;
 
 namespace Infrastructure.Worker
 {
-    public class HeartSyncBackgroundService : BackgroundService
+    public class HeartSyncBackgroundService : IJob
 {
     private readonly IConnectionMultiplexer _redis;
     private readonly IServiceScopeFactory _scopeFactory;
@@ -26,19 +27,16 @@ namespace Infrastructure.Worker
         _redis = redis;
         _scopeFactory = scopeFactory;
         _logger = logger;
-        _syncInterval = TimeSpan.FromHours(3); // Set your desired sync interval.
+        _syncInterval = TimeSpan.FromSeconds(10); // Set your desired sync interval.
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        var db = _redis.GetDatabase();
-
-        while (!stoppingToken.IsCancellationRequested)
+        public async Task Execute(IJobExecutionContext context)
         {
+            Console.WriteLine("Background serivce run");
+            var db = _redis.GetDatabase();
+
             try
             {
-                // Wait for the next sync interval.
-                await Task.Delay(_syncInterval, stoppingToken);
 
                 // Get a Redis server to scan for keys.
                 var server = _redis.GetServer(_redis.GetEndPoints().First());
@@ -47,6 +45,8 @@ namespace Infrastructure.Worker
 
                 foreach (var key in keys)
                 {
+                Console.WriteLine(key);
+
                     // Expecting key format: "user:{userId}:hearts"
                     var keyParts = key.ToString().Split(':');
                     if (keyParts.Length < 3)
@@ -56,7 +56,8 @@ namespace Infrastructure.Worker
                     var userId = keyParts[2];
 
                     // Retrieve the current heart count from Redis.
-                    var heartValue = await db.StringGetAsync(key);
+                    var heartValue = await db.HashGetAsync(key, "data");
+                    Console.WriteLine("Current heart:" + heartValue);
                     if (!heartValue.HasValue || !int.TryParse(heartValue, out int hearts))
                     {
                         continue; // Skip if no valid data is found.
@@ -81,7 +82,8 @@ namespace Infrastructure.Worker
                 _logger.LogError(ex, "An error occurred during heart synchronization.");
                 // Optionally implement additional error handling or retries here.
             }
+            
+            
         }
     }
-}
 }

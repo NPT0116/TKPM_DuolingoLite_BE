@@ -15,12 +15,14 @@ using Infrastructure.Services;
 using Infrastructure.Services.Payment;
 using Infrastructure.Services.Settings;
 using Infrastructure.Token;
+using Infrastructure.Worker;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Quartz;
 using StackExchange.Redis;
 using VNPAY.NET;
 
@@ -73,13 +75,27 @@ public static class DependencyInjection
             };
         });
 
+        services.AddQuartz(options =>
+        {
+            options.UseMicrosoftDependencyInjectionJobFactory();
+
+            var jobKey = JobKey.Create(nameof(HeartSyncBackgroundService));
+            options
+                .AddJob<HeartSyncBackgroundService>(jobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(jobKey)
+                    .WithCronSchedule("0/10 * * * * ?")); // runs every 20 seconds
+        });
+
+
+        services.AddQuartzHostedService();
+
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         services.AddScoped<JwtService>();
         services.AddHttpContextAccessor();
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IIdentityService, IdentityService>();
-        services.AddHostedService<MigrationServices>();
         services.AddScoped<SeedUser>();
         services.AddScoped<UserRegisterCommandHandler>();
 
@@ -142,7 +158,7 @@ public static class DependencyInjection
         services.AddStackExchangeRedisCache(options =>
         {
             options.Configuration = redisConnectionString;
-            options.InstanceName = "SampleInstance:";
+            // options.InstanceName = "SampleInstance:";
             options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
             {
                 AbortOnConnectFail = true,

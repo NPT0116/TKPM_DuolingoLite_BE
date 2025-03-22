@@ -75,7 +75,6 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddApplication()
     .AddInfrastructure(builder.Configuration);
-builder.Services.AddHostedService<HeartSyncBackgroundService>();
 
 
 builder.Host.UseSerilog((context, configuration) => 
