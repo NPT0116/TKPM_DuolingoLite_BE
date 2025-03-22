@@ -24,6 +24,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using SharedKernel;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Domain.Entities.Learning.SpacedRepetition;
 
 namespace Infrastructure.Data
 {
@@ -61,6 +62,7 @@ namespace Infrastructure.Data
         public DbSet<Media> Medias { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
+        public DbSet<SpacedRepetitionRecord> SpacedRepetitionRecords { get; set; }
         
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
