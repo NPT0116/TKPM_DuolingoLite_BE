@@ -60,6 +60,14 @@ namespace Infrastructure.Worker
                 {
                     currentHeart = parsed;
                 }
+                else
+                {
+                    var userStats = await _userRepository.GetUserStatsById(Guid.Parse(userId));
+                    if(userStats != null)
+                    {
+                        currentHeart = userStats.Heart;
+                    }
+                }
 
                 // Only increment if the user has fewer than the max allowed hearts.
                 if (currentHeart < HeartConstants.MAXIMUM_HEART)

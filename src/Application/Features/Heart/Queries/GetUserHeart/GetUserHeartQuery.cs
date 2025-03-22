@@ -7,4 +7,4 @@ using MediatR;
 using SharedKernel;
 
 namespace Application.Features.Heart.Queries.GetUserHeart;
-public record GetUserHeartQuery(Guid userId) : IRequest<Result<UserHeartDto>>;
+public record GetUserHeartQuery() : IRequest<Result<UserHeartDto>>;
