@@ -4,6 +4,7 @@ using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
+using Application.Interfaces;
 using Domain.Repositories;
 using Domain.Service;
 using Google.Cloud.TextToSpeech.V1;
@@ -22,6 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SharedKernel;
 using Quartz;
 using StackExchange.Redis;
 using VNPAY.NET;
@@ -121,11 +123,14 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
         services.AddScoped<IMomoService, MomoService>();
+        services.AddScoped<IStreakService, StreakService>();
+        services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.Configure<BackgroundSettings>(configuration.GetSection("BackgroundJobs"));
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        services.AddScoped<ITokenService, TokenService>();
         
         // Optionally, you can register the settings as a singleton:
         var awsSettings = new AwsSettings();
