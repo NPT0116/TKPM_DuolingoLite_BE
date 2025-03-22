@@ -125,7 +125,8 @@ public class IdentityService : IIdentityService
     public async Task<UserDto?> GetCurrentUserAsync()
     {
         var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-        Console.WriteLine(user);
+        // Console.WriteLine("Context:", _httpContextAccessor.HttpContext.User);
+        // Console.WriteLine(user);
         if (user == null)
         {
             return null;

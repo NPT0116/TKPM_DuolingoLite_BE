@@ -21,12 +21,14 @@ namespace Application.Features.User.Queries.GetUserProfile
         }
         public async Task<Result<UserWithProfileResponseDto>> Handle(GetUserProfileQuery request, CancellationToken cancellationToken)
         {
+            
             var user = await _identityService.GetCurrentUserAsync();
+            // Console.WriteLine("User: " + user);
             if (user is null)
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UnauthorizedUser);
             }
-
+        
             var userProfile = await _userRepository.GetUserProfileById(user.Id);
             if (userProfile is null)
             {
