@@ -20,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using VNPAY.NET;
 
 namespace Infrastructure;
@@ -111,9 +112,26 @@ public static class DependencyInjection
         var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
         services.AddSingleton(mediaSettings);
 
+        var redisConnectionString = configuration.GetValue<string>("ConnectionStrings:Redis");
+
+        services.AddSingleton<IConnectionMultiplexer>(sp =>
+        {
+            // Retrieve the Redis connection string from configuration.
+            var configuration = sp.GetRequiredService<IConfiguration>();
+            
+            // Optionally, you can use ConfigurationOptions to configure advanced settings.
+            var options = new StackExchange.Redis.ConfigurationOptions
+            {
+                AbortOnConnectFail = true,
+            };
+            options.EndPoints.Add(redisConnectionString);
+
+            return ConnectionMultiplexer.Connect(options);
+        });
+
         services.AddStackExchangeRedisCache(options =>
         {
-            options.Configuration = configuration.GetValue<string>("ConnectionStrings:Redis");
+            options.Configuration = redisConnectionString;
             options.InstanceName = "SampleInstance:";
             options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
             {
