@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Text.Json;
+using Application.Common.Utls;
 
 namespace WebApi.Middlewares;
 
@@ -27,8 +28,11 @@ namespace WebApi.Middlewares;
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            // PrintUtils.PrintAsJson(exception);
+            Console.WriteLine(exception);
             // Bạn có thể log exception tại đây nếu cần
             var response = new { error = exception.Message };
+            PrintUtils.PrintAsJson(response);
             var result = JsonSerializer.Serialize(response);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

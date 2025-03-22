@@ -14,16 +14,37 @@ public class LearningProgressRepository : ILearningProgressRepository
         _context  = context;
     }
 
+    public async Task<LearningProgress> AddAsync(LearningProgress learningProgress)
+    {
+         await _context.LearningProgresses.AddAsync(learningProgress);
+        return learningProgress;
+    }
+
     public async Task<LearningProgress?> GetLearningProgressByIdAsync(Guid id)
     {
        var lp =  await _context.LearningProgresses.FirstOrDefaultAsync(x => x.Id == id);
     return lp;
     }
 
-    public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid UserId)
+    public Task<LearningProgress> GetLearningProgressByUserIdAndCourseIdAsync(Guid userId, Guid courseId)
     {
-        var lp = await _context.LearningProgresses.FirstOrDefaultAsync(x => x.UserId == UserId);
+        var learningProgress = _context.LearningProgresses.FirstOrDefaultAsync(x => x.UserId == userId && x.Course.Id == courseId);
+        return learningProgress;
+    }
 
-        return lp;
+public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid userId)
+{
+    var lp = await _context.LearningProgresses
+        .Include(lp => lp.Course)
+        .FirstOrDefaultAsync(x => x.UserId == userId);
+
+    return lp;
+}
+
+
+    public Task UpdateAsync(LearningProgress learningProgress)
+    {
+        _context.LearningProgresses.Update(learningProgress);
+        return Task.CompletedTask;
     }
 }

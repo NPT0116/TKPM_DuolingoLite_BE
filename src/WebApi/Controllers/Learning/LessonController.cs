@@ -24,4 +24,5 @@ public class LessonController: ControllerBase
         var result = await _mediator.Send(query);
         return result.Match(Ok, CustomResults.Problem);
     }
+    
 }

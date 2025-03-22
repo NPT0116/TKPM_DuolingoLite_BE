@@ -1,3 +1,5 @@
+using System.Net.Sockets;
+using Application.Common.Utls;
 using Infrastructure.Services.Payment.Vnpay;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,25 +32,40 @@ namespace WebApi.Controllers.Payment
 [HttpGet("CreatePaymentUrl")]
 public ActionResult<string> CreatePaymentUrl(double moneyToPay, string description)
 {
+    PrintUtils.PrintAsJson(moneyToPay);
+    PrintUtils.PrintAsJson(description);
 
-        var ipAddress = NetworkHelper.GetIpAddress(HttpContext); // Lấy địa chỉ IP của thiết bị thực hiện giao dịch
-
-        var request = new PaymentRequest
-        {
-            PaymentId = DateTime.Now.Ticks,
-            Money = moneyToPay,
-            Description = description,
-            IpAddress = ipAddress,
-            BankCode = BankCode.ANY, // Tùy chọn. Mặc định là tất cả phương thức giao dịch
-            CreatedDate = DateTime.Now, // Tùy chọn. Mặc định là thời điểm hiện tại
-            Currency = Currency.VND, // Tùy chọn. Mặc định là VND (Việt Nam đồng)
-            Language = DisplayLanguage.Vietnamese // Tùy chọn. Mặc định là tiếng Việt
-        };
-
-        var paymentUrl = _vnpay.GetPaymentUrl(request);
-
-        return Created(paymentUrl, paymentUrl);
+    string ipAddress;
+    try
+    {
+        ipAddress = NetworkHelper.GetIpAddress(HttpContext);
     }
+    catch (SocketException ex)
+    {
+        // Ghi log lỗi nếu cần
+        Console.WriteLine( "Lỗi khi lấy IP từ NetworkHelper, sử dụng IP từ Connection trực tiếp.");
+        ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "127.0.0.1";
+    }
+
+    PrintUtils.PrintAsJson(ipAddress);
+
+    var request = new PaymentRequest
+    {
+        PaymentId = DateTime.Now.Ticks,
+        Money = moneyToPay,
+        Description = description,
+        IpAddress = ipAddress,
+        BankCode = BankCode.ANY,
+        CreatedDate = DateTime.Now,
+        Currency = Currency.VND,
+        Language = DisplayLanguage.Vietnamese
+    };
+
+    PrintUtils.PrintAsJson(request);
+    var paymentUrl = _vnpay.GetPaymentUrl(request);
+    return Created(paymentUrl, paymentUrl);
+}
+
 
             /// <summary>
         /// Thực hiện hành động sau khi thanh toán. URL này cần được khai báo với VNPAY để API này hoạt đồng (ví dụ: http://localhost:1234/api/Vnpay/IpnAction)

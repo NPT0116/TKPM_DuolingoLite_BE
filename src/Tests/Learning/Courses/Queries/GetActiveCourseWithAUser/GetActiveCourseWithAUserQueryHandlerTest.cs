@@ -69,7 +69,6 @@ public async Task Handle_Should_Return_Success_With_CorrectDto_When_LearningProg
 
     var dto = result.Value;
     dto.Should().NotBeNull();
-
     dto.LessonOrder.Should().Be(1);
     dto.UserId.Should().Be(userId);
 }

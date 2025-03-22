@@ -6,6 +6,7 @@ using Application.Features.User.Commands.Register;
 using Application.Interface;
 using Domain.Repositories;
 using Domain.Service;
+using Google.Cloud.TextToSpeech.V1;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.Repositories;
@@ -111,6 +112,15 @@ public static class DependencyInjection
         // services.Configure<AwsSettings>(configuration.GetSection("AWS"));
         var mediaSettings = configuration.GetSection("MediaSettings").Get<MediaSettings>();
         services.AddSingleton(mediaSettings);
+        
+        
+        services.AddScoped<ITextToSpeechService, GoogleCloudTextToSpeechService>();
+        services.AddHttpClient<IDictionaryService, DictionaryService>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
+            // Optionally configure default headers, timeouts, etc.
+        });
+
 
         var redisConnectionString = configuration.GetValue<string>("ConnectionStrings:Redis");
 

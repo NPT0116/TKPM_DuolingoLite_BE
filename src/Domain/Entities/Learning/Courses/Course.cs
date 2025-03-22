@@ -52,5 +52,9 @@ namespace Domain.Entities.Learning.Courses
         {
             _lessons.Remove(lesson);
         }
+        public Lesson GetLessonByOrder(int order)
+        {
+            return _lessons.FirstOrDefault(x => x.Order == order);
+        }
     }
 }
