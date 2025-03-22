@@ -14,6 +14,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  redis:
+    image: redis:latest
+    container_name: duolingolite_redis
+    ports:
+      - "6379:6379"
+
   # === ASP.NET Core Web API ===
   webapi:
     container_name: duolingolite_webapi
@@ -29,6 +35,7 @@ services:
     environment:
       # Example connection string to Postgres
       - ConnectionStrings__Postgres=Host=postgres;Database=duolingolite;Username=postgres;Password=thanh2004
+      - ConnectionStrings__Redis=redis:6379
       # If you need to override ASP.NET port binding
       - ASPNETCORE_URLS=http://+:8080
     dns:
