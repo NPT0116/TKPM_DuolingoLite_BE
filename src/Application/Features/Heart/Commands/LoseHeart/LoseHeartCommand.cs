@@ -8,4 +8,4 @@ using SharedKernel;
 
 namespace Application.Features.Heart.Commands.LoseHeart;
 
-public record LoseHeartCommand(Guid userId) : IRequest<Result<UserHeartDto>>;
+public record LoseHeartCommand() : IRequest<Result<UserHeartDto>>;

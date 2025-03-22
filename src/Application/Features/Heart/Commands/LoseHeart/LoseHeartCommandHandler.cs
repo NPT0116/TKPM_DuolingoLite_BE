@@ -5,6 +5,7 @@ using Domain.Entities.Users;
 using Domain.Entities.Users.Constants;
 using Domain.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using SharedKernel;
 using SharedKernel.Cache;
@@ -15,16 +16,25 @@ namespace Application.Features.Heart.Commands.LoseHeart
     {
         private readonly IDistributedCache _cache;
         private readonly IUserRepository _userRepository;
+        private readonly IIdentityService _identityService;
         public LoseHeartCommandHandler(
             IDistributedCache cache,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IIdentityService identityService)
         {
             _cache = cache;
             _userRepository = userRepository;
+            _identityService = identityService;
         }
         public async Task<Result<UserHeartDto>> Handle(LoseHeartCommand request, CancellationToken cancellationToken)
         {
-            var userId = request.userId;
+            var currentUser = await _identityService.GetCurrentUserAsync();
+            if(currentUser == null)
+            {
+                return Result.Failure<UserHeartDto>(UserError.Unauthorized());
+            }
+
+            var userId = currentUser.Id;
             var userProfile = await _userRepository.GetUserProfileById(userId);
             if(userProfile == null)
             {
