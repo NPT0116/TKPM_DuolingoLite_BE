@@ -4,6 +4,7 @@ using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
+using Application.Interfaces;
 using Domain.Repositories;
 using Domain.Service;
 using Google.Cloud.TextToSpeech.V1;
@@ -99,6 +100,7 @@ public static class DependencyInjection
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        services.AddScoped<ITokenService, TokenService>();
         
         // Optionally, you can register the settings as a singleton:
         var awsSettings = new AwsSettings();
