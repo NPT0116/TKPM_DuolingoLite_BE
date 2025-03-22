@@ -84,12 +84,19 @@ public static class DependencyInjection
                 .Get<BackgroundSettings>();
 
 
-            var jobKey = JobKey.Create(nameof(HeartSyncBackgroundService));
+            var heartSyncJobKey = JobKey.Create(nameof(HeartSyncBackgroundService));
             options
-                .AddJob<HeartSyncBackgroundService>(jobKey)
+                .AddJob<HeartSyncBackgroundService>(heartSyncJobKey)
                 .AddTrigger(trigger => trigger
-                    .ForJob(jobKey)
-                    .WithCronSchedule(backgroundSettings.HeartSyncInterval)); // runs every 20 seconds
+                    .ForJob(heartSyncJobKey)
+                    .WithCronSchedule(backgroundSettings.HeartSyncInterval));
+
+            var refillHeartSyncJobKey = JobKey.Create(nameof(HeartRecoveryBackgroundService));
+            options
+                .AddJob<HeartRecoveryBackgroundService>(refillHeartSyncJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(refillHeartSyncJobKey)
+                    .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
         });
 
 

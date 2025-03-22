@@ -8,7 +8,7 @@ namespace SharedKernel.Cache
     public static class Cache
     {
         private const string HeartPrefix = "user:heart:";
-        private const string HeartRefillPrefix = "user:refill_heart:";
+        public const string HeartRefillPrefix = "user:refill_heart:";
         public static string GetUserHeartKey(Guid userId) => $"{HeartPrefix}{userId}";
         public static string GetUserHeartRefillScheduleKey(Guid userId) => $"{HeartRefillPrefix}{userId}";
     }

@@ -8,6 +8,7 @@ namespace Infrastructure.Services.Settings
     public class BackgroundSettings
     {
         public string HeartSyncInterval { get; set; }
-        public string HeartRecoveryInterval { get; set; }
+        public double HeartRecoveryInterval { get; set; }
+        public string RefillHeartCheckInterval { get; set; }
     }
 }
