@@ -56,7 +56,6 @@ builder.Services.AddSwaggerGen(c =>
         Description = "API for DuolingoLite"
     });
 
-    // Adding Authentication for Swagger với scheme "MyBearer"
     c.AddSecurityDefinition("MyBearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -64,7 +63,7 @@ builder.Services.AddSwaggerGen(c =>
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
         BearerFormat = "JWT",
-        Scheme = "MyBearer"
+        Scheme = "bearer" // phải là "bearer" (chữ thường)
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -78,7 +77,7 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "MyBearer"
                 }
             },
-            new string[] { }
+            Array.Empty<string>()
         }
     });
 });
