@@ -79,12 +79,17 @@ public static class DependencyInjection
         {
             options.UseMicrosoftDependencyInjectionJobFactory();
 
+            BackgroundSettings backgroundSettings = configuration
+                .GetSection("BackgroundJobs")
+                .Get<BackgroundSettings>();
+
+
             var jobKey = JobKey.Create(nameof(HeartSyncBackgroundService));
             options
                 .AddJob<HeartSyncBackgroundService>(jobKey)
                 .AddTrigger(trigger => trigger
                     .ForJob(jobKey)
-                    .WithCronSchedule("0/10 * * * * ?")); // runs every 20 seconds
+                    .WithCronSchedule(backgroundSettings.HeartSyncInterval)); // runs every 20 seconds
         });
 
 
@@ -112,6 +117,7 @@ public static class DependencyInjection
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
+        services.Configure<BackgroundSettings>(configuration.GetSection("BackgroundJobs"));
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
         
         // Optionally, you can register the settings as a singleton:

@@ -18,16 +18,25 @@ namespace Application.Features.Heart.Commands.GainHeart
     {
         private readonly IDistributedCache _cache;
         private readonly IUserRepository _userRepository;
+        private readonly IIdentityService _identityService;
         public GainHeartCommandHandler(
             IDistributedCache cache,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IIdentityService identityService)
         {
             _cache = cache;
             _userRepository = userRepository;
+            _identityService = identityService;
         }
         public async Task<Result<UserHeartDto>> Handle(GainHeartCommand request, CancellationToken cancellationToken)
         {
-            var userId = request.userId;
+            var currentUser = await _identityService.GetCurrentUserAsync();
+            if(currentUser == null)
+            {
+                return Result.Failure<UserHeartDto>(UserError.Unauthorized());
+            }
+
+            var userId = currentUser.Id;
             var heartKey = Cache.GetUserHeartKey(userId);
             var isCachedHit = _cache.TryGetValue<int>(heartKey, out int heart);
             

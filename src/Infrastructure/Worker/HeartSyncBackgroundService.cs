@@ -17,7 +17,6 @@ namespace Infrastructure.Worker
     private readonly IConnectionMultiplexer _redis;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<HeartSyncBackgroundService> _logger;
-    private readonly TimeSpan _syncInterval;
 
     public HeartSyncBackgroundService(
         IConnectionMultiplexer redis,
@@ -27,7 +26,6 @@ namespace Infrastructure.Worker
         _redis = redis;
         _scopeFactory = scopeFactory;
         _logger = logger;
-        _syncInterval = TimeSpan.FromSeconds(10); // Set your desired sync interval.
     }
 
         public async Task Execute(IJobExecutionContext context)
