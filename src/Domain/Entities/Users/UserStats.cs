@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Users.Constants;
+using Domain.Entities.Users.Events;
 using SharedKernel;
 
 namespace Domain.Entities.Users
@@ -29,7 +30,11 @@ namespace Domain.Entities.Users
         }
 
         public void EarnExperience(int points) => ExperiencePoint += points;
-        public void LoseHeart() => Heart = Math.Max(Heart - 1, HeartConstants.MINIMUM_HEART);
+        public void LoseHeart()
+        {
+            Heart = Math.Max(Heart - 1, HeartConstants.MINIMUM_HEART);
+            Raise(new UserLostHeartEvent(UserId));
+        } 
         public void GainHeart() => Heart = Math.Min(Heart + 1, HeartConstants.MAXIMUM_HEART);
         public Result<int> UpdateHeart(int heart)
         {

@@ -3,6 +3,7 @@ using Application.Interface;
 using Domain.Entities.Subscriptions;
 using Domain.Entities.Users;
 using Domain.Entities.Users.Constants;
+using Domain.Entities.Users.Events;
 using Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -17,14 +18,17 @@ namespace Application.Features.Heart.Commands.LoseHeart
         private readonly IDistributedCache _cache;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityService _identityService;
+        private readonly IMediator _publisher;
         public LoseHeartCommandHandler(
             IDistributedCache cache,
             IUserRepository userRepository,
-            IIdentityService identityService)
+            IIdentityService identityService,
+            IMediator publisher)
         {
             _cache = cache;
             _userRepository = userRepository;
             _identityService = identityService;
+            _publisher = publisher;
         }
         public async Task<Result<UserHeartDto>> Handle(LoseHeartCommand request, CancellationToken cancellationToken)
         {
@@ -63,6 +67,8 @@ namespace Application.Features.Heart.Commands.LoseHeart
             }
 
             await _cache.SetAsync<int>(heartKey, heart - 1);
+            var userLostHeartEvent = new UserLostHeartEvent(userId);
+            await _publisher.Publish(userLostHeartEvent);
 
             var userHeartDto = new UserHeartDto(userId, heart - 1);
             return Result.Success<UserHeartDto>(
