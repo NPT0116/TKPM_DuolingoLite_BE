@@ -19,5 +19,10 @@ namespace Domain.Entities.Learning.Courses
             "Course.CourseNameMustBeUnique",
             $"Course with name {name} already exists"
         );
+
+        public static Error CourseIsBeingFollowedByUser => Error.Conflict(
+            "Course.CourseIsBeingFollowedByUser",
+            "Course is being followed by user"
+        );
     }
 }

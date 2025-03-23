@@ -14,5 +14,6 @@ namespace Domain.Repositories
         Task<int> GetCourseCount();
         Task<Course?> GetCourseByLevel(int level);
         Task<Course?> GetCourseByName(string name);
+        Task DeleteCourse(Course course);
     }
 }

@@ -23,6 +23,12 @@ namespace Infrastructure.Persistence.Repositories
             return course;
         }
 
+        public async Task DeleteCourse(Course course)
+        {
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<Course>> GetAllCourses(CancellationToken cancellationToken)
         {
             return await _context

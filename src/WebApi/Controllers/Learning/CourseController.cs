@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Learning.Courses;
 using Application.Features.Learning.Courses.AddLesson;
+using Application.Features.Learning.Courses.Commands.DeleteCourse;
 using Application.Features.Learning.Courses.Commands.UserRegisterCourse;
 using Application.Features.Learning.Courses.Queries.GetActiveCourseWithAUser;
 using Application.Features.Learning.Courses.Queries.GetCourseDetail;
@@ -81,6 +82,14 @@ namespace WebApi.Controllers.Learning
         public async Task<IActionResult> RegisterCourse([FromBody] UserRegisterCourseRequestDto userRegisterCourseDto, CancellationToken cancellationToken = default)
         {
             var command = new UserRegisterCourseCommand(userRegisterCourseDto);
+            var result = await _mediator.Send(command, cancellationToken);
+            return result.Match(Ok, CustomResults.Problem);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCourse([FromRoute] Guid id, CancellationToken cancellationToken = default)
+        {
+            var command = new DeleteCourseCommand(id);
             var result = await _mediator.Send(command, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }        
