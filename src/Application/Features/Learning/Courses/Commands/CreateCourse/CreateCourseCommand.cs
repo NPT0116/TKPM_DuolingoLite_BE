@@ -7,5 +7,5 @@ using Domain.Entities.Learning.Courses;
 
 namespace Application.Features.Learning.Courses;
 
-public record CreateCourseDto(string Name, int Level);
+public record CreateCourseDto(string Name);
 public record CreateCourseCommand(CreateCourseDto CreateCourseDto) : ICommand<Course>;
