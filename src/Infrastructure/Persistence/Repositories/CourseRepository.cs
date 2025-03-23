@@ -23,17 +23,39 @@ namespace Infrastructure.Persistence.Repositories
             return course;
         }
 
+        public async Task DeleteCourse(Course course)
+        {
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<Course>> GetAllCourses(CancellationToken cancellationToken)
         {
             return await _context
                 .Courses
                 .Include(c => c.Lessons)
+                .OrderBy(c => c.Level)
                 .ToListAsync(cancellationToken);
         }
 
         public async Task<Course?> GetCourseById(Guid id)
         {
             return await _context.Courses.Include(c=> c.Lessons).ThenInclude(l=> l.Questions).FirstOrDefaultAsync(c=> c.Id == id);
+        }
+
+        public async Task<Course?> GetCourseByLevel(int level)
+        {
+            return await _context.Courses.FirstOrDefaultAsync(c => c.Level == level);
+        }
+
+        public async Task<Course?> GetCourseByName(string name)
+        {
+            return await _context.Courses.FirstOrDefaultAsync(c => c.Name == name);
+        }
+
+        public async Task<int> GetCourseCount()
+        {
+            return await _context.Courses.CountAsync();
         }
     }
 }

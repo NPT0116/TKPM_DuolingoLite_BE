@@ -11,5 +11,9 @@ namespace Domain.Repositories
         Task<Course?> GetCourseById(Guid id);
         Task<Course> CreateCourse(Course course);
         Task<List<Course>> GetAllCourses(CancellationToken cancellationToken);
+        Task<int> GetCourseCount();
+        Task<Course?> GetCourseByLevel(int level);
+        Task<Course?> GetCourseByName(string name);
+        Task DeleteCourse(Course course);
     }
 }

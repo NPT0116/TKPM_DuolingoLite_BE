@@ -132,6 +132,8 @@ services.AddHostedService<MigrationServices>();
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
+        services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
         services.Configure<BackgroundSettings>(configuration.GetSection("BackgroundJobs"));
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
         services.AddScoped<ITokenService, TokenService>();
