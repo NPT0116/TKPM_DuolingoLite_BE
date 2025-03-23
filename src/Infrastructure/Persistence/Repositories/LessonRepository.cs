@@ -46,4 +46,35 @@ public async Task<Lesson?> GetLessonByIdAsync(Guid id)
         .FirstOrDefaultAsync(x => x.Id == id);
 }
 
+    public Task<Lesson?> GetLessonByQuestionIdAsync(Guid questionId)
+    {
+        return _applicationDbContext.Lessons
+            .AsSplitQuery() // Tách query, tối ưu khi có nhiều Include
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.Options)
+                .ThenInclude(o => o.Option)
+                .ThenInclude(o => o.Image)
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.Options)
+                .ThenInclude(o => o.Option)
+                .ThenInclude(o => o.Audio)   
+
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.Image)
+            // Include Audio
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.Audio)
+            // Include QuestionConfiguration
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.QuestionConfiguration)
+            // Include OptionConfiguration
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.OptionConfiguration)
+            // Include QuestionWord
+            .Include(l => l.Questions)
+                .ThenInclude(q => q.Words)
+                .ThenInclude(w => w.Word)
+                .ThenInclude(w => w.Audio)
+            .FirstOrDefaultAsync(x => x.Questions.Any(q => q.Id == questionId));
+    }
 }

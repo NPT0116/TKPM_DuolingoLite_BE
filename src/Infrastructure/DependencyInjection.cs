@@ -27,6 +27,7 @@ using SharedKernel;
 using Quartz;
 using StackExchange.Redis;
 using VNPAY.NET;
+using Domain.Entities.Learning.SpacedRepetition;
 
 namespace Infrastructure;
 
@@ -100,7 +101,8 @@ public static class DependencyInjection
                     .ForJob(refillHeartSyncJobKey)
                     .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
         });
-
+services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
 
         services.AddQuartzHostedService();
 
@@ -118,6 +120,7 @@ public static class DependencyInjection
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
@@ -125,6 +128,7 @@ public static class DependencyInjection
         services.AddScoped<IMomoService, MomoService>();
         services.AddScoped<IStreakService, StreakService>();
         services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
+        services.AddScoped<ISpacedRepetitionRepository, SpacedRepetitionRepository>();
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
