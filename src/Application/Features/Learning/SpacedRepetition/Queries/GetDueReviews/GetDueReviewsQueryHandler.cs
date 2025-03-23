@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Utls;
 using Application.Features.Learning.SpacedRepetition.Common;
 using Domain.Repositories;
 using MediatR;
@@ -23,14 +24,14 @@ namespace Application.Features.Learning.SpacedRepetition.Queries.GetDueReviews
             try
             {
                 // Get one more than requested to check if there are more results
-                var limit = request.Limit + 1;
+                var limit = request.QueryParam.Limit + 1;
                 
                 var records = await _spacedRepetitionRepository.GetDueReviewsAsync(
-                    request.UserId, 
+                    request.QueryParam.UserId, 
                     limit, 
-                    request.Cursor);
-
-                bool hasMore = records.Count > request.Limit;
+                    request.QueryParam.Cursor);
+                PrintUtils.PrintAsJson(records);
+                bool hasMore = records.Count > request.QueryParam.Limit;
                 if (hasMore)
                 {
                     // Remove the extra item we fetched

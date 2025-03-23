@@ -4,9 +4,10 @@ using SharedKernel;
 
 namespace Application.Features.Learning.SpacedRepetition.Queries.GetDueReviews
 {
-    public record GetDueReviewsQuery(
-        Guid UserId,
+    public record GetDueReviewsQueryParam(  Guid UserId,
         int Limit = 10,
-        DateTime? Cursor = null
+        DateTime? Cursor = null);
+    public record GetDueReviewsQuery(
+      GetDueReviewsQueryParam QueryParam
     ) : IRequest<Result<GetDueReviewsResponse>>;
 } 

@@ -101,7 +101,8 @@ public static class DependencyInjection
                     .ForJob(refillHeartSyncJobKey)
                     .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
         });
-
+services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
 
         services.AddQuartzHostedService();
 

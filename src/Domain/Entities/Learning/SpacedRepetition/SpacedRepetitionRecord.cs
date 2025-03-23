@@ -98,7 +98,8 @@ namespace Domain.Entities.Learning.SpacedRepetition
                     interval = (int)Math.Round(previousInterval * EasinessFactor);
                 }
                 
-                NextReview = now.AddDays(interval);
+                // NextReview = now.AddDays(interval);
+                NextReview = now.AddMinutes(interval);
             }
             else
             {
@@ -107,7 +108,8 @@ namespace Domain.Entities.Learning.SpacedRepetition
                 // Decrease easiness factor slightly but not below 1.3
                 EasinessFactor = Math.Max(1.3, EasinessFactor - 0.2);
                 // Set next review to tomorrow
-                NextReview = now.AddDays(1);
+                // NextReview = now.AddDays(1);
+                NextReview = now.AddMinutes(1);
             }
         }
     }

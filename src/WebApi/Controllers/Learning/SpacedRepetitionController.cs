@@ -4,8 +4,10 @@ using Application.Features.Learning.SpacedRepetition.Commands.ProcessLessonRepor
 using Application.Features.Learning.SpacedRepetition.Commands.UpdateReview;
 using Application.Features.Learning.SpacedRepetition.Common;
 using Application.Features.Learning.SpacedRepetition.Queries.GetDueReviews;
+using Application.Features.Learning.SpacedRepetition.Queries.ReviewQuestion;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Extensions;
 using WebApi.Infrastructure;
@@ -34,19 +36,17 @@ namespace WebApi.Controllers.Learning
 
             var result = await _mediator.Send(command);
 
-            return result.Match(r => Ok(r.Value), CustomResults.Problem);
+            return result.Match(Ok, CustomResults.Problem);
         }
 
-        [HttpGet("reviews")]
+        [HttpGet("reviews-records-due")]
         public async Task<IActionResult> GetDueReviews(
-            [FromQuery] Guid userId,
-            [FromQuery] int limit = 10,
-            [FromQuery] DateTime? cursor = null)
+            [FromQuery] GetDueReviewsQueryParam queryParam)
         {
-            var query = new GetDueReviewsQuery(userId, limit, cursor);
+            var query = new GetDueReviewsQuery(queryParam);
             var result = await _mediator.Send(query);
 
-            return result.Match(r => Ok(r.Value), CustomResults.Problem);
+            return result.Match(Ok, CustomResults.Problem);
         }
 
         [HttpPut("record/{recordId}/review")]
@@ -57,12 +57,23 @@ namespace WebApi.Controllers.Learning
             var command = new UpdateReviewCommand(recordId, request.IsCorrect);
             var result = await _mediator.Send(command);
 
-            return result.Match(r => Ok(r.Value), CustomResults.Problem);
+            return result.Match(Ok, CustomResults.Problem);
         }
+    [HttpGet("reviews-question-due")]
+    public async Task<IActionResult> GetDueReviewsQuestion(
+        [FromQuery]  ReviewQuestionQueryParam reviewQuestionQueryParam)
+    {
+        var query = new ReviewQuestionQuery(reviewQuestionQueryParam);
+        var result = await _mediator.Send(query);
+
+        return result.Match(Ok, CustomResults.Problem);
+    }
     }
 
     public class UpdateReviewRequest
     {
         public bool IsCorrect { get; set; }
     }
+
+
 } 
