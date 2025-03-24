@@ -7,5 +7,5 @@ using Domain.Entities.Learning.Lessons;
 
 namespace Application.Features.Learning.Courses.AddLesson;
 
-public record CreateLessonDto(string Title, int XpEarned, int Order);
+public record CreateLessonDto(string Title, int XpEarned);
 public record AddLessonCommand(Guid CourseId, CreateLessonDto CreateLessonDto) : ICommand<Lesson>;

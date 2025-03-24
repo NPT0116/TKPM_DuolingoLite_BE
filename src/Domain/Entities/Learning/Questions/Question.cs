@@ -42,6 +42,7 @@ namespace Domain.Entities.Learning.Questions
             int order
         )
         {
+            Instruction = instruction;
             VietnameseText = vietnameseText;
             Audio = audio;
             EnglishText = englishText;
