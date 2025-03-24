@@ -239,20 +239,8 @@ using Infrastructure.Persistence;
                                 if (existingWord == null)
                                 {
                                     // Nếu Word chưa tồn tại, tạo mới và thêm vào DbContext
-                                    var wordDefinitions = await dictionaryService.GetWordDefinition(word.Content);
-                                    string wordAudio = string.Empty;
-                                    if(wordDefinitions != null && wordDefinitions.Count > 0)
-                                    {   
-                                        var phonetics = wordDefinitions[0].Phonetics;
-                                        foreach(var phonetic in phonetics)
-                                        {
-                                            if(!string.IsNullOrEmpty(phonetic.Audio))
-                                            {
-                                                wordAudio = phonetic.Audio;
-                                                break;
-                                            }
-                                        }
-                                    }
+                                    string wordAudio = word.Audio;
+                                    
                                     var createdWord = Word.Create(word.Content,
                                         wordAudio == string.Empty 
                                             ? Media.Create("wordAudio", MediaType.Audio, 10000, word.Audio, "wordAudio").Value 

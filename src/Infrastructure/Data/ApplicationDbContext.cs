@@ -21,19 +21,27 @@ using Domain.Entities.Learning.Words;
 using Domain.Entities.Subscriptions;
 using Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore.Storage;
+using SharedKernel;
+using MediatR;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Domain.Entities.Learning.SpacedRepetition;
 
 namespace Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+            : base(options) 
+        {
+            _publisher = this.GetService<IPublisher>();
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
+        private readonly IPublisher _publisher;
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionOptionBase> QuestionOptions { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
@@ -54,10 +62,23 @@ namespace Infrastructure.Data
         public DbSet<Media> Medias { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
-
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public DbSet<SpacedRepetitionRecord> SpacedRepetitionRecords { get; set; }
+        
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return base.SaveChangesAsync(cancellationToken);
+            var domainEvents = ChangeTracker.Entries<Entity>()
+                .Select(e => e.Entity)
+                .Where(e => e.DomainEvents.Any())
+                .SelectMany(e => e.DomainEvents);
+
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            foreach(var domainEvent in domainEvents)
+            {
+                await _publisher.Publish(domainEvent);
+            }
+
+            return result;
         }
 
         public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)

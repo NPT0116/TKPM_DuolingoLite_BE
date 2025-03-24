@@ -42,5 +42,7 @@ namespace Domain.Entities.Subscriptions
 
             return new Subscription(subscriptionType.Value, startDate, expiredDate);
         }
+
+        public bool IsExpired => ExpiredDate <= DateTime.UtcNow;
     }
 }

@@ -4,6 +4,7 @@ using Application.Common.Interface;
 using Application.Common.Settings;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
+using Application.Interfaces;
 using Domain.Repositories;
 using Domain.Service;
 using Google.Cloud.TextToSpeech.V1;
@@ -15,13 +16,18 @@ using Infrastructure.Services;
 using Infrastructure.Services.Payment;
 using Infrastructure.Services.Settings;
 using Infrastructure.Token;
+using Infrastructure.Worker;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SharedKernel;
+using Quartz;
+using StackExchange.Redis;
 using VNPAY.NET;
+using Domain.Entities.Learning.SpacedRepetition;
 
 namespace Infrastructure;
 
@@ -72,13 +78,40 @@ public static class DependencyInjection
             };
         });
 
+        services.AddQuartz(options =>
+        {
+            options.UseMicrosoftDependencyInjectionJobFactory();
+
+            BackgroundSettings backgroundSettings = configuration
+                .GetSection("BackgroundJobs")
+                .Get<BackgroundSettings>();
+
+
+            var heartSyncJobKey = JobKey.Create(nameof(HeartSyncBackgroundService));
+            options
+                .AddJob<HeartSyncBackgroundService>(heartSyncJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(heartSyncJobKey)
+                    .WithCronSchedule(backgroundSettings.HeartSyncInterval));
+
+            var refillHeartSyncJobKey = JobKey.Create(nameof(HeartRecoveryBackgroundService));
+            options
+                .AddJob<HeartRecoveryBackgroundService>(refillHeartSyncJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(refillHeartSyncJobKey)
+                    .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
+        });
+services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
+
+        services.AddQuartzHostedService();
+
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         services.AddScoped<JwtService>();
         services.AddHttpContextAccessor();
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IIdentityService, IdentityService>();
-        services.AddHostedService<MigrationServices>();
         services.AddScoped<SeedUser>();
         services.AddScoped<UserRegisterCommandHandler>();
 
@@ -87,15 +120,23 @@ public static class DependencyInjection
         services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
         services.AddScoped<IMomoService, MomoService>();
+        services.AddScoped<IStreakService, StreakService>();
+        services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
+        services.AddScoped<ISpacedRepetitionRepository, SpacedRepetitionRepository>();
         services.AddSingleton<IVnpay, Vnpay>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
+        services.AddHostedService<MigrationServices>();
+        services.AddScoped<SeedUser>();
+        services.Configure<BackgroundSettings>(configuration.GetSection("BackgroundJobs"));
         services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+        services.AddScoped<ITokenService, TokenService>();
         
         // Optionally, you can register the settings as a singleton:
         var awsSettings = new AwsSettings();
@@ -119,6 +160,39 @@ public static class DependencyInjection
             client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
             // Optionally configure default headers, timeouts, etc.
         });
+
+
+        var redisConnectionString = configuration.GetValue<string>("ConnectionStrings:Redis");
+
+        services.AddSingleton<IConnectionMultiplexer>(sp =>
+        {
+            // Retrieve the Redis connection string from configuration.
+            var configuration = sp.GetRequiredService<IConfiguration>();
+            
+            // Optionally, you can use ConfigurationOptions to configure advanced settings.
+            var options = new StackExchange.Redis.ConfigurationOptions
+            {
+                AbortOnConnectFail = true,
+            };
+            options.EndPoints.Add(redisConnectionString);
+
+            return ConnectionMultiplexer.Connect(options);
+        });
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString;
+            // options.InstanceName = "SampleInstance:";
+            options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
+            {
+                AbortOnConnectFail = true,
+                EndPoints = { options.Configuration }
+            };
+        });
+
+        var assembly  = typeof(DependencyInjection).Assembly;
+            services.AddMediatR(configuration =>
+            configuration.RegisterServicesFromAssembly(assembly));
 
         return services;
     }

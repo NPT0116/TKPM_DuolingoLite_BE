@@ -61,12 +61,13 @@ namespace WebApi.Controllers.Authentication
             return result.Match(Ok, CustomResults.Problem);
         }
         [HttpGet("me")]
-        [Authorize]
+        // [Authorize]
         public async Task<IActionResult> GetMe()
         {
             var query = new GetUserProfileQuery();
             var result = await _mediator.Send(query);
             return result.Match(Ok, CustomResults.Problem);
         }
+
     }
 }

@@ -118,7 +118,7 @@ public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, G
                 throw new ApplicationErrorException(userProfile.Error);
             }
 
-            await _userRepository.CreateUserActivity(userActivity.Value);
+            // await _userRepository.CreateUserActivity(userActivity.Value);
             await _userRepository.CreateUserStats(userStats.Value);
             await _userRepository.CreateUserProfile(userProfile.Value);
 

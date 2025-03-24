@@ -6,5 +6,6 @@ namespace Domain.Repositories;
 public interface ILessonRepository
 {
     Task<Lesson?> GetLessonByIdAsync(Guid id);
+    Task<Lesson?> GetLessonByQuestionIdAsync(Guid questionId);
 
 }

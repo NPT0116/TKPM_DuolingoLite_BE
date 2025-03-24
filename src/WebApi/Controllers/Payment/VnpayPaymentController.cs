@@ -32,8 +32,7 @@ namespace WebApi.Controllers.Payment
 [HttpGet("CreatePaymentUrl")]
 public ActionResult<string> CreatePaymentUrl(double moneyToPay, string description)
 {
-    PrintUtils.PrintAsJson(moneyToPay);
-    PrintUtils.PrintAsJson(description);
+
 
     string ipAddress;
     try
@@ -47,7 +46,7 @@ public ActionResult<string> CreatePaymentUrl(double moneyToPay, string descripti
         ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "127.0.0.1";
     }
 
-    PrintUtils.PrintAsJson(ipAddress);
+
 
     var request = new PaymentRequest
     {
@@ -61,7 +60,7 @@ public ActionResult<string> CreatePaymentUrl(double moneyToPay, string descripti
         Language = DisplayLanguage.Vietnamese
     };
 
-    PrintUtils.PrintAsJson(request);
+
     var paymentUrl = _vnpay.GetPaymentUrl(request);
     return Created(paymentUrl, paymentUrl);
 }
@@ -71,7 +70,7 @@ public ActionResult<string> CreatePaymentUrl(double moneyToPay, string descripti
         /// Thực hiện hành động sau khi thanh toán. URL này cần được khai báo với VNPAY để API này hoạt đồng (ví dụ: http://localhost:1234/api/Vnpay/IpnAction)
         /// </summary>
         /// <returns></returns>
-     [HttpGet("IpnAction")]
+[HttpGet("/IPN")]
         public IActionResult IpnAction()
         {
             Console.WriteLine("IPN action");

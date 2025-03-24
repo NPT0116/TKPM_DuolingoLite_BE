@@ -6,7 +6,9 @@ using Application.Interface;
 using Domain.Entities.Users;
 using Domain.Repositories;
 using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
 using SharedKernel;
+using SharedKernel.Cache;
 
 namespace Application.Features.User.Queries.GetUserProfile
 {
@@ -14,19 +16,26 @@ namespace Application.Features.User.Queries.GetUserProfile
     {
         private readonly IIdentityService _identityService;
         private readonly IUserRepository _userRepository;
-        public GetUserProfileQueryHandler(IIdentityService identityService, IUserRepository userRepository)
+        private readonly IDistributedCache _cache;
+        public GetUserProfileQueryHandler(
+            IIdentityService identityService, 
+            IUserRepository userRepository,
+            IDistributedCache cache)
         {
             _identityService = identityService;
             _userRepository = userRepository;
+            _cache = cache;
         }
         public async Task<Result<UserWithProfileResponseDto>> Handle(GetUserProfileQuery request, CancellationToken cancellationToken)
         {
+            
             var user = await _identityService.GetCurrentUserAsync();
+            // Console.WriteLine("User: " + user);
             if (user is null)
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UnauthorizedUser);
             }
-
+        
             var userProfile = await _userRepository.GetUserProfileById(user.Id);
             if (userProfile is null)
             {
@@ -34,6 +43,21 @@ namespace Application.Features.User.Queries.GetUserProfile
             }
 
             var userStats = await _userRepository.GetUserStatsById(user.Id);
+            var heartCacheKey = Cache.GetUserHeartKey(user.Id);
+            var isCachedHit = _cache.TryGetValue<int>(heartCacheKey, out int heart);
+            
+            if(isCachedHit)
+            {
+                if(userStats.Heart != heart)
+                {
+                    userStats.UpdateHeart(heart);
+                }
+            }
+            else
+            {
+                await _cache.SetAsync<int>(heartCacheKey, userStats.Heart);
+            }
+            
 
             DateTime today = DateTime.UtcNow.Date;
             DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);

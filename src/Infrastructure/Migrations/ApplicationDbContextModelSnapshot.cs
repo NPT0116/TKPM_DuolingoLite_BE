@@ -264,6 +264,42 @@ namespace Infrastructure.Migrations
                     b.ToTable("QuestionWords");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Learning.SpacedRepetition.SpacedRepetitionRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<double>("EasinessFactor")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("LastReview")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("NextReview")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("QuestionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("RepetitionCount")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId", "NextReview");
+
+                    b.HasIndex("UserId", "QuestionId")
+                        .IsUnique();
+
+                    b.ToTable("SpacedRepetitionRecords");
+                });
+
             modelBuilder.Entity("Domain.Entities.Learning.Words.Word", b =>
                 {
                     b.Property<Guid>("Id")
@@ -818,6 +854,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Question");
 
                     b.Navigation("Word");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Learning.SpacedRepetition.SpacedRepetitionRecord", b =>
+                {
+                    b.HasOne("Domain.Entities.Learning.Questions.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("Domain.Entities.Learning.Words.Word", b =>
