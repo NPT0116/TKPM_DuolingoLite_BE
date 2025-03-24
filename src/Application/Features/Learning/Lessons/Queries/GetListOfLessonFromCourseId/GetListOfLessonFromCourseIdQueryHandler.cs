@@ -20,7 +20,10 @@ public class GetListOfLessonFromCourseIdQueryHandler : IQueryHandler<GetListOfLe
         {
             return Result.Failure<LessonsDto[]>(CourseError.CourseNotFound(request.CourseId));
         }
-        var lessons = course.Lessons.Select(x => new LessonsDto(x.Id, x.Title, x.Order, x._questions.Count, x.XpEarned)).ToArray();
+        var lessons = course.Lessons
+            .Select(x => new LessonsDto(x.Id, x.Title, x.Order, x._questions.Count, x.XpEarned))
+            .OrderBy(x => x.Order)
+            .ToArray();
         return lessons;
     }
 }

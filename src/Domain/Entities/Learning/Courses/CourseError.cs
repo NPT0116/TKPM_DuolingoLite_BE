@@ -24,5 +24,10 @@ namespace Domain.Entities.Learning.Courses
             "Course.CourseIsBeingFollowedByUser",
             "Course is being followed by user"
         );
+
+        public static Error NoLessonInCourse => Error.Conflict(
+            "Course.NoLessonInCourse",
+            "Course has no lesson"
+        );
     }
 }
