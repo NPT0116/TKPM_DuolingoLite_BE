@@ -1,8 +1,10 @@
 using System;
+using Application.Features.Learning.Lessons.Commands.AddQuestions;
 using Application.Features.Learning.Lessons.Queries.GetListOfLessonFromCourseId;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
+using WebApi.Contracts.Requests;
 using WebApi.Extensions;
 using WebApi.Infrastructure;
 
@@ -24,5 +26,12 @@ public class LessonController: ControllerBase
         var result = await _mediator.Send(query);
         return result.Match(Ok, CustomResults.Problem);
     }
-    
+
+    [HttpPost("{id}/add-question")]
+    public async Task<IActionResult> CreateQuestion([FromRoute] Guid id, [FromBody] QuestionDto dto)
+    {
+        var command = new AddQuestionCommand(id, dto);
+        var result = await _mediator.Send(command);
+        return result.Match(Ok, CustomResults.Problem);
+    }
 }

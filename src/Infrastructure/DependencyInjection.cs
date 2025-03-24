@@ -124,6 +124,7 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IOptionRepository, OptionRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
         services.AddScoped<IMomoService, MomoService>();
         services.AddScoped<IStreakService, StreakService>();

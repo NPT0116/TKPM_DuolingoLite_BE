@@ -11,5 +11,9 @@ namespace Domain.Entities.Learning.Questions.Options
         public static Error InvalidEnglishSentenceOrWord() => Error.Validation(
             "Option_InvalidEnglishSentenceOrWord", 
             "English sentence or word is invalid");
+
+        public static Error OptionNotFound => Error.NotFound(
+            "OptionError.OptionNotFound", 
+            "Option not found");
     }
 }

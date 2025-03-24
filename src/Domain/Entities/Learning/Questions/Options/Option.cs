@@ -15,7 +15,7 @@ namespace Domain.Entities.Learning.Questions.Options
 
         private Option() { }
 
-        private Option(string vietnameseText, Media.Media? image, Media.Media? audio, string? englishText)
+        private Option(string? vietnameseText, Media.Media? image, Media.Media? audio, string? englishText)
         {
             VietnameseText = vietnameseText;
             Image = image;
