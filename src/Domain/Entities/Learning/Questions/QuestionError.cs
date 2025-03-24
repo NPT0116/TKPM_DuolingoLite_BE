@@ -16,5 +16,13 @@ namespace Domain.Entities.Learning.Questions
             "Question.QuestionNotFound",
             "Question not found."
         );
+        public static Error InvalidQuestionConfiguration => Error.Validation(
+            "Question.InvalidQuestionConfiguration",
+            "Invalid question configuration."
+        );
+        public static Error InvalidOptionConfiguration => Error.Validation(
+            "Question.InvalidOptionConfiguration",
+            "Invalid option configuration."
+        );
     }
 }

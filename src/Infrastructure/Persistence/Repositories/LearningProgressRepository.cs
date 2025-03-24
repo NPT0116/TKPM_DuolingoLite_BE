@@ -41,6 +41,10 @@ public async Task<LearningProgress?> GetLearningProgressByUserIdAsync(Guid userI
     return lp;
 }
 
+    public async Task<int> GetUserCountRegisteringCourse(Guid courseId)
+    {
+        return await _context.LearningProgresses.CountAsync(x => x.Course.Id == courseId);
+    }
 
     public Task UpdateAsync(LearningProgress learningProgress)
     {
