@@ -136,12 +136,11 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
                 QuestionOptionBase questionOption = null;
                 if(type == QuestionType.MultipleChoice)
                 {
-                    var multipleChoiceOption = (MultipleChoiceOptionBaseDto) questionOptionBase;
                     var questionOptionCreate = MultipleChoiceQuestionOption.Create(
                         createQuestion.Value,
                         option,
-                        multipleChoiceOption.IsCorrect,
-                        multipleChoiceOption.Order
+                        questionOptionBase.IsCorrect,
+                        questionOptionBase.Order
                     );
 
                     if(questionOptionCreate.IsFailure) return Result.Failure(questionOptionCreate.Error);

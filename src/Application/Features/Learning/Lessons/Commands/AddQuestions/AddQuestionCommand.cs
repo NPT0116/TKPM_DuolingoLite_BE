@@ -14,24 +14,27 @@ public class OptionBaseDto
 {
     public int Order { get; set; }
     public Guid OptionId { get; set; }
+    public bool IsCorrect { get; set; }
 
     public OptionBaseDto(
         int order,
-        Guid optionId)
+        Guid optionId,
+        bool isCorrect)
     {
         Order = order;
         OptionId = optionId;
-    }
-}
-
-public class MultipleChoiceOptionBaseDto : OptionBaseDto
-{
-    public bool IsCorrect { get; set; }
-    public MultipleChoiceOptionBaseDto(int order, Guid optionId, bool isCorrect) : base(order, optionId)
-    {
         IsCorrect = isCorrect;
     }
 }
+
+// public class MultipleChoiceOptionBaseDto
+// {
+//     public bool IsCorrect { get; set; }
+//     public MultipleChoiceOptionBaseDto(int order, Guid optionId, bool isCorrect) : base(order, optionId, isCorrect)
+//     {
+//         IsCorrect = isCorrect;
+//     }
+// }
 
 public class ConfigurationDto
 {

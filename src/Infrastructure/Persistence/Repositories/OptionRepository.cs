@@ -35,5 +35,13 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Options
                 .FirstOrDefaultAsync(o => o.Id == optionId);
         }
+
+        public async Task<List<Option>> GetOptionsByEnglishText(string englishText)
+        {
+            var options = await _context.Options
+                .Where(o => o.EnglishText != null && o.EnglishText.Contains(englishText))
+                .ToListAsync();
+            return options;
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Domain.Repositories
         Task<Option?> FindOption(string? englishText, string? vietnameseText);
         Task<Option> CreateOption(Option option);
         Task<Option?> GetOptionById(Guid optionId);
+        Task<List<Option>> GetOptionsByEnglishText(string englishText);
     }
 }
