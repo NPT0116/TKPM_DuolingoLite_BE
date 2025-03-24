@@ -28,6 +28,7 @@ using Quartz;
 using StackExchange.Redis;
 using VNPAY.NET;
 using Domain.Entities.Learning.SpacedRepetition;
+using Infrastructure.Config;
 
 namespace Infrastructure;
 
@@ -39,6 +40,14 @@ public static class DependencyInjection
         Console.WriteLine(connectionString);
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(connectionString));
+        // gemini
+        var geminiSection = configuration.GetSection("geminiApi");
+        var geminiConfig = new GeminiConfig(geminiSection.Value);
+        services.AddSingleton(geminiConfig);
+
+
+
+
 
         services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
         {
@@ -130,6 +139,7 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
         services.AddScoped<ISpacedRepetitionRepository, SpacedRepetitionRepository>();
         services.AddSingleton<IVnpay, Vnpay>();
+        services.AddScoped<IAiService, GeminiAiService>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.AddHostedService<MigrationServices>();
@@ -160,6 +170,8 @@ services.AddHostedService<MigrationServices>();
             client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
             // Optionally configure default headers, timeouts, etc.
         });
+
+
 
 
         var redisConnectionString = configuration.GetValue<string>("ConnectionStrings:Redis");
