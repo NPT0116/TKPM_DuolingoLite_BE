@@ -68,7 +68,9 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
             {
                 if(audio != null)
                 {
-                    questionAudio = Domain.Entities.Media.Media.Create(audio, MediaType.Audio,0, audio, audio).Value;
+                    var createAudio = await _mediaRepository.UploadFileAsync(audio, audio, MediaType.Audio, 10, DateTime.UtcNow, DateTime.UtcNow, audio, cancellationToken);
+                    if(createAudio.IsFailure) return Result.Failure(createAudio.Error);
+                    questionAudio = createAudio.Value;
                 }
                 else
                 {
@@ -91,7 +93,9 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
             Domain.Entities.Media.Media? questionImage = null;
             if(image != null)
             {
-                questionImage = Domain.Entities.Media.Media.Create(image, MediaType.Image,0, image, image).Value;
+                var createImage = await _mediaRepository.UploadFileAsync(image, image, MediaType.Image, 10, DateTime.UtcNow, DateTime.UtcNow, image, cancellationToken);
+                if(createImage.IsFailure) return Result.Failure(createImage.Error);
+                questionImage = createImage.Value;
             }
 
             var createQuestionConfiguration = Configuration.Create(
