@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Learning.Options.Commands.CreateOption;
 using Application.Features.Learning.Options.Queries.FindOptionByEnglish;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,14 @@ namespace WebApi.Controllers.Learning
         {
             var query = new FindOptionByEnglishQuery(englishText);
             var result = await _mediator.Send(query);
+            return result.Match(Ok, CustomResults.Problem);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateOption([FromBody] CreateOptionDto dto)
+        {
+            var command = new CreateOptionCommand(dto);
+            var result = await _mediator.Send(command);
             return result.Match(Ok, CustomResults.Problem);
         }
     }

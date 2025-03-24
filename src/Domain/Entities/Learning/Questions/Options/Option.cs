@@ -23,7 +23,7 @@ namespace Domain.Entities.Learning.Questions.Options
             EnglishText = englishText;
         }
 
-        public static Result<Option> Create(string vietnameseText, Media.Media? image, Media.Media? audio, string? englishText)
+        public static Result<Option> Create(string? vietnameseText, Media.Media? image, Media.Media? audio, string? englishText)
         {
             // if (englishText != null)
             // {

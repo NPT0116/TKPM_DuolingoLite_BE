@@ -15,5 +15,13 @@ namespace Domain.Entities.Learning.Questions.Options
         public static Error OptionNotFound => Error.NotFound(
             "OptionError.OptionNotFound", 
             "Option not found");
+
+        public static Error OptionAlreadyExists() => Error.Conflict(
+            "OptionError.OptionAlreadyExists", 
+            "Option already exists");
+
+        public static Error OptionAudioRequiresEnglishText() => Error.Conflict(
+            "OptionError.OptionAudioRequiresEnglishText", 
+            "Option audio requires English text");
     }
 }
