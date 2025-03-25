@@ -32,9 +32,6 @@ using Infrastructure.Persistence;
     public static async Task<Result> Initialize(IServiceProvider serviceProvider)
     {
         using var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
-        var dictionaryService = serviceProvider.GetRequiredService<IDictionaryService>();
-
-
         Console.WriteLine("SeedData Initialize");
         if (!context.Courses.Any())
         {

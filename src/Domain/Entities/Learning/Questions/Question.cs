@@ -86,6 +86,17 @@ namespace Domain.Entities.Learning.Questions
             _options.Add(option);
         }
 
+        public Result AddOptions(List<QuestionOptionBase> options)
+        {
+            if(!options.Any()) return Result.Failure(QuestionOptionError.NoOptions);
+            foreach(var option in options)
+            {
+                if(!IsValidOptionType(option)) return Result.Failure(QuestionOptionError.QuestionTypeNotSupported);
+            }
+            _options.AddRange(options);
+            return Result.Success();
+        }
+
         private bool IsValidOptionType(QuestionOptionBase option)
         {
             return Type switch
