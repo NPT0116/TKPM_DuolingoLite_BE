@@ -6,8 +6,9 @@ using Application.Features.Learning.Words.Queries.GetWordDefinition;
 
 namespace Application.Common.Interface
 {
-    public interface IDictionaryService
+    public interface IWordService
     {
+        public Task<List<string>> SplitWordsFromString(string prompt);
         Task<List<WordDefinitionDto>> GetWordDefinition(string word);
     }
 }

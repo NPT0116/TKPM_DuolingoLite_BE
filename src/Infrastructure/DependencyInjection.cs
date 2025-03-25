@@ -140,7 +140,7 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
         services.AddScoped<ISpacedRepetitionRepository, SpacedRepetitionRepository>();
         services.AddSingleton<IVnpay, Vnpay>();
-        services.AddScoped<IAiService, GeminiAiService>();
+        services.AddScoped<IWordService, WordService>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.AddHostedService<MigrationServices>();
@@ -166,7 +166,7 @@ services.AddHostedService<MigrationServices>();
         
         
         services.AddScoped<ITextToSpeechService, GoogleCloudTextToSpeechService>();
-        services.AddHttpClient<IDictionaryService, DictionaryService>(client =>
+        services.AddHttpClient<IWordService, WordService>(client =>
         {
             client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
             // Optionally configure default headers, timeouts, etc.
