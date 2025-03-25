@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
+using Domain.Entities.Learning.Questions.QuestionOptions.Validator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Domain
@@ -12,6 +13,7 @@ namespace Domain
         public static IServiceCollection AddDomain(this IServiceCollection services)
         {
             services.AddScoped<IQuestionOptionFactory, QuestionOptionFactory>();
+            services.AddScoped<IQuestionOptionValidator, QuestionOptionValidator>();
             return services;
         }
     }

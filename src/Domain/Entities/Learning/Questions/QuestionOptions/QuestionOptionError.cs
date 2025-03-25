@@ -22,5 +22,14 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions
 
         public static Error QuestionTypeNotSupported
             => Error.Validation("QuestionTypeNotSupported", "Question type is not supported.");
+
+        public static Error NoCorrectOption
+            => Error.Validation("NoCorrectOption", "Multiple choice question must have at least one correct option.");
+
+        public static Error MultipleCorrectOptions
+            => Error.Validation("MultipleCorrectOptions", "Multiple choice question must have only one correct option.");
+
+        public static Error NoOptions
+            => Error.Validation("NoOptions", "Mutliplce choice, Build Sentence and Matching questions must have at least one option.");
     }
 }

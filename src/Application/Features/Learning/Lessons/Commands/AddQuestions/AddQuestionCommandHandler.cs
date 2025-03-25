@@ -14,6 +14,7 @@ using Domain.Entities.Learning.Questions.Enums;
 using Domain.Entities.Learning.Questions.Options;
 using Domain.Entities.Learning.Questions.QuestionOptions;
 using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
+using Domain.Entities.Learning.Questions.QuestionOptions.Validator;
 using Domain.Entities.Media.Enums;
 using Domain.Repositories;
 using MediatR;
@@ -24,6 +25,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
     public class AddQuestionCommandHandler : ICommandHandler<AddQuestionCommand>
     {
         private readonly IQuestionOptionFactory _factory;
+        private readonly IQuestionOptionValidator _validator;
         private readonly ILessonRepository _lessonRepository;   
         private readonly IOptionRepository _optionRepository;
         private readonly IMediaRepository _mediaRepository;
@@ -32,6 +34,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
         private readonly IMediator _mediator;
         public AddQuestionCommandHandler(
             IQuestionOptionFactory factory,
+            IQuestionOptionValidator validator,
             ILessonRepository lessonRepository,
             IOptionRepository optionRepository,
             IMediaRepository mediaRepository,
@@ -41,6 +44,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
         )
         {
             _factory = factory;
+            _validator = validator;
             _lessonRepository = lessonRepository;
             _optionRepository = optionRepository;
             _mediaRepository = mediaRepository;
@@ -135,7 +139,8 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
             );
 
             if(createQuestion.IsFailure) return Result.Failure(createQuestion.Error);
-
+            
+            var validateOptions = new List<QuestionOptionBase>();
             foreach(var questionOptionBase in options)
             {
                 var option = await _optionRepository.GetOptionById(questionOptionBase.OptionId);
@@ -147,8 +152,12 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
                 questionOptionBase.Position);    
                 
                 if(questionOption.IsFailure) return Result.Failure(questionOption.Error);
-                createQuestion.Value.AddOption(questionOption.Value);
+                validateOptions.Add(questionOption.Value);
             }
+
+            var validate = _validator.Validate(type, validateOptions);
+            if(validate.IsFailure) return Result.Failure(validate.Error);
+            createQuestion.Value.AddOptions(validateOptions);
 
             lesson.AddQuestion(createQuestion.Value);
             await _context.SaveChangesAsync(cancellationToken);
