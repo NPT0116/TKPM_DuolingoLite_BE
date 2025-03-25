@@ -77,5 +77,15 @@ namespace Infrastructure.Hubs
                 throw;
             }
         }
+
+        public Task ReviewNotification(string userId, Notification review)
+        {
+            return SendNotificationToUser(userId, review);
+        }
+
+        public Task PaymentNotification(string userId, Notification review)
+        {
+            return SendNotificationToUser(userId, review);
+        }
     }
 }

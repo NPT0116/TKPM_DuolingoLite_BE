@@ -3,7 +3,9 @@ using Application.Abstractions.Messaging;
 using Application.Interface;
 using Domain.Entities.Subscriptions;
 using Domain.Entities.Users;
+using Domain.Entities.Users.Events;
 using Domain.Repositories;
+using MediatR;
 using SharedKernel;
 
 namespace Application.Features.User.Commands.UpgradeUser;
@@ -14,12 +16,15 @@ public class UpgradeUserCommandHandler : ICommandHandler<UpgradeUserCommand, boo
     private readonly IIdentityService _identityService;
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly IApplicationDbContext _dbContext;
-    public UpgradeUserCommandHandler(IUserRepository userRepository, IIdentityService identityService, IDateTimeProvider dateTimeProvider, IApplicationDbContext applicationDbContext)
+    private readonly IMediator _publisher;
+
+    public UpgradeUserCommandHandler(IMediator publisher,IUserRepository userRepository, IIdentityService identityService, IDateTimeProvider dateTimeProvider, IApplicationDbContext applicationDbContext)
     {
         _userRepository = userRepository;
         _identityService = identityService;
         _dateTimeProvider = dateTimeProvider;
         _dbContext = applicationDbContext;
+        _publisher = publisher;
     }
 
     public async Task<Result<bool>> Handle(UpgradeUserCommand request, CancellationToken cancellationToken)
@@ -48,6 +53,8 @@ public class UpgradeUserCommandHandler : ICommandHandler<UpgradeUserCommand, boo
         userProfile.UpdateSubscription(subscriptionResult.Value);
         await _userRepository.UpdateUserProfile(userProfile);
         await _dbContext.SaveChangesAsync(cancellationToken);
+        var UserPaymentEvent = new UserPaymentEvent(userDto.Id);
+        await _publisher.Publish(UserPaymentEvent, cancellationToken);
         return Result.Success(true);
     }
 }
