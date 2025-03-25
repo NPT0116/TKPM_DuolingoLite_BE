@@ -13,6 +13,7 @@ using Domain.Entities.Learning.Questions.Configurations;
 using Domain.Entities.Learning.Questions.Enums;
 using Domain.Entities.Learning.Questions.Options;
 using Domain.Entities.Learning.Questions.QuestionOptions;
+using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
 using Domain.Entities.Media.Enums;
 using Domain.Repositories;
 using MediatR;
@@ -22,6 +23,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
 {
     public class AddQuestionCommandHandler : ICommandHandler<AddQuestionCommand>
     {
+        private readonly IQuestionOptionFactory _factory;
         private readonly ILessonRepository _lessonRepository;   
         private readonly IOptionRepository _optionRepository;
         private readonly IMediaRepository _mediaRepository;
@@ -29,6 +31,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
         private readonly IApplicationDbContext _context;
         private readonly IMediator _mediator;
         public AddQuestionCommandHandler(
+            IQuestionOptionFactory factory,
             ILessonRepository lessonRepository,
             IOptionRepository optionRepository,
             IMediaRepository mediaRepository,
@@ -37,6 +40,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
             IApplicationDbContext context
         )
         {
+            _factory = factory;
             _lessonRepository = lessonRepository;
             _optionRepository = optionRepository;
             _mediaRepository = mediaRepository;
@@ -137,25 +141,13 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
                 var option = await _optionRepository.GetOptionById(questionOptionBase.OptionId);
                 if(option == null) return Result.Failure(OptionError.OptionNotFound);
                 
-                QuestionOptionBase questionOption = null;
-                if(type == QuestionType.MultipleChoice)
-                {
-                    var questionOptionCreate = MultipleChoiceQuestionOption.Create(
-                        createQuestion.Value,
-                        option,
-                        questionOptionBase.IsCorrect,
-                        questionOptionBase.Order
-                    );
-
-                    if(questionOptionCreate.IsFailure) return Result.Failure(questionOptionCreate.Error);
-                    questionOption = questionOptionCreate.Value;
-                }
-                else
-                {
-                    // createQuestion.Value.AddOption(option);
-                }
-
-                createQuestion.Value.AddOption(questionOption);
+                var questionOption = _factory.Create(type, createQuestion.Value, option, 
+                questionOptionBase.Order, questionOptionBase.IsCorrect, 
+                questionOptionBase.SourceType, questionOptionBase.TargetType, 
+                questionOptionBase.Position);    
+                
+                if(questionOption.IsFailure) return Result.Failure(questionOption.Error);
+                createQuestion.Value.AddOption(questionOption.Value);
             }
 
             lesson.AddQuestion(createQuestion.Value);
