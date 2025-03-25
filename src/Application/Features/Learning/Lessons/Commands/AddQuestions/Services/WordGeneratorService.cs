@@ -48,17 +48,21 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
             {
                 var existingWord = await _wordRepository.FindWord(word);
                 if(existingWord != null) continue;
+                Console.WriteLine($"Generating word: {word}");
                 
                 string audio = null;
                 var wordDefinitions = await _wordService.GetWordDefinition(word);
-                if(wordDefinitions == null) continue;
-                foreach(var wordDefinition in wordDefinitions)
+                
+                if(wordDefinitions != null && wordDefinitions.Any())
                 {
-                    var phonetics = wordDefinition.Phonetics;
-                    var phoneticWithAudio = phonetics.FirstOrDefault(p => p.Audio != null);
-                    if(phoneticWithAudio == null) continue;
-                    audio = phoneticWithAudio.Audio!;
-                    break;
+                    foreach(var wordDefinition in wordDefinitions)
+                    {
+                        var phonetics = wordDefinition.Phonetics;
+                        var phoneticWithAudio = phonetics.FirstOrDefault(p => !string.IsNullOrEmpty(p.Audio));
+                        if(phoneticWithAudio == null) continue;
+                        audio = phoneticWithAudio.Audio!;
+                        break;
+                    }
                 }
 
                 Domain.Entities.Media.Media? wordAudio = null;
