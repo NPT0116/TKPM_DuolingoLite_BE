@@ -25,16 +25,28 @@ namespace Infrastructure.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<string>> SplitWordsFromString(string prompt)
+        public async Task<List<string>> SplitWordsFromString(string prompt, Language language)
         {
-            var knowledBase = @"Please split the input sentence into an array of strings, each being a meaningful word or phrase. Keep phrasal verbs (e.g. ""wake up"") and multi-word expressions (e.g. ""table tennis"", ""a lot of"") together. However, treat articles (""a"", ""an"", ""the"", ""these"", ""there"") as separate elements even if they adjoin other words. Also, any punctuation should stay attached to the word immediately before it.
-            Examples:
-            ""I have a lot of money."" → [""I"", ""have"", ""a"", ""lot of"", ""money.""]
-            ""I wake up at 7 am."" → [""I"", ""wake up"", ""at"", ""7"", ""am.""]
-            ""how long does it take to regain a heart in duolingo?"" → [""how long"", ""does"", ""it"", ""take"", ""to"", ""regain"", ""a"", ""heart"", ""in"", ""duolingo?""]
-            ""I have been using these websites since I was a freshman at university."" → [""I"", ""have"", ""been"", ""using"", ""these"", ""websites"", ""since"", ""I"", ""was"", ""a"", ""freshman"", ""at"", ""university.""]
-            Apply these rules to every sentence.";
-            var service = _config.BuildApiRequest(prompt, knowledBase);
+            string knowledgeBase = language switch
+            {
+                Language.en => @"Please split the input sentence into an array of strings, each being a meaningful word or phrase. Keep phrasal verbs (e.g. ""wake up"") and multi-word expressions (e.g. ""table tennis"", ""a lot of"") together. However, treat articles (""a"", ""an"", ""the"", ""these"", ""there"") as separate elements even if they adjoin other words. Also, any punctuation should stay attached to the word immediately before it.
+                    Examples:
+                    ""I have a lot of money."" → [""I"", ""have"", ""a"", ""lot of"", ""money.""]
+                    ""I wake up at 7 am."" → [""I"", ""wake up"", ""at"", ""7"", ""am.""]
+                    ""how long does it take to regain a heart in duolingo?"" → [""how long"", ""does"", ""it"", ""take"", ""to"", ""regain"", ""a"", ""heart"", ""in"", ""duolingo?""]
+                    ""I have been using these websites since I was a freshman at university."" → [""I"", ""have"", ""been"", ""using"", ""these"", ""websites"", ""since"", ""I"", ""was"", ""a"", ""freshman"", ""at"", ""university.""]
+                    Apply these rules to every sentence.",
+                Language.vi => @"Vui lòng tách câu đầu vào thành một mảng các chuỗi, mỗi chuỗi là một từ hoặc cụm từ có ý nghĩa. Giữ nguyên các động từ cụm (ví dụ: ""thức dậy"") và các cụm từ đa từ (ví dụ: ""bóng bàn"", ""rất nhiều"") lại với nhau. Tuy nhiên, các từ loại như mạo từ (ví dụ: ""một"", ""một số"", ""những"") phải được tách riêng ra, ngay cả khi chúng gắn liền với từ khác. Ngoài ra, mọi dấu câu cần giữ nguyên đính kèm với từ ngay phía trước nó.
+                    Ví dụ:
+                    ""Em có rất nhiều tiền."" → [""Em"", ""có"", ""rất nhiều"", ""tiền.""]
+                    ""Tôi thức dậy lúc 7 giờ sáng."" → [""Tôi"", ""thức dậy"", ""lúc"", ""7"", ""giờ"", ""sáng.""]
+                    ""Bạn mất bao lâu để lấy lại một trái tim trong Duolingo?"" → [""Bạn"", ""mất"", ""bao lâu"", ""để"", ""lấy lại"", ""một"", ""trái tim"", ""trong"", ""Duolingo?""]
+                    ""Tôi đã sử dụng những trang web này từ khi tôi là sinh viên năm nhất tại trường đại học."" → [""Tôi"", ""đã"", ""sử dụng"", ""những"", ""trang web"", ""này"", ""từ khi"", ""tôi"", ""là"", ""sinh viên"", ""năm nhất"", ""tại"", ""trường đại học.""]
+                    Áp dụng các quy tắc này cho mọi câu.",
+                _ => throw new Exception("Unsupported language")
+            };
+            
+            var service = _config.BuildApiRequest(prompt, knowledgeBase);
             var genetor = _config.CreateGenerator();
             var model = ModelVersion.Gemini_20_Flash_Lite;
             var response = await genetor.GenerateContentAsync(service, model);
