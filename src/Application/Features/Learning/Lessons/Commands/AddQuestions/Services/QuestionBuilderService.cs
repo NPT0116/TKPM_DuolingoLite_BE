@@ -7,6 +7,7 @@ using Application.Features.Media.Commands.Upload;
 using Domain.Entities.Learning.Questions;
 using Domain.Entities.Learning.Questions.Configurations;
 using Domain.Entities.Learning.Questions.Enums;
+using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
 using Domain.Entities.Media.Enums;
 using Domain.Repositories;
 using MediatR;
@@ -20,14 +21,17 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
     public class QuestionBuilderService : IQuestionBuilderService
     {
         private readonly IMediaRepository _mediaRepository;
+        private readonly IQuestionFactory _factory;
         private readonly ITextToSpeechService _textToSpeechService;
         private readonly IMediator _mediator;
         public QuestionBuilderService(
             IMediaRepository mediaRepository,
+            IQuestionFactory factory,
             ITextToSpeechService textToSpeechService,
             IMediator mediator)
         {
             _mediaRepository = mediaRepository;
+            _factory = factory;
             _textToSpeechService = textToSpeechService;
             _mediator = mediator;
         }
@@ -37,16 +41,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
             ConfigurationDto questionConfiguration, ConfigurationDto optionConfiguration,
             int order)
         {
-            if (new[]
-            {
-                (instruction, questionConfiguration.Instruction),
-                (vietnameseText, questionConfiguration.VietnameseText),
-                (englishText, questionConfiguration.EnglishText),
-                (image, questionConfiguration.Image),
-            }.Any(pair => (pair.Item1 == null && pair.Item2 == true) || (pair.Item1 != null && pair.Item2 == false)))
-            {
-                return Result.Failure<LearningQuestion>(QuestionError.InvalidQuestionConfiguration);
-            }
+            
 
             Domain.Entities.Media.Media? questionAudio = null;
             if(questionConfiguration.Audio)
@@ -90,7 +85,6 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                 questionConfiguration.Instruction,
                 questionConfiguration.Image
             );
-
             if(createQuestionConfiguration.IsFailure) return Result.Failure<LearningQuestion>(createQuestionConfiguration.Error);
 
             var createOptionConfiguration = Configuration.Create(
@@ -100,10 +94,9 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                 optionConfiguration.Instruction,
                 optionConfiguration.Image
             );
-
             if(createOptionConfiguration.IsFailure) return Result.Failure<LearningQuestion>(createOptionConfiguration.Error);
 
-            var createQuestion = Domain.Entities.Learning.Questions.Question.Create(
+            var createQuestion = _factory.Create(
                 instruction,
                 vietnameseText,
                 questionAudio,

@@ -74,6 +74,10 @@ namespace Domain.Entities.Learning.Questions
             {
                 return Result.Failure<Question>(QuestionError.AllPromptsNull());
             }
+            if(type == QuestionType.Pronunciation && englishText == null)
+            {
+                return Result.Failure<Question>(QuestionError.EnglishTextRequired);
+            }
             return new Question(instruction, vietnameseText, audio, englishText, image, type, questionConfiguration, optionConfiguration, order);
         }
 
