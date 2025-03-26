@@ -4,5 +4,5 @@ namespace Application.Interfaces;
 
 public interface IAiService
 {
-    public Task<List<string>> GetWordsFromQuestion { get; set; }
+    public  Task<List<string>> SplitWordsFromString(string prompt);
 }
