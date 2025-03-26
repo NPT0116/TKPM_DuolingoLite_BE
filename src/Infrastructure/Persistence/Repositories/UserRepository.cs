@@ -7,14 +7,17 @@ using Domain.Entities.Users;
 using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel;
 namespace Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
-        public UserRepository(ApplicationDbContext context)
+        private readonly IDateTimeProvider _dateTimeProvider;
+        public UserRepository(ApplicationDbContext context, IDateTimeProvider dateTimeProvider)
         {
             _context = context;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<UserActivity?> CreateUserActivity(UserActivity userActivity)
@@ -67,6 +70,23 @@ namespace Infrastructure.Persistence.Repositories
         {
              _context.UserStats.Update(userStats);
             return userStats;
+        }
+
+        public async Task<UserProfile?> UpdateUserProfile(UserProfile userProfile)
+        {
+            _context.UserProfiles.Update(userProfile);
+            return userProfile;
+        }
+
+        public async Task<List<UserProfile>> GetExpiredSubscriptions()
+        {
+            var now = _dateTimeProvider.UtcNow;
+
+        var expiredUsers = await _context.UserProfiles
+            .Include(u => u.Subscription)
+            .Where(u => u.Subscription != null && u.Subscription.ExpiredDate < now)
+            .ToListAsync();
+        return expiredUsers;
         }
     }
 }

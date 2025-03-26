@@ -110,6 +110,12 @@ public static class DependencyInjection
                 .AddTrigger(trigger => trigger
                     .ForJob(refillHeartSyncJobKey)
                     .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
+            var expiredSubCleanupJobKey = JobKey.Create(nameof(ExpiredSubscriptionCleanupService));
+            options.AddJob<ExpiredSubscriptionCleanupService>(expiredSubCleanupJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(expiredSubCleanupJobKey)
+            .WithCronSchedule("0 0/10 * * * ?")); // Mỗi 10 phút
+
         });
 services.AddHostedService<MigrationServices>();
         services.AddScoped<SeedUser>();
@@ -134,6 +140,7 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IWordRepository, WordRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IOptionRepository, OptionRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
@@ -146,6 +153,7 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IQuestionBuilderService, QuestionBuilderService>();
         services.AddScoped<IQuestionOptionBuilderService, QuestionOptionBuilderService>();
         services.AddScoped<IWordGeneratorService, WordGeneratorService>();
+        services.AddScoped<IAiService, GeminiAiService>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.AddHostedService<MigrationServices>();
