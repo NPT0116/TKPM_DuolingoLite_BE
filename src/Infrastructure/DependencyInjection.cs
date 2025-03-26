@@ -29,6 +29,8 @@ using StackExchange.Redis;
 using SharedKernel;
 using VNPAY.NET;
 using Domain.Entities.Learning.SpacedRepetition;
+using Infrastructure.Config;
+using Application.Features.Learning.Lessons.Commands.AddQuestions.Services;
 
 namespace Infrastructure;
 
@@ -40,6 +42,14 @@ public static class DependencyInjection
         Console.WriteLine(connectionString);
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(connectionString));
+        // gemini
+        var geminiSection = configuration.GetSection("geminiApi");
+        var geminiConfig = new GeminiConfig(geminiSection.Value);
+        services.AddSingleton(geminiConfig);
+
+
+
+
 
         services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
         {
@@ -101,6 +111,12 @@ public static class DependencyInjection
                 .AddTrigger(trigger => trigger
                     .ForJob(refillHeartSyncJobKey)
                     .WithCronSchedule(backgroundSettings.RefillHeartCheckInterval));
+            var expiredSubCleanupJobKey = JobKey.Create(nameof(ExpiredSubscriptionCleanupService));
+            options.AddJob<ExpiredSubscriptionCleanupService>(expiredSubCleanupJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(expiredSubCleanupJobKey)
+            .WithCronSchedule("0 0/10 * * * ?")); // Mỗi 10 phút
+
         });
 services.AddHostedService<MigrationServices>();
         services.AddScoped<SeedUser>();
@@ -122,8 +138,10 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IQuestionWordRepository,QuestionWordRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
+        services.AddScoped<IWordRepository, WordRepository>();
         services.AddScoped<ISpeechToTextService , SpeechToTextService>();
         services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IOptionRepository, OptionRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();
@@ -134,6 +152,10 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IDateTimeProvider    , DateTimeProvider>();
         services.AddScoped<ISpacedRepetitionRepository, SpacedRepetitionRepository>();
         services.AddSingleton<IVnpay, Vnpay>();
+        services.AddScoped<IWordService, WordService>();
+        services.AddScoped<IQuestionBuilderService, QuestionBuilderService>();
+        services.AddScoped<IQuestionOptionBuilderService, QuestionOptionBuilderService>();
+        services.AddScoped<IWordGeneratorService, WordGeneratorService>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.AddHostedService<MigrationServices>();
@@ -159,11 +181,13 @@ services.AddHostedService<MigrationServices>();
         
         
         services.AddScoped<ITextToSpeechService, GoogleCloudTextToSpeechService>();
-        services.AddHttpClient<IDictionaryService, DictionaryService>(client =>
+        services.AddHttpClient<IWordService, WordService>(client =>
         {
             client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");
             // Optionally configure default headers, timeouts, etc.
         });
+
+
 
 
         var redisConnectionString = configuration.GetValue<string>("ConnectionStrings:Redis");

@@ -35,7 +35,7 @@ namespace Application.Features.User.Queries.GetUserProfile
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UnauthorizedUser);
             }
-        
+    
             var userProfile = await _userRepository.GetUserProfileById(user.Id);
             if (userProfile is null)
             {

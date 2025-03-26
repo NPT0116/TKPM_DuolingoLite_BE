@@ -70,7 +70,7 @@ public ActionResult<string> CreatePaymentUrl(double moneyToPay, string descripti
         /// Thực hiện hành động sau khi thanh toán. URL này cần được khai báo với VNPAY để API này hoạt đồng (ví dụ: http://localhost:1234/api/Vnpay/IpnAction)
         /// </summary>
         /// <returns></returns>
-[HttpGet("/IPN")]
+[HttpGet("IpnAction")]
         public IActionResult IpnAction()
         {
             Console.WriteLine("IPN action");

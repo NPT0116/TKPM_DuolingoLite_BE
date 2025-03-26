@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Infrastructure.Worker;
+using Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("awsSettings.json");
@@ -85,7 +86,9 @@ builder.Services.AddSwaggerGen(c =>
 
 // Các service khác
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddApplication()
+builder.Services
+    .AddDomain()
+    .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
 

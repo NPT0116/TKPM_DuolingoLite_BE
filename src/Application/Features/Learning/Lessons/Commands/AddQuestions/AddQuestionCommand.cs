@@ -14,16 +14,25 @@ public class OptionBaseDto
 {
     public int Order { get; set; }
     public Guid OptionId { get; set; }
-    public bool IsCorrect { get; set; }
+    public bool? IsCorrect { get; set; }
+    public MatchingQuestionOptionType? SourceType { get; set; }
+    public MatchingQuestionOptionType? TargetType { get; set; }
+    public int? Position { get; set; }
 
     public OptionBaseDto(
         int order,
         Guid optionId,
-        bool isCorrect)
+        bool? isCorrect,
+        MatchingQuestionOptionType? sourceType,
+        MatchingQuestionOptionType? targetType,
+        int? position)
     {
         Order = order;
         OptionId = optionId;
         IsCorrect = isCorrect;
+        SourceType = sourceType;
+        TargetType = targetType;
+        Position = position;
     }
 }
 
