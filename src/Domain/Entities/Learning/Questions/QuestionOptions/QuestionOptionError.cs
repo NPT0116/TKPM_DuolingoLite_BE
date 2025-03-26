@@ -31,5 +31,8 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions
 
         public static Error NoOptions
             => Error.Validation("NoOptions", "Mutliplce choice, Build Sentence and Matching questions must have at least one option.");
+
+        public static Error HasOptions
+            => Error.Validation("HasOptions", "Pronunciation question must not have options.");
     }
 }

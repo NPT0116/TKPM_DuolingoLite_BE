@@ -159,7 +159,6 @@ services.AddHostedService<MigrationServices>();
         services.AddScoped<IQuestionBuilderService, QuestionBuilderService>();
         services.AddScoped<IQuestionOptionBuilderService, QuestionOptionBuilderService>();
         services.AddScoped<IWordGeneratorService, WordGeneratorService>();
-        services.AddScoped<IAiService, GeminiAiService>();
         // services.AddDefaultAWSOptions(configuration.GetAWSOptions());
         // services.AddAWSService<IAmazonS3>();
         services.AddHostedService<MigrationServices>();

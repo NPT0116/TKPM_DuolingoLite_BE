@@ -46,7 +46,9 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
 
             var createOptions = await _questionOptionBuilder.BuildQuestionOptions(options, createQuestion.Value, type);
             if(createOptions.IsFailure) return Result.Failure(createOptions.Error);
-            createQuestion.Value.AddOptions(createOptions.Value);
+            var questionOptions = createOptions.Value;
+            
+            if(options.Any()) createQuestion.Value.AddOptions(questionOptions);
 
             lesson.AddQuestion(createQuestion.Value);
 

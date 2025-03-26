@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain.Entities.Learning.Questions.Configurations;
 using Domain.Entities.Learning.Questions.Enums;
 using SharedKernel;
 using LearningQuestion = Domain.Entities.Learning.Questions.Question;
