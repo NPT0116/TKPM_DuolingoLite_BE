@@ -23,5 +23,9 @@ namespace Domain.Entities.Subscriptions
              "Subscription.NegativePrice",
             $"Price {price} is negative"  
         );
+        public static Error AlreadyInSubscription() => Error.Validation(
+            "Subscription.AlreadyInSubscription",
+            "User is already in subscription"
+        );
     }
 }
