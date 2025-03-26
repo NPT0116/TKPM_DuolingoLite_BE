@@ -116,6 +116,12 @@ public static class DependencyInjection
                 .AddTrigger(trigger => trigger
                     .ForJob(expiredSubCleanupJobKey)
             .WithCronSchedule("0 0/10 * * * ?")); // Mỗi 10 phút
+            
+            var remindReviewLessonJobKey = JobKey.Create(nameof(RemindUserReviewLesson));
+            options.AddJob<RemindUserReviewLesson>(remindReviewLessonJobKey)
+                .AddTrigger(trigger => trigger
+                    .ForJob(remindReviewLessonJobKey)
+                .WithCronSchedule("0/10 * * * * ?")); // Mỗi 10 giây
 
         });
 services.AddHostedService<MigrationServices>();
