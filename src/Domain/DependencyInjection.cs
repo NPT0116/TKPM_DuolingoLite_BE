@@ -14,6 +14,7 @@ namespace Domain
         {
             services.AddScoped<IQuestionOptionFactory, QuestionOptionFactory>();
             services.AddScoped<IQuestionOptionValidator, QuestionOptionValidator>();
+            services.AddScoped<IQuestionFactory, QuestionFactory>();
             return services;
         }
     }

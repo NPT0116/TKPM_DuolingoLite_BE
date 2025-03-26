@@ -16,6 +16,7 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Validator
             {
                 QuestionType.MultipleChoice => ValidateMultipleChoice(options),
                 QuestionType.Matching => ValidateMatching(options),
+                QuestionType.Pronunciation => ValidatePronunciation(options),
                 _ => Result.Success() // Or fail if unsupported
             };
         }
@@ -41,6 +42,15 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Validator
                 return Result.Failure(QuestionOptionError.NoOptions);
 
             // Maybe later: check matching logic for pairs, types, etc.
+            return Result.Success();
+        }
+
+        private Result ValidatePronunciation(List<QuestionOptionBase> options)
+        {
+            if (options.Any())
+                return Result.Failure(QuestionOptionError.NoOptions);
+
+            // Maybe later: check pronunciation logic for correctness, etc.
             return Result.Success();
         }
     }
