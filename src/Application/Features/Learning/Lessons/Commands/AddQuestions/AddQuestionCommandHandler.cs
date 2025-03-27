@@ -32,7 +32,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
         public async Task<Result> Handle(AddQuestionCommand request, CancellationToken cancellationToken)
         {
             var (lessonId, question) = request;
-            var (instruction, vietnameseText, englishText, image, audio, order, type, questionConfiguration, optionConfiguration, options) = question;
+            var (instruction, vietnameseText, englishText, image, audio, sentence, order, type, questionConfiguration, optionConfiguration, options) = question;
             
             var lesson = await _lessonRepository.GetLessonByIdAsync(lessonId);
             if(lesson == null) return Result.Failure(LessonError.LessonNotFound);
@@ -44,7 +44,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
             );
             if(createQuestion.IsFailure) return Result.Failure(createQuestion.Error);
 
-            var createOptions = await _questionOptionBuilder.BuildQuestionOptions(options, createQuestion.Value, type);
+            var createOptions = await _questionOptionBuilder.BuildQuestionOptions(options, createQuestion.Value, type, sentence);
             if(createOptions.IsFailure) return Result.Failure(createOptions.Error);
             var questionOptions = createOptions.Value;
             

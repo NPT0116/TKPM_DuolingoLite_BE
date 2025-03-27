@@ -29,5 +29,10 @@ namespace Domain.Entities.Learning.Questions
             "Question.EnglishTextRequired",
             "English text is required in pronunication question."
         );
+
+        public static Error EnglishOrVitenameseTextRequired => Error.Validation(
+            "Question.EnglishOrVitenameseTextRequired",
+            "English or Vietnamese text is required."
+        );
     }
 }

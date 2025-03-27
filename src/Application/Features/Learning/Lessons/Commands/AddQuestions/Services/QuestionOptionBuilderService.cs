@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Common.Interface;
+using Application.Interface;
+using Domain.Entities.Learning.Questions;
 using Domain.Entities.Learning.Questions.Enums;
 using Domain.Entities.Learning.Questions.Options;
 using Domain.Entities.Learning.Questions.QuestionOptions;
 using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
 using Domain.Entities.Learning.Questions.QuestionOptions.Validator;
+using Domain.Entities.Learning.Words.Enums;
 using Domain.Repositories;
+using Microsoft.VisualBasic;
 using SharedKernel;
 using LearningQuestion = Domain.Entities.Learning.Questions.Question;
 namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
@@ -17,18 +22,38 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
         private readonly IQuestionOptionFactory _factory;
         private readonly IQuestionOptionValidator _validator;
         private readonly IOptionRepository _optionRepository;
+        private readonly IWordService _wordService;
 
         public QuestionOptionBuilderService(
             IQuestionOptionFactory factory,
             IQuestionOptionValidator validator,
-            IOptionRepository optionRepository
+            IOptionRepository optionRepository,
+            IWordService wordService
         )
         {
             _factory = factory;
             _validator = validator;
             _optionRepository = optionRepository;
+            _wordService = wordService;
         }
-        public async Task<Result<List<QuestionOptionBase>>> BuildQuestionOptions(List<OptionBaseDto> options, LearningQuestion question, QuestionType type)
+        public async Task<Result<List<QuestionOptionBase>>> BuildQuestionOptions(
+            List<OptionBaseDto> options, LearningQuestion question, 
+            QuestionType type, string? sentence)
+        {
+            return type switch
+            {
+                QuestionType.Matching => await BuildMatchingQuestionOptions(options, question),
+                QuestionType.MultipleChoice => await BuildMultiplecChoiceQuestionOptions(options, question),
+                QuestionType.Pronunciation => BuildPronunciationQuestionOptions(),
+                QuestionType.BuildSentence => await BuildBuildSentenceQuestionOptions(options, question, sentence),
+                _ => Result.Failure<List<QuestionOptionBase>>(QuestionOptionError.QuestionTypeNotSupported)
+            };
+        }
+
+        private async Task<Result<List<QuestionOptionBase>>> BuildQuestionOptionsFromList(
+            List<OptionBaseDto> options,
+            LearningQuestion question,
+            QuestionType type)
         {
             var validateOptions = new List<QuestionOptionBase>();
             foreach(var questionOptionBase in options)
@@ -49,6 +74,74 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
             if(validate.IsFailure) return Result.Failure<List<QuestionOptionBase>>(validate.Error);
 
             return Result.Success(validateOptions);
+        }
+
+        private async Task<Result<List<QuestionOptionBase>>> BuildMatchingQuestionOptions(
+            List<OptionBaseDto> options,
+            LearningQuestion question)
+        {
+            return await BuildQuestionOptionsFromList(options, question, QuestionType.Matching);
+        }
+
+        private async Task<Result<List<QuestionOptionBase>>> BuildMultiplecChoiceQuestionOptions(
+            List<OptionBaseDto> options,
+            LearningQuestion question)
+        {
+            return await BuildQuestionOptionsFromList(options, question, QuestionType.MultipleChoice);
+        }
+
+        private Result<List<QuestionOptionBase>> BuildPronunciationQuestionOptions()
+        {
+            return Result.Success(new List<QuestionOptionBase>());    
+        }
+
+        private async Task<Result<List<QuestionOptionBase>>> BuildBuildSentenceQuestionOptions(
+            List<OptionBaseDto> options,
+            LearningQuestion question,
+            string? sentence
+        )
+        {
+            if(string.IsNullOrEmpty(sentence)) return Result.Failure<List<QuestionOptionBase>>(QuestionOptionError.NoOptions);
+
+            var isSourceTypeEnglish = !string.IsNullOrEmpty(question.EnglishText);
+            var targetLanguage = isSourceTypeEnglish ? Language.vi : Language.en;
+            Console.WriteLine(targetLanguage);
+            var words = await _wordService.SplitWordsFromString(sentence, targetLanguage);
+
+            var optionList = new List<QuestionOptionBase>();
+            var position = 1;
+            foreach(var word in words)
+            {
+                var option = await _optionRepository.FindOptionThatExactlyMatches(word, targetLanguage);
+                if(option == null)
+                {
+                    var newOption = Option.Create(
+                        targetLanguage == Language.vi ? word : null, 
+                        null, 
+                        null, 
+                        targetLanguage == Language.en ? word : null);
+                    if(newOption.IsFailure) continue;
+                    option = newOption.Value;
+                    await _optionRepository.CreateOption(option);
+                }
+
+                var questionOption = _factory.Create(
+                    QuestionType.BuildSentence, question, 
+                    option, position, null, null, null, position++);
+                if(questionOption.IsFailure) return Result.Failure<List<QuestionOptionBase>>(questionOption.Error);
+                optionList.Add(questionOption.Value);
+            }
+
+            foreach(var option in options)
+            {
+                var existingOption = await _optionRepository.GetOptionById(option.OptionId);
+                if(existingOption == null) continue;
+                var questionOption = _factory.Create(QuestionType.BuildSentence, question, 
+                    existingOption, position, null, null, null, position++);
+                optionList.Add(questionOption.Value);
+            }
+
+            return optionList;
         }
     }
 }

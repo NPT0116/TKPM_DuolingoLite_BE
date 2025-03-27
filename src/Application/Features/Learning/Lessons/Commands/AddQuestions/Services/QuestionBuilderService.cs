@@ -36,10 +36,9 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
             _mediator = mediator;
         }
         public async Task<Result<LearningQuestion>> BuildQuestion(string? instruction, string? vietnameseText, 
-            string? englishText, string? image, 
-            string? audio, QuestionType type, 
-            ConfigurationDto questionConfiguration, ConfigurationDto optionConfiguration,
-            int order)
+            string? englishText, string? image, string? audio, 
+            QuestionType type, ConfigurationDto questionConfiguration, 
+            ConfigurationDto optionConfiguration, int order)
         {
             
 
