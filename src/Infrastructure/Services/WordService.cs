@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Common.Interface;
 using Application.Common.Utls;
 using Application.Features.Learning.Words.Queries.GetWordDefinition;
+using Domain.Entities.Learning.Words.Enums;
 using Infrastructure.Config;
 using Models.Enums;
 using Newtonsoft.Json;

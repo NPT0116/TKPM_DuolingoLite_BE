@@ -1,6 +1,7 @@
 using Amazon.S3.Model;
 using Application.Common.Interface;
 using Application.Interfaces;
+using Domain.Entities.Learning.Words.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
