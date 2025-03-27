@@ -47,8 +47,11 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Factory
             if(position == null) return Result.Failure<QuestionOptionBase>(QuestionOptionError.NoPositionSpecified);
             var sourceLanguage = string.IsNullOrEmpty(question.EnglishText) ? Language.vi : Language.en;
             
-            if(sourceLanguage == Language.en && option.EnglishText == null) 
-                return Result.Failure<QuestionOptionBase>(QuestionOptionError.MissingTextForBuildSentenceOption(sourceLanguage));
+            if(sourceLanguage == Language.en && option.VietnameseText == null) 
+                return Result.Failure<QuestionOptionBase>(QuestionOptionError.MissingTextForBuildSentenceOption(Language.vi));
+
+            if(sourceLanguage == Language.vi && option.EnglishText == null) 
+                return Result.Failure<QuestionOptionBase>(QuestionOptionError.MissingTextForBuildSentenceOption(Language.en));
             var createQuestionOption = BuildSentenceQuestionOption.Create(question, option, (int)position, order);
             if(createQuestionOption.IsFailure) return Result.Failure<QuestionOptionBase>(createQuestionOption.Error);
             return Result.Success<QuestionOptionBase>(createQuestionOption.Value);
