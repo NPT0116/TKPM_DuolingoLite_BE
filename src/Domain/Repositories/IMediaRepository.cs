@@ -21,5 +21,6 @@ namespace Domain.Repositories
             CancellationToken cancellationToken);
 
         Task<Result<Media>> DeleteFile(Media media);
+        Task<Media?> GetMediaByKey(string key);
     }
 }
