@@ -6,6 +6,7 @@ using Domain.Entities.Learning.Questions.QuestionOptions;
 using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
 using Domain.Entities.Learning.Questions.QuestionOptions.Validator;
 using Domain.Entities.Learning.Words.Enums;
+using Domain.Entities.Media.Constants;
 using Domain.Repositories;
 using MediatR;
 using SharedKernel;
@@ -18,27 +19,21 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
         private readonly IQuestionOptionValidator _validator;
         private readonly IOptionRepository _optionRepository;
         private readonly IWordService _wordService;
-        private readonly IMediaRepository _mediaRepository;
         private readonly ITextToSpeechService _textToSpeechService;
-        private readonly IMediator _mediator;
 
         public QuestionOptionBuilderService(
             IQuestionOptionFactory factory,
             IQuestionOptionValidator validator,
             IOptionRepository optionRepository,
             IWordService wordService,
-            IMediaRepository mediaRepository,
-            ITextToSpeechService textToSpeechService,
-            IMediator mediator
+            ITextToSpeechService textToSpeechService
         )
         {
             _factory = factory;
             _validator = validator;
             _optionRepository = optionRepository;
             _wordService = wordService;
-            _mediaRepository = mediaRepository;
             _textToSpeechService = textToSpeechService;
-            _mediator = mediator;
         }
         public async Task<Result<List<QuestionOptionBase>>> BuildQuestionOptions(
             List<OptionBaseDto> options, LearningQuestion question, 
@@ -122,33 +117,8 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                     Domain.Entities.Media.Media? audio = null;
                     if(targetLanguage == Language.en)
                     {
-                        var wordDefinitions = await _wordService.GetWordDefinition(word);
-                        foreach(var wordDefinition in wordDefinitions)
-                        {
-                            var phonetics = wordDefinition.Phonetics;
-                            var withAudio = phonetics.FirstOrDefault(p => !string.IsNullOrEmpty(p.Audio));
-                            var pAudio = withAudio!.Audio;
-                            if(withAudio != null)
-                            {
-                                var uploadedMedia = await _mediaRepository.UploadFileAsync(
-                                pAudio!, pAudio!, 
-                                Domain.Entities.Media.Enums.MediaType.Audio, 10, 
-                                DateTime.UtcNow, DateTime.UtcNow, 
-                                pAudio!, CancellationToken.None);
-
-                                if(uploadedMedia.IsSuccess) audio = uploadedMedia.Value;
-                                break;
-                            }
-                        }
-
-                        if(audio == null)
-                        {
-                            var bytes = _textToSpeechService.GenerateAudioFileFromText(word);
-                            var uploadedRequest = new MediaUploadRequest("question", bytes, word, "audio/mp3");
-                            var uploadCommand = new MediaUploadCommand(uploadedRequest);
-                            var uploadResult = await _mediator.Send(uploadCommand);
-                            if(uploadResult.IsSuccess) audio = uploadResult.Value;
-                        }
+                        var createAudio = await _textToSpeechService.GenerateMediaFromText(word, MediaConstants.Option);
+                        if(createAudio.IsSuccess) audio = createAudio.Value;
                     }
                     var newOption = Option.Create(
                         targetLanguage == Language.vi ? word : null, 

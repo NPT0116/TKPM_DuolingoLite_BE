@@ -6,6 +6,8 @@ using Application.Common.Interface;
 using Application.Features.Media.Commands.Upload;
 using Application.Interface;
 using Domain.Entities.Learning.Words;
+using Domain.Entities.Media;
+using Domain.Entities.Media.Constants;
 using Domain.Entities.Media.Enums;
 using Domain.Repositories;
 using MediatR;
@@ -16,25 +18,16 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
     {
         private readonly IWordService _wordService;
         private readonly IWordRepository _wordRepository;
-        private readonly IMediaRepository _mediaRepository;
         private readonly ITextToSpeechService _textToSpeechService;
-        private readonly IMediator _mediator;
-        private readonly IApplicationDbContext _context;
         
         public WordGeneratorService(
             IWordService wordService,
             IWordRepository wordRepository,
-            IMediaRepository mediaRepository,
-            ITextToSpeechService textToSpeechService,
-            IMediator mediator,
-            IApplicationDbContext context)
+            ITextToSpeechService textToSpeechService)
         {
             _wordService = wordService;
             _wordRepository = wordRepository;
-            _mediaRepository = mediaRepository;
             _textToSpeechService = textToSpeechService;
-            _mediator = mediator;
-            _context = context;
         }
 
         public async Task GenerateWords(string englishText)
@@ -49,50 +42,10 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                 var existingWord = await _wordRepository.FindWord(word);
                 if(existingWord != null) continue;
                 Console.WriteLine($"Generating word: {word}");
-                
-                string audio = null;
-                var wordDefinitions = await _wordService.GetWordDefinition(word);
-                
-                if(wordDefinitions != null && wordDefinitions.Any())
-                {
-                    foreach(var wordDefinition in wordDefinitions)
-                    {
-                        var phonetics = wordDefinition.Phonetics;
-                        var phoneticWithAudio = phonetics.FirstOrDefault(p => !string.IsNullOrEmpty(p.Audio));
-                        if(phoneticWithAudio == null) continue;
-                        audio = phoneticWithAudio.Audio!;
-                        break;
-                    }
-                }
 
+                var uploadedAudio = await _textToSpeechService.GenerateMediaFromText(word, MediaConstants.Word);
                 Domain.Entities.Media.Media? wordAudio = null;
-
-                if(audio != null)
-                {
-                    var uploadedWordAudio = await _mediaRepository.UploadFileAsync(audio, audio, MediaType.Audio, 10, DateTime.UtcNow, DateTime.UtcNow, audio, CancellationToken.None);
-                    if(uploadedWordAudio.IsSuccess)
-                    {
-                        await _context.SaveChangesAsync();
-                        wordAudio = uploadedWordAudio.Value;
-                    }
-                }
-                else
-                {
-                    var audioBytes = _textToSpeechService.GenerateAudioFileFromText(word);
-                    var uploadRequest = new MediaUploadRequest(
-                        string.Empty,
-                        audioBytes,
-                        word,
-                        "audio/mp3"
-                    );
-                    var uploadCommand = new MediaUploadCommand(uploadRequest);
-                    var uploadedWordAudio = await _mediator.Send(uploadCommand);
-                    if(uploadedWordAudio.IsFailure) continue;
-                    await _context.SaveChangesAsync();
-                    wordAudio = uploadedWordAudio.Value;
-                }
-
-                if(wordAudio == null) continue;
+                if(uploadedAudio.IsSuccess) wordAudio = uploadedAudio.Value;
 
                 var newWord = Word.Create(word, wordAudio!);
                 if(newWord.IsSuccess) await _wordRepository.AddWord(newWord.Value);
