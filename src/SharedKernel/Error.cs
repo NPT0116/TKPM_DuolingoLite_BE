@@ -36,6 +36,8 @@ public record Error
     public static Error Validation(string code, string description) =>
         new(code, description, ErrorType.Validation);
 
-        public static Error Forbidden(string code, string description) =>
+    public static Error Forbidden(string code, string description) =>
         new(code, description, ErrorType.Forbidden);
+    public static Error Unauthorized(string code, string description) =>
+        new(code, description, ErrorType.Unauthorized);
 }

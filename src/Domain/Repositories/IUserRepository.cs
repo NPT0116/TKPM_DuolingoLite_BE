@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Users;
+using Domain.Query.User;
+using SharedKernel;
 
 namespace Domain.Repositories
 {
@@ -21,5 +23,6 @@ namespace Domain.Repositories
 
         Task<UserProfile?> UpdateUserProfile(UserProfile userProfile);
         Task<List<UserProfile>> GetExpiredSubscriptions();
+        Task<PaginationResult<UserProfile>> GetAllUsers(GetAllUserQueryParams queryParams);
     }
 }

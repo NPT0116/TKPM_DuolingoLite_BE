@@ -4,8 +4,10 @@ using Application.Interface;
 using Domain.Entities.Learning.Courses;
 using Domain.Entities.Learning.LearningProgresses;
 using Domain.Entities.Learning.Lessons;
+using Domain.Entities.Ranking;
 using Domain.Entities.Users;
 using Domain.Repositories;
+using MediatR;
 using SharedKernel;
 
 namespace Application.Features.Learning.Lessons.Commands.UserFinishLesson;
@@ -18,7 +20,9 @@ public class UserFinishLessonCommandHandler : ICommandHandler<UserFinishLessonCo
     private readonly ICourseRepository _courseRepository;
     private readonly IApplicationDbContext _context;
     private readonly IIdentityService _identityService;
-    public UserFinishLessonCommandHandler(IUserRepository userRepository, ILearningProgressRepository learningProgressRepository, ILessonRepository lessonRepository, ICourseRepository courseRepository, IApplicationDbContext context, IIdentityService identityService)
+    private readonly IPublisher _publisher;
+    public UserFinishLessonCommandHandler(IUserRepository userRepository, ILearningProgressRepository learningProgressRepository, ILessonRepository lessonRepository, ICourseRepository courseRepository, IApplicationDbContext context, IIdentityService identityService,
+        IPublisher publisher)
     {
         _userRepository = userRepository;
         _learningProgressRepository = learningProgressRepository;
@@ -26,6 +30,7 @@ public class UserFinishLessonCommandHandler : ICommandHandler<UserFinishLessonCo
         _courseRepository = courseRepository;
         _context = context;
         _identityService = identityService;
+        _publisher = publisher;
     }
 
 
@@ -75,6 +80,10 @@ public class UserFinishLessonCommandHandler : ICommandHandler<UserFinishLessonCo
             await _learningProgressRepository.UpdateAsync(learningProgress);
             await _context.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
+            // Update cache for user ranking
+            var updateRankingEvent = new UpdateRankingEvent(userStats.ExperiencePoint,user.Id);
+            await _publisher.Publish(updateRankingEvent, cancellationToken);
+
         }
         catch (Exception e)
         {

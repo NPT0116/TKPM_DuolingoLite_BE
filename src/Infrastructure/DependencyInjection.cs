@@ -184,6 +184,7 @@ services.AddHostedService<MigrationServices>();
         
         
         services.AddScoped<ITextToSpeechService, GoogleCloudTextToSpeechService>();
+        services.AddScoped<IRankingService, RankingService>();
         services.AddHttpClient<IWordService, WordService>(client =>
         {
             client.BaseAddress = new Uri("https://api.dictionaryapi.dev/");

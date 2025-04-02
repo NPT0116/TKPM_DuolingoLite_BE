@@ -36,6 +36,7 @@ public static class CustomResults
             ErrorType.Problem => error.Code,
             ErrorType.NotFound => error.Code,
             ErrorType.Conflict => error.Code,
+            ErrorType.Unauthorized => error.Code,
             _ => "Server failure"
         };
 
@@ -65,6 +66,8 @@ public static class CustomResults
             ErrorType.Validation => StatusCodes.Status400BadRequest,
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Conflict => StatusCodes.Status409Conflict,
+            ErrorType.Forbidden => StatusCodes.Status403Forbidden,
+            ErrorType.Unauthorized => StatusCodes.Status401Unauthorized,
             _ => StatusCodes.Status500InternalServerError
         };
 

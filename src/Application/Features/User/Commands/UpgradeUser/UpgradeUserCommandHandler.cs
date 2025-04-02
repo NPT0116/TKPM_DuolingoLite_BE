@@ -37,6 +37,7 @@ public class UpgradeUserCommandHandler : ICommandHandler<UpgradeUserCommand, boo
         if (userDto is null)
             return Result.Failure<bool>(UserError.Unauthorized());
         var userProfile = await _userRepository.GetUserProfileById(userDto.Id);
+        // userProfile.Id = new Guid();
         if (userProfile is null)
             return Result.Failure<bool>(UserError.UserProfileNotFound(userDto.Id));
         var subscription = userProfile.Subscription;

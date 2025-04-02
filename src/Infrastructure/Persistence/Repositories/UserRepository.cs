@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interface;
 using Domain.Entities.Users;
+using Domain.Query.User;
 using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -87,6 +88,29 @@ namespace Infrastructure.Persistence.Repositories
             .Where(u => u.Subscription != null && u.Subscription.ExpiredDate < now)
             .ToListAsync();
         return expiredUsers;
+        }
+
+        public async Task<PaginationResult<UserProfile>> GetAllUsers(GetAllUserQueryParams queryParams)
+        {
+            var query = _context.UserProfiles
+                .Include(up => up.ProfileImage)
+                .Include(up => up.Subscription)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(queryParams.SearchKeyword))
+            {
+                query = query.Where(up => up.NickName.Contains(queryParams.SearchKeyword) || up.LastName.Contains(queryParams.SearchKeyword));
+            }
+
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalCount / queryParams.PageSize);
+            var items = await query
+                .Skip((queryParams.PageNumber - 1) * queryParams.PageSize)
+                .Take(queryParams.PageSize)
+                .OrderBy(u => u.NickName)
+                .ToListAsync();
+            return new PaginationResult<UserProfile>(items, queryParams.PageNumber, queryParams.PageSize, totalCount);
         }
     }
 }
