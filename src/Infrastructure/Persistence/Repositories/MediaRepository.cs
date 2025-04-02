@@ -30,6 +30,11 @@ namespace Infrastructure.Persistence.Repositories
             return Result.Success<Media>(media);
         }
 
+        public async Task<Media?> GetMediaByKey(string key)
+        {
+            return await _context.Medias.FirstOrDefaultAsync(m => m.FileKey == key);
+        }
+
         public async Task<Result<Media>> UploadFileAsync(string fileName, string url, MediaType mimeType, long fileSize, DateTime createdAt, DateTime updatedAt, string fileKey, CancellationToken cancellationToken)
         {
             var file = Media.Create(fileName, mimeType, fileSize, url, fileKey);

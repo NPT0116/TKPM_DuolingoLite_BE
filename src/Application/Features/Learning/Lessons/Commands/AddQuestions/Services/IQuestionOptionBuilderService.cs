@@ -10,6 +10,6 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
 {
     public interface IQuestionOptionBuilderService
     {
-        Task<Result<List<QuestionOptionBase>>> BuildQuestionOptions(List<OptionBaseDto> options, LearningQuestion question, QuestionType type);
+        Task<Result<List<QuestionOptionBase>>> BuildQuestionOptions(List<OptionBaseDto> options, LearningQuestion question, QuestionType type, string? sentence);
     }
 }

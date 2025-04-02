@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.Learning.Words.Enums;
 using SharedKernel;
 
 namespace Domain.Entities.Learning.Questions.QuestionOptions
@@ -34,5 +35,20 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions
 
         public static Error HasOptions
             => Error.Validation("HasOptions", "Pronunciation question must not have options.");
+
+        public static Error EnglishOrVitenameseTextRequired => Error.Validation(
+            "Question.EnglishOrVitenameseTextRequired",
+            "English or Vietnamese text is required."
+        );
+
+        public static Error NoPositionSpecified => Error.Validation(
+            "QuestionOptionError.NoPositionSpecified",
+            "Build sentence question option must have position"
+        );
+
+        public static Error MissingTextForBuildSentenceOption(Language language) => Error.Validation(
+            "QuestionOptionError.MissingTextForBuildSentenceOption",
+            $"Build sentence option with target language being {language} must include {language} text"
+        );
     }
 }

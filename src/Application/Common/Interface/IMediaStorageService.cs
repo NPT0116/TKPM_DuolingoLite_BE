@@ -11,5 +11,7 @@ namespace Application.Common.Interface
     {
         Task<Result<Media>> UploadFileAsync(MediaUploadRequest request, CancellationToken cancellationToken);
         Task<bool> DeleteFileAsync(string fileName, CancellationToken cancellationToken);
+        Task<bool> DeleteFileFromUrl(string url);
+        Task ScanAsync(List<string> folders, DateTime fromUtc);
     }
 }

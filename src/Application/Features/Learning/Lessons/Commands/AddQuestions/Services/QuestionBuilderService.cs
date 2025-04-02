@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Common.Interface;
-using Application.Features.Media.Commands.Upload;
-using Domain.Entities.Learning.Questions;
 using Domain.Entities.Learning.Questions.Configurations;
 using Domain.Entities.Learning.Questions.Enums;
 using Domain.Entities.Learning.Questions.QuestionOptions.Factory;
+using Domain.Entities.Media.Constants;
 using Domain.Entities.Media.Enums;
 using Domain.Repositories;
+using FluentValidation;
 using MediatR;
 using SharedKernel;
 using LearningQuestion = Domain.Entities.Learning.Questions.Question;
@@ -23,28 +19,24 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
         private readonly IMediaRepository _mediaRepository;
         private readonly IQuestionFactory _factory;
         private readonly ITextToSpeechService _textToSpeechService;
-        private readonly IMediator _mediator;
         public QuestionBuilderService(
             IMediaRepository mediaRepository,
             IQuestionFactory factory,
-            ITextToSpeechService textToSpeechService,
-            IMediator mediator)
+            ITextToSpeechService textToSpeechService)
         {
             _mediaRepository = mediaRepository;
             _factory = factory;
             _textToSpeechService = textToSpeechService;
-            _mediator = mediator;
         }
         public async Task<Result<LearningQuestion>> BuildQuestion(string? instruction, string? vietnameseText, 
-            string? englishText, string? image, 
-            string? audio, QuestionType type, 
-            ConfigurationDto questionConfiguration, ConfigurationDto optionConfiguration,
-            int order)
+            string? englishText, string? image, string? audio, 
+            QuestionType type, ConfigurationDto questionConfiguration, 
+            ConfigurationDto optionConfiguration, int order)
         {
             
 
             Domain.Entities.Media.Media? questionAudio = null;
-            if(questionConfiguration.Audio)
+            if(questionConfiguration.Audio && !string.IsNullOrEmpty(englishText))
             {
                 if(audio != null)
                 {
@@ -54,16 +46,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                 }
                 else
                 {
-                    if(englishText == null) return Result.Failure<LearningQuestion>(QuestionError.InvalidQuestionConfiguration);
-                    byte[] audioBytes = _textToSpeechService.GenerateAudioFileFromText(englishText);
-                    var uploadRequest = new MediaUploadRequest(
-                        string.Empty,
-                        audioBytes,
-                        englishText,
-                        "audio/mp3"
-                    );
-                    var uploadCommand = new MediaUploadCommand(uploadRequest);
-                    var uploadedFile = await _mediator.Send(uploadCommand);
+                    var uploadedFile = await _textToSpeechService.GenerateMediaFromText(englishText!, MediaConstants.Question);
                     if(uploadedFile.IsFailure) return Result.Failure<LearningQuestion>(uploadedFile.Error);
                     questionAudio = uploadedFile.Value;
                 }
