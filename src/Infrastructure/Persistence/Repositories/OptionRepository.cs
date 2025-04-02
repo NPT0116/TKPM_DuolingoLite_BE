@@ -28,27 +28,36 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Option?> FindOption(string? englishText, string? vietnameseText)
         {
             return await _context.Options
+                .Include(o => o.Image)
+                .Include(o => o.Audio)
                 .FirstOrDefaultAsync(o => o.EnglishText == englishText && o.VietnameseText == vietnameseText);
         }
 
         public async Task<Option?> FindOptionThatExactlyMatches(string text, Language language)
         {
             var processText = text.Trim().ToLower();
-            return await _context.Options.FirstOrDefaultAsync(
-                o => language == Language.en
-                ? o.EnglishText == processText 
-                : o.VietnameseText == processText);
+            return await _context.Options
+                .Include(o => o.Image)
+                .Include(o => o.Audio)
+                .FirstOrDefaultAsync(
+                    o => language == Language.en
+                    ? o.EnglishText == processText 
+                    : o.VietnameseText == processText);
         }
 
         public async Task<Option?> GetOptionById(Guid optionId)
         {
             return await _context.Options
+                .Include(o => o.Image)
+                .Include(o => o.Audio)
                 .FirstOrDefaultAsync(o => o.Id == optionId);
         }
 
         public async Task<List<Option>> GetOptionsByEnglishText(string englishText)
         {
             var options = await _context.Options
+                .Include(o => o.Image)
+                .Include(o => o.Audio)
                 .Where(o => o.EnglishText != null && o.EnglishText.Trim().ToLower().Contains(englishText.Trim().ToLower()))
                 .ToListAsync();
             return options;
@@ -57,6 +66,8 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<List<Option>> GetOptionsByVietnameseText(string vietnameseText)
         {
             var options = await _context.Options
+                .Include(o => o.Image)
+                .Include(o => o.Audio)
                 .Where(o => o.VietnameseText != null && o.VietnameseText.Trim().ToLower().Contains(vietnameseText.Trim().ToLower()))
                 .ToListAsync();
             return options;
