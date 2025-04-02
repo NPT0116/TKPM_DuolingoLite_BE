@@ -12,7 +12,6 @@ using Domain.Query.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel;
 using WebApi.Contracts.Requests;
 using WebApi.Extensions;
 using WebApi.Infrastructure;

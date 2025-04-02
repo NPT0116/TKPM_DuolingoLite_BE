@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Common.Utls;
 using Application.Interface;
 using Domain.Entities.Users;
 using Domain.Repositories;
@@ -30,7 +31,7 @@ namespace Application.Features.User.Queries.GetUserProfile
         {
             
             var user = await _identityService.GetCurrentUserAsync();
-            // Console.WriteLine("User: " + user);
+            PrintUtils.PrintAsJson(user);
             if (user is null)
             {
                 return Result.Failure<UserWithProfileResponseDto>(UserError.UnauthorizedUser);
