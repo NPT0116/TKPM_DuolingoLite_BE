@@ -76,6 +76,7 @@ public class QuestionDto
     public string? Image { get; set; }
     public string? Audio { get; set; }
     public int Order { get; set; }
+    public string? Sentence { get; set; } // This is for build sentence only
     public QuestionType Type { get; set; }
     public ConfigurationDto QuestionConfiguration { get; set; }
     public ConfigurationDto OptionConfiguration { get; set; }
@@ -87,6 +88,7 @@ public class QuestionDto
         string? englishText,
         string? image,
         string? audio,
+        string? sentence,
         int order,
         QuestionType type,
         ConfigurationDto questionConfiguration,
@@ -98,6 +100,7 @@ public class QuestionDto
         EnglishText = englishText;
         Image = image;
         Audio = audio;
+        Sentence = sentence;
         Order = order;
         Type = type;
         QuestionConfiguration = questionConfiguration;
@@ -112,6 +115,7 @@ public class QuestionDto
         out string? englishText,
         out string? image,
         out string? audio,
+        out string? sentence,
         out int order,
         out QuestionType type,
         out ConfigurationDto questionConfiguration,
@@ -123,6 +127,7 @@ public class QuestionDto
         englishText = EnglishText;
         image = Image;
         audio = Audio;
+        sentence = Sentence;
         order = Order;
         type = Type;
         questionConfiguration = QuestionConfiguration;

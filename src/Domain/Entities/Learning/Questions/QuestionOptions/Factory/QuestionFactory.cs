@@ -15,6 +15,36 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Factory
             string? englishText, Media.Media? image, QuestionType type, 
             Configuration questionConfiguration, Configuration optionConfiguration, int order)
         {
+            var isConfigurationValid = IsConfigurationMatching(instruction, vietnameseText, audio, englishText, image, questionConfiguration);
+            if (!isConfigurationValid) return Result.Failure<Question>(QuestionError.InvalidQuestionConfiguration);
+
+            var isAnyConfigurationEnabled = IsAnyConfigurationEnabled(questionConfiguration);
+            if (!isAnyConfigurationEnabled) return Result.Failure<Question>(QuestionError.AllPromptsNull()); 
+            
+            var validate = type switch
+            {
+                QuestionType.MultipleChoice => ValidateMultipleChoiceQuestion(questionConfiguration),
+                QuestionType.Matching => ValidateMatchingQuestion(questionConfiguration),
+                QuestionType.Pronunciation => ValidatePronunciationQuestion(questionConfiguration),
+                QuestionType.BuildSentence => ValidateBuildSentenceQuestion(questionConfiguration),
+                _ => Result.Failure<Question>(QuestionError.InvalidQuestionConfiguration)
+            };
+
+            if(validate.IsFailure) return Result.Failure<Question>(validate.Error);
+            var createQuestion = Question.Create(instruction, vietnameseText, audio, englishText, image, type, questionConfiguration, optionConfiguration, order);
+            return createQuestion;
+        }
+
+        private bool IsAnyConfigurationEnabled(Configuration configuration)
+        {
+            return configuration.Audio || configuration.EnglishText || 
+                configuration.VietnameseText || configuration.Instruction || configuration.Image;
+        }
+
+        private bool IsConfigurationMatching(
+            string? instruction, string? vietnameseText, Media.Media? audio, 
+            string? englishText, Media.Media? image, Configuration questionConfiguration)
+        {
             var imageUrl = image?.FileName;
             if (new[]
             {
@@ -24,34 +54,34 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Factory
                 (imageUrl, questionConfiguration.Image),
             }.Any(pair => (pair.Item1 == null && pair.Item2 == true) || (pair.Item1 != null && pair.Item2 == false)))
             {
-                return Result.Failure<Question>(QuestionError.InvalidQuestionConfiguration);
+                return false;
             }
+            return true;
+        }
 
-            if(type != QuestionType.Pronunciation)
+        private Result ValidateMultipleChoiceQuestion(Configuration questionConfiguration
+        )
+        {
+            return Result.Success();
+        }
+
+        private Result ValidateMatchingQuestion(Configuration questionConfiguration)
+        {
+            return Result.Success();
+        }
+
+        private Result ValidatePronunciationQuestion(Configuration questionConfiguration)
+        {
+            return Result.Success();
+        }
+
+        private Result ValidateBuildSentenceQuestion(Configuration questionConfiguration)
+        {
+            if(!(questionConfiguration.VietnameseText ^ questionConfiguration.EnglishText))
             {
-                if(optionConfiguration.Audio == false
-                   && optionConfiguration.EnglishText == false
-                   && optionConfiguration.VietnameseText == false
-                   && optionConfiguration.Instruction == false
-                   && optionConfiguration.Image == false)
-                {
-                    return Result.Failure<Question>(QuestionError.InvalidOptionConfiguration);
-                }
+                return Result.Failure(QuestionError.EnglishOrVitenameseTextRequired);
             }
-
-            var createQuestion = Domain.Entities.Learning.Questions.Question.Create(
-                instruction,
-                vietnameseText,
-                audio,
-                englishText,
-                image,
-                type,
-                questionConfiguration,
-                optionConfiguration,
-                order
-            );
-
-            return createQuestion;
+            return Result.Success();
         }
     }
 }

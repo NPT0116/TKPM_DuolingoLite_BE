@@ -17,6 +17,7 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Validator
                 QuestionType.MultipleChoice => ValidateMultipleChoice(options),
                 QuestionType.Matching => ValidateMatching(options),
                 QuestionType.Pronunciation => ValidatePronunciation(options),
+                QuestionType.BuildSentence => ValidateBuildSentence(options),
                 _ => Result.Success() // Or fail if unsupported
             };
         }
@@ -48,9 +49,17 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Validator
         private Result ValidatePronunciation(List<QuestionOptionBase> options)
         {
             if (options.Any())
-                return Result.Failure(QuestionOptionError.NoOptions);
+                return Result.Failure(QuestionOptionError.HasOptions);
 
             // Maybe later: check pronunciation logic for correctness, etc.
+            return Result.Success();
+        }
+
+        private Result ValidateBuildSentence(List<QuestionOptionBase> options)
+        {
+            if(!options.Any()) return Result.Failure(QuestionOptionError.NoOptions);
+            var invalidOption = options.FirstOrDefault(o => !(o.Option.VietnameseText == null) ^ (o.Option.EnglishText == null));
+            if(invalidOption != null) return Result.Failure(QuestionOptionError.EnglishOrVitenameseTextRequired);
             return Result.Success();
         }
     }
