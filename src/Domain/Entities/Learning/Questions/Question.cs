@@ -74,6 +74,10 @@ namespace Domain.Entities.Learning.Questions
             {
                 return Result.Failure<Question>(QuestionError.AllPromptsNull());
             }
+            if(type == QuestionType.Pronunciation && englishText == null)
+            {
+                return Result.Failure<Question>(QuestionError.EnglishTextRequired);
+            }
             return new Question(instruction, vietnameseText, audio, englishText, image, type, questionConfiguration, optionConfiguration, order);
         }
 
@@ -84,6 +88,17 @@ namespace Domain.Entities.Learning.Questions
                 throw new InvalidOperationException($"Option type does not match question type {Type}");
             }
             _options.Add(option);
+        }
+
+        public Result AddOptions(List<QuestionOptionBase> options)
+        {
+            if(!options.Any()) return Result.Failure(QuestionOptionError.NoOptions);
+            foreach(var option in options)
+            {
+                if(!IsValidOptionType(option)) return Result.Failure(QuestionOptionError.QuestionTypeNotSupported);
+            }
+            _options.AddRange(options);
+            return Result.Success();
         }
 
         private bool IsValidOptionType(QuestionOptionBase option)

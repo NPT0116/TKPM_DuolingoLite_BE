@@ -1,4 +1,5 @@
 using Amazon.S3.Model;
+using Application.Common.Interface;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,9 @@ namespace WebApi.Controllers.GeminiService
     [ApiController]
     public class GeminiController : ControllerBase
     {
-        private readonly IAiService _aiService;
+        private readonly IWordService _aiService;
 
-        public GeminiController(IAiService aiService)
+        public GeminiController(IWordService aiService)
         {
             _aiService = aiService;
         }

@@ -4,4 +4,4 @@ using SharedKernel;
 
 namespace Application.Abstractions.Messaging;
 
-public interface IQuery<TResponse> : IRequest<Result<TResponse>>;
+public interface IPageQuery<TResponse> : IRequest<Result<PaginationResult<TResponse>>>;

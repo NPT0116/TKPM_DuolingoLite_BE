@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Application.Features.Heart.Commands.LoseHeart;
 using Application.Features.Heart.Queries.GetUserHeart;
 using Application.Features.User.Commands.Common;
+using Application.Features.User.Commands.UpgradeUser;
 using Application.Features.User.Commands.UserProfile.UploadProfile;
+using Application.Features.User.Queries.GetAllUser;
+using Domain.Query.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +70,23 @@ namespace WebApi.Controllers.User
         public async Task<IActionResult> GetUserCurrentHeart()
         {
             var query = new GetUserHeartQuery();
+            var result = await _mediator.Send(query);
+
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpPost("upgrade")]
+        [Authorize]
+        public async Task<IActionResult> UpgradeUser([FromBody] UpgradeUserCommandDto dto)
+        {
+            var command = new UpgradeUserCommand(dto);
+            var result = await _mediator.Send(command);
+
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUserQueryParams queryParams)
+        {
+            var query = new GetAllUserQuery(queryParams);
             var result = await _mediator.Send(query);
 
             return result.Match(Ok, CustomResults.Problem);

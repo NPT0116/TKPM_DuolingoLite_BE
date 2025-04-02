@@ -49,6 +49,28 @@ namespace Domain.Entities.Users
         {
             ProfileImage = newProfileImage;
         }
+        public void UpdateSubscription(Subscription newSubscription)
+        {
+            Subscription = newSubscription;
+        }
+
+        public bool IsSubscribedValid()
+        {
+            if (Subscription == null)
+                return false;
+            else{
+                if (Subscription.IsExpired )
+                    return false;
+                else
+                    return true;
+            }
+        }
+        public Subscription RemoveSubscription()
+        {
+            var subscription = Subscription;
+            Subscription = null;
+            return subscription;
+        }
     }
 
 }

@@ -24,5 +24,10 @@ namespace Domain.Entities.Learning.Questions
             "Question.InvalidOptionConfiguration",
             "Invalid option configuration."
         );
+
+        public static Error EnglishTextRequired => Error.Validation(
+            "Question.EnglishTextRequired",
+            "English text is required in pronunication question."
+        );
     }
 }

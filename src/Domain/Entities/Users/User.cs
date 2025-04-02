@@ -61,5 +61,21 @@ namespace Domain.Entities.Users
 
             return new User(nickName, emailResult.Value, firstName, lastName, dateTimeProvider);
         }
+        public void UpgradeUser(Subscription subscription)
+        {
+            Subscription = subscription;
+        }
+        public bool IsSubscribed()
+        {
+            if (Subscription == null)
+                return false;
+            else{
+                if (Subscription.IsExpired )
+                    return false;
+                else
+                    return true;
+            }
+        }
+        
     }
 }
