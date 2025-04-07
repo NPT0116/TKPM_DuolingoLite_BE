@@ -1524,7 +1524,7 @@
           "EnglishText": null,
           "Type": "Matching",
           "Image": null,
-          "Order": 3,
+          "Order": 5,
           "Audio": null,
           "QuestionConfiguration": {
             "Audio": false,
@@ -1594,7 +1594,7 @@
           "EnglishText": null,
           "Type": "BuildSentence",
           "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6d99bc8306bdaacc3c8acc911214c557",
-          "Order": 5,
+          "Order": 6,
           "Audio": null,
           "QuestionConfiguration": {
             "Audio": false,
