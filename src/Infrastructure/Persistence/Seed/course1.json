@@ -1,0 +1,859 @@
+{
+  "Name": "English for Beginners level 2",
+  "Level": 2,
+  "NextCourse": null,
+  "Lessons": [
+    {
+      "Title": "Lesson 1",
+      "XpEarned": 100,
+      "Order": 1,
+      "Questions": [
+        {
+          "Instruction": "Từ vựng mới",
+          "VietnameseText": "Đâu là cà phê?",
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 1,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": true
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Cà phê",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-uk.mp3",
+              "EnglishText": "Coffee",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Trà",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3",
+              "EnglishText": "Tea",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Nước",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
+              "EnglishText": "Water",
+              "IsCorrect": false
+            }
+          ]
+        },
+        {
+          "Instruction": "Từ vựng mới",
+          "VietnameseText": "Đâu là nước?",
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 2,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": true
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Nước",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
+              "EnglishText": "Water",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Trà",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3",
+              "EnglishText": "Tea",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Cà phê",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
+              "EnglishText": "Coffee",
+              "IsCorrect": false
+            }
+          ]
+        },
+        {
+          "Instruction": "Bạn nghe được gì?",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 3,
+          "Audio": "https://duolingo-lite.s3.amazonaws.com/sea_20250302095518733.mp3",
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": null,
+              "Image": null,
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/sea_20250302095518733.mp3",
+              "EnglishText": "sea",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": null,
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/say-us.mp3",
+              "EnglishText": "say",
+              "IsCorrect": false
+            }
+          ]
+        },
+        {
+          "Instruction": "Bạn nghe được gì?",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 4,
+          "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/go-1-au.mp3",
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": null,
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/got-au.mp3",
+              "EnglishText": "got",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": null,
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/go-1-au.mp3",
+              "EnglishText": "go",
+              "IsCorrect": true
+            }
+          ]
+        },
+        {
+          "Instruction": "Từ vựng mới",
+          "VietnameseText": "Đâu là trà?",
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 5,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": true
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Nước",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
+              "EnglishText": "Water",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Trà",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-us.mp3",
+              "EnglishText": "Tea",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "Cà phê",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
+              "EnglishText": "Coffee",
+              "IsCorrect": false
+            }
+          ]
+        },
+        {
+          "Instruction": "Viết lại bằng tiếng Việt",
+          "VietnameseText": null,
+          "EnglishText": "Hello",
+          "Type": "BuildSentence",
+          "Image": null,
+          "Order": 6,
+          "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3",
+          "Words": [
+            {
+              "Content": "Hello",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3",
+              "Definition": "used as a greeting when you meet somebody, in an email, when you answer the phone or when you want to attract somebody’s attention"
+            }
+          ],
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "Cà phê",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-us.mp3",
+              "EnglishText": "Coffee",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "Nước",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3",
+              "EnglishText": "Water",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "Xin",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "cà",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "chào",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 2
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "và",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            }
+          ]
+        },
+        {
+          "Instruction": "Viết lại bằng tiếng Việt",
+          "VietnameseText": null,
+          "EnglishText": "coffee and tea",
+          "Type": "BuildSentence",
+          "Image": null,
+          "Order": 7,
+          "Audio": "https://duolingo-lite.s3.amazonaws.com/coffee-and-tea_20250302095620999.mp3",
+          "Words": [
+            {
+              "Content": "coffee",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/coffee-uk.mp3",
+              "Definition": "A beverage made by infusing the beans of the coffee plant in hot water."
+            },
+            {
+              "Content": "and",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/and-us.mp3",
+              "Definition": "also; in addition to"
+            },
+            {
+              "Content": "tea",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/tea-1-au.mp3",
+              "Definition": " a hot drink made by pouring boiling water onto tea leaves. It may be drunk with milk or lemon and/or sugar added."
+            }
+          ],
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "chào",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "sữa",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "nước",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "và",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 3
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "phê",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 2
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "trà",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 4
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "xin",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "cà",
+              "Image": null,
+              "Audio": null,
+              "EnglishText": null,
+              "Order": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "Lesson 2",
+      "XpEarned": 100,
+      "Order": 2,
+      "Questions": [
+        {
+          "Instruction": "Đọc câu này",
+          "VietnameseText": null,
+          "EnglishText": "Goodbye, have a nice day!",
+          "Type": "Pronunciation",
+          "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/3749d548da7d349c89c158483beaff29",
+          "Order": 1,
+          "Words": [
+            {
+              "Content": "Goodbye",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/goodbye-us.mp3",
+              "Definition": "used when you are leaving somebody or when somebody else is leaving"
+            },
+            {
+              "Content": "have",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/have-au.mp3",
+              "Definition": "To possess, own."
+            },
+            {
+              "Content": "a",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/a-1-us.mp3",
+              "Definition": "used before countable or singular nouns referring to people or things that have not already been mentioned"
+            },
+            {
+              "Content": "nice",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/nice-us.mp3",
+              "Definition": "pleasant or attractive"
+            },
+            {
+              "Content": "day",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/day-us.mp3",
+              "Definition": "a period of 24 hours"
+            }
+          ],
+          "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/goodbye-have-a-nice-day_20250302095655536.mp3",
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": true
+          },
+          "OptionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": []
+        },
+        {
+          "Instruction": "Chọn cặp từ",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "Matching",
+          "Image": null,
+          "Order": 2,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": true,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "Matching",
+              "VietnameseText": "thực đơn",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/016b7b168e175683396980bdcf7cf0e0",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/menu-us.mp3",
+              "EnglishText": "menu",
+              "SourceType": "VietnameseText",
+              "TargetType": "EnglishText"
+            },
+            {
+              "Type": "Matching",
+              "VietnameseText": "giàu",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/rich-us.mp3",
+              "EnglishText": "rich",
+              "SourceType": "VietnameseText",
+              "TargetType": "EnglishText"
+            },
+            {
+              "Type": "Matching",
+              "VietnameseText": "bác sĩ",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/doctor-uk.mp3",
+              "EnglishText": "doctor",
+              "SourceType": "VietnameseText",
+              "TargetType": "EnglishText"
+            },
+            {
+              "Type": "Matching",
+              "VietnameseText": "mèo",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/cat-uk.mp3",
+              "EnglishText": "cat",
+              "SourceType": "VietnameseText",
+              "TargetType": "EnglishText"
+            },
+            {
+              "Type": "Matching",
+              "VietnameseText": "nước Mỹ",
+              "Image": null,
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/america_20250302095722012.mp3",
+              "EnglishText": "America",
+              "SourceType": "VietnameseText",
+              "TargetType": "EnglishText"
+            }
+          ]
+        },
+        {
+          "Instruction": "Nhấn vào những gì bạn nghe được",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "BuildSentence",
+          "Image": null,
+          "Order": 3,
+          "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/check-please_20250302095743150.mp3",
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "nhà hàng",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
+              "EnglishText": "restaurant",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "chào buổi tối",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/good%20evening-uk.mp3",
+              "EnglishText": "good evening",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "nhiều hơn",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/more-uk.mp3",
+              "EnglishText": "more",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "bánh pizza",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3",
+              "EnglishText": "pizzas",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "kiểm tra",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/check-us.mp3",
+              "EnglishText": "check",
+              "Order": 1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "vui lòng",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/please-uk.mp3",
+              "EnglishText": "please",
+              "Order": 2
+            }
+          ]
+        },
+        {
+          "Instruction": "Đâu là \"bánh pizza\"?",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 4,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": true
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "nhà hàng",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
+              "EnglishText": "restaurant",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "bánh pizza",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/ecb790ef1416c28702714e7b27cf4fb4",
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/pizzas_20250302095804131.mp3",
+              "EnglishText": "pizzas",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "cái bàn",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/table-au.mp3",
+              "EnglishText": "table",
+              "IsCorrect": false
+            }
+          ]
+        },
+        {
+          "Instruction": "Viết lại bằng tiếng Anh",
+          "VietnameseText": "Vâng, cho hai người",
+          "EnglishText": null,
+          "Type": "BuildSentence",
+          "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+          "Order": 5,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": true,
+            "Instruction": true,
+            "Image": true
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "cho",
+              "Image": null,
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/for_20250302095840359.mp3",
+              "EnglishText": "for",
+              "Order": 2
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "cho một",
+              "Image": null,
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/for-one_20250302095917894.mp3",
+              "EnglishText": "for one",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "hai",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/two-uk.mp3",
+              "EnglishText": "two",
+              "Order": 3
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "ngày mới tốt lành",
+              "Image": null,
+              "Audio": "https://duolingo-lite.s3.amazonaws.com/learning/have-a-nice-day_20250302095939207.mp3",
+              "EnglishText": "have a nice day",
+              "Order": -1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "chào buổi sáng",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/good%20morning-uk.mp3",
+              "EnglishText": "good morning",
+              "Order": 2
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "vâng",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/yes.mp3",
+              "EnglishText": "yes",
+              "Order": 1
+            },
+            {
+              "Type": "BuildSentence",
+              "VietnameseText": "đường",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/sugar-uk.mp3",
+              "EnglishText": "sugar",
+              "Order": -1
+            }
+          ]
+        },
+        {
+          "Instruction": "Đâu là \"bia\"?",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 6,
+          "Audio": null,
+          "QuestionConfiguration": {
+            "Audio": false,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": true
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "nhà hàng",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/4bbb53300bc16fb800a0d5e914d01d3f",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/restaurant-uk.mp3",
+              "EnglishText": "restaurant",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "cái bàn",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/0ccaf9996d1d602017527e07206a6022",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/table-au.mp3",
+              "EnglishText": "table",
+              "IsCorrect": false
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "bia",
+              "Image": "https://d2pur3iezf4d1j.cloudfront.net/images/2dec4af32d8151fb1af50a25d436bba6",
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/beer-1-au.mp3",
+              "EnglishText": "beer",
+              "IsCorrect": true
+            }
+          ]
+        },
+        {
+          "Instruction": "Bạn nghe được gì?",
+          "VietnameseText": null,
+          "EnglishText": null,
+          "Type": "MultipleChoice",
+          "Image": null,
+          "Order": 7,
+          "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
+          "QuestionConfiguration": {
+            "Audio": true,
+            "EnglishText": false,
+            "VietnameseText": false,
+            "Instruction": true,
+            "Image": false
+          },
+          "OptionConfiguration": {
+            "Audio": true,
+            "EnglishText": true,
+            "VietnameseText": false,
+            "Instruction": false,
+            "Image": false
+          },
+          "Options": [
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "thời gian",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/time-au.mp3",
+              "EnglishText": "time",
+              "IsCorrect": true
+            },
+            {
+              "Type": "MultipleChoice",
+              "VietnameseText": "đồng xu",
+              "Image": null,
+              "Audio": "https://api.dictionaryapi.dev/media/pronunciations/en/dime-au.mp3",
+              "EnglishText": "dime",
+              "IsCorrect": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
