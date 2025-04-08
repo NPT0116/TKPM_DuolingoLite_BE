@@ -6,5 +6,5 @@ namespace Domain.Repositories;
 public interface IQuestionRepository
 {
     Task<Question?> GetQuestionByIdAsync(Guid id);
-
+    Task<List<Question>> GetQuestionsThatUseOption(Guid optionId);
 }

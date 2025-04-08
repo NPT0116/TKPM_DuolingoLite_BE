@@ -23,5 +23,21 @@ namespace Domain.Entities.Learning.Questions.Options
         public static Error OptionAudioRequiresEnglishText() => Error.Conflict(
             "OptionError.OptionAudioRequiresEnglishText", 
             "Option audio requires English text");
+
+        public static Error VietnameseTextInUsed => Error.Conflict(
+            "OptionError.VietnameseTextInUsed", 
+            "Vietnamese text is used by at least 1 question"); 
+
+        public static Error EnglishTextInUsed => Error.Conflict(
+            "OptionError.EnglishTextInUsed", 
+            "English text is used by at least 1 question");
+
+        public static Error AudioInUsed => Error.Conflict(
+            "OptionError.AudioInUsed", 
+            "Audio is used by at least 1 question");
+
+        public static Error ImageInUsed => Error.Conflict(
+            "OptionError.ImageInUsed", 
+            "Image is used by at least 1 question");       
     }
 }

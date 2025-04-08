@@ -36,6 +36,14 @@ namespace Domain.Entities.Learning.Questions.Options
             // }
 
             return Result.Success(new Option(vietnameseText, image, audio, englishText));
+        }
+
+        public void Update(string? vietnameseText, Media.Media? image, Media.Media? audio, string? englishText)
+        {
+            VietnameseText = vietnameseText;
+            Image = image;
+            Audio = audio;
+            EnglishText = englishText;
         }        
     }
 }
