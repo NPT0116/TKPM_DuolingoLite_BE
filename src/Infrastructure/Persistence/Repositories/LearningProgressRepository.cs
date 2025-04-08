@@ -20,6 +20,11 @@ public class LearningProgressRepository : ILearningProgressRepository
         return learningProgress;
     }
 
+    public async Task<int> GetEnrolledUserCountForLessonAsync(Guid courseId, int lessonOrder)
+    {
+        return await _context.LearningProgresses.CountAsync(x => x.Course.Id == courseId && x.LessonOrder >= lessonOrder);
+    }
+
     public async Task<LearningProgress?> GetLearningProgressByIdAsync(Guid id)
     {
        var lp =  await _context.LearningProgresses.FirstOrDefaultAsync(x => x.Id == id);

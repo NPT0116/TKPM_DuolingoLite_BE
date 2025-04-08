@@ -49,5 +49,32 @@ namespace Domain.Entities.Learning.Lessons
         {
             _questions.Add(question);
         }
+
+        public Result SetTitle(string title)
+        {
+            if(string.IsNullOrEmpty(title))
+            {
+                return Result.Failure(LessonError.TitleIsRequired());
+            }
+
+            Title = title;
+            return Result.Success();
+        }
+
+        public Result SetXpEarned(int xpEarned)
+        {
+            if(xpEarned < 0)
+            {
+                return Result.Failure(LessonError.XpEarnedMustBeGreaterThanZero());
+            }
+
+            XpEarned = xpEarned;
+            return Result.Success();
+        }
+
+        public void SetOrder(int order)
+        {
+            Order = order;
+        }
     }
 }

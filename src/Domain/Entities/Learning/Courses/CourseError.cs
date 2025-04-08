@@ -29,5 +29,10 @@ namespace Domain.Entities.Learning.Courses
             "Course.NoLessonInCourse",
             "Course has no lesson"
         );
+
+        public static Error QuestionWithOrderNotFound(int order, Guid courseId) => Error.NotFound(
+            "Course.QuestionWithOrderNotFound",
+            $"Question with order {order} not found in course {courseId}"
+        );
     }
 }

@@ -51,10 +51,19 @@ namespace Domain.Entities.Learning.Courses
         public void RemoveLesson(Lesson lesson)
         {
             _lessons.Remove(lesson);
+            for(int i = 0; i < _lessons.Count; i++)
+            {
+                _lessons[i].SetOrder(i + 1);
+            }
         }
         public Lesson GetLessonByOrder(int order)
         {
             return _lessons.FirstOrDefault(x => x.Order == order);
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
         }
     }
 }
