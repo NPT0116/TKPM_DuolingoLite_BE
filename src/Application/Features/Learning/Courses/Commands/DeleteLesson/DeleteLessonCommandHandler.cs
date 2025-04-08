@@ -50,6 +50,12 @@ namespace Application.Features.Learning.Courses.Commands.DeleteLesson
                 return Result.Failure(LessonError.LessonHasBeenLearnedByUser(request.courseId, request.lessonOrder));
             }
 
+            var userTakingCourseCount = await _courseRepository.GetUserTakingCourseCount(request.courseId);
+            if(userTakingCourseCount > 0)
+            {
+                return Result.Failure(CourseError.CannotAddLessonToTakenCourse(request.courseId));
+            }
+
             course.RemoveLesson(lesson);
             await _context.SaveChangesAsync();
 

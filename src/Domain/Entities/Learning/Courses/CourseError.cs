@@ -34,5 +34,10 @@ namespace Domain.Entities.Learning.Courses
             "Course.QuestionWithOrderNotFound",
             $"Question with order {order} not found in course {courseId}"
         );
+
+        public static Error CannotAddLessonToTakenCourse(Guid courseId) => Error.Conflict(
+            "Course.CannotAddLessonToTakenCourse",
+            $"Cannot add a new lesson to course {courseId} because it has already been taken."
+        );
     }
 }

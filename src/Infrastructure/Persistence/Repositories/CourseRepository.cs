@@ -57,5 +57,10 @@ namespace Infrastructure.Persistence.Repositories
         {
             return await _context.Courses.CountAsync();
         }
+
+        public async Task<int> GetUserTakingCourseCount(Guid courseId)
+        {
+            return await _context.LearningProgresses.CountAsync(x => x.Course.Id == courseId);
+        }
     }
 }
