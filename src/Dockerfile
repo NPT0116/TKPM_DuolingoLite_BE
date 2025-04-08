@@ -69,6 +69,8 @@ COPY --from=publish /app/publish .
 USER root
 RUN mkdir -p /Infrastructure/Persistence/Seed
 COPY --from=build /src/Infrastructure/Persistence/Seed/course.json /Infrastructure/Persistence/Seed/course.json
+COPY --from=build /src/Infrastructure/Persistence/Seed/course1.json /Infrastructure/Persistence/Seed/course1.json
+COPY --from=build /src/Infrastructure/Persistence/Seed/course2.json /Infrastructure/Persistence/Seed/course2.json
 
 # Chuyển lại về user không phải root (nếu cần)
 USER $APP_UID
