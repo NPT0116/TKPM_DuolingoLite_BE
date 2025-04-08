@@ -1,4 +1,5 @@
 using Domain.Entities.Learning.Questions;
+using Microsoft.VisualBasic;
 using SharedKernel;
 
 namespace Domain.Entities.Learning.Lessons
@@ -76,5 +77,32 @@ namespace Domain.Entities.Learning.Lessons
         {
             Order = order;
         }
+
+        public Result RemoveQuestion(int questionOrder)
+        {
+            if(questionOrder < 1 || questionOrder > _questions.Count)
+            {
+                return Result.Failure(LessonError.QuestionOrderNotFound(questionOrder, Id));
+            }
+
+            _questions.RemoveAt(questionOrder - 1);
+            
+            for(var i = 0; i < _questions.Count; i++)
+            {
+                _questions[i].SetOrder(i + 1);
+            }
+
+            return Result.Success();
+        }
+
+        public Result<Question> GetQuestionByOrder(int questionOrder)
+        {
+            if(questionOrder < 1 || questionOrder > _questions.Count)
+            {
+                return Result.Failure<Question>(LessonError.QuestionOrderNotFound(questionOrder, Id));
+            }
+
+            return Result.Success(_questions[questionOrder - 1]);
+        } 
     }
 }

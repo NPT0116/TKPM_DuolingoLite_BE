@@ -13,5 +13,7 @@ namespace Domain.Repositories
         Task<SpacedRepetitionRecord?> AddAsync(SpacedRepetitionRecord record);
         Task UpdateAsync(SpacedRepetitionRecord record);
         Task<bool> ExistsAsync(Guid userId, Guid questionId);
+        Task<int> GetSpacedRepetitionRecordCountForQuestionAsync(Guid questionId);
+
     }
 } 

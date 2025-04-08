@@ -117,5 +117,10 @@ namespace Domain.Entities.Learning.Questions
         {
             _words.Add(word);
         }
+
+        public void SetOrder(int order)
+        {
+            Order = order;
+        }
     }
 }

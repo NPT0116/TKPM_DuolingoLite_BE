@@ -16,5 +16,13 @@ namespace Domain.Entities.Learning.Lessons
             "Lesson.LessonHasBeenLearnedByUser",
             $"Can not delete lesson {lessonOrder} in course {courseId} because it has already been learned by a user"
         );
+        public static Error QuestionOrderNotFound(int order, Guid lessonId) => Error.NotFound(
+            "Lesson.QuestionOrderNotFound",
+            $"Question with order {order} not found in lesson {lessonId}"
+        );
+        public static Error QuestionHasBeenUsedInSpacedRepetition(int order, Guid lessonId) => Error.Conflict(
+            "Lesson.QuestionHasBeenUsedInSpacedRepetition",
+            $"Question with order {order} in lesson {lessonId} has been used in spaced repetition"
+        );
     }
 }
