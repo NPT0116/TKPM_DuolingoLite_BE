@@ -15,5 +15,6 @@ namespace Domain.Repositories
         Task<List<Option>> GetOptionsByEnglishText(string englishText);
         Task<List<Option>> GetOptionsByVietnameseText(string vietnameseText);
         Task<Option?> FindOptionThatExactlyMatches(string text, Language language);
+        void DeleteOption(Option option);
     }
 }

@@ -38,6 +38,11 @@ namespace Domain.Entities.Learning.Questions.Options
 
         public static Error ImageInUsed => Error.Conflict(
             "OptionError.ImageInUsed", 
-            "Image is used by at least 1 question");       
+            "Image is used by at least 1 question");
+
+        public static Error OptionHasBeenUsed => Error.Conflict(
+            "Option.OptionHasBeenUsed",
+            "Can not delete this option because it is used by some questions"
+        );       
     }
 }

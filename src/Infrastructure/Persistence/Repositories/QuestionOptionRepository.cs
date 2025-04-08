@@ -20,4 +20,9 @@ public class QuestionOptionRepository : IQuestionOptionRepository
         .Include(qo => qo.Question).ThenInclude(q => q.Audio)
         .Where(qo => qo.Question.Id == questionId).ToListAsync();
     }
+
+    public async Task<int> GetQuestionsCountByOptionAsync(Guid optionId)
+    {
+        return await _context.QuestionOptions.CountAsync(q => q.Option.Id == optionId);
+    }
 }
