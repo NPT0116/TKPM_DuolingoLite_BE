@@ -9,7 +9,7 @@ public static class UserError
         "Users.NotFound",
         $"The user with the Id = '{userId}' was not found");
 
-    public static Error Unauthorized() => Error.Failure(
+    public static Error Unauthorized() => Error.Unauthorized(
         "Users.Unauthorized",
         "You are not authorized to perform this action.");
 

@@ -52,7 +52,7 @@ namespace Domain.Entities.Learning.Questions.QuestionOptions.Factory
                 (vietnameseText, questionConfiguration.VietnameseText),
                 (englishText, questionConfiguration.EnglishText),
                 (imageUrl, questionConfiguration.Image),
-            }.Any(pair => (pair.Item1 == null && pair.Item2 == true) || (pair.Item1 != null && pair.Item2 == false)))
+            }.Any(pair => (string.IsNullOrEmpty(pair.Item1)) ^ (pair.Item2 == false)))
             {
                 return false;
             }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Learning.Questions;
@@ -94,12 +95,18 @@ namespace Domain.Entities.Learning.SpacedRepetition
                 else
                 {
                     // For repetition count > 2, use the formula: interval = previous_interval * EF
-                    int previousInterval = (int)Math.Round((NextReview - LastReview).TotalDays);
+                    int previousInterval = (int)Math.Round((NextReview - LastReview).TotalMinutes);
                     interval = (int)Math.Round(previousInterval * EasinessFactor);
                 }
                 
                 // NextReview = now.AddDays(interval);
+                if (interval <= 0)
+                {
+                    Console.WriteLine(interval);
+                    interval = 5;
+                }
                 NextReview = now.AddMinutes(interval);
+
             }
             else
             {

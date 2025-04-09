@@ -7,10 +7,11 @@ using Application.Features.Heart.Queries.GetUserHeart;
 using Application.Features.User.Commands.Common;
 using Application.Features.User.Commands.UpgradeUser;
 using Application.Features.User.Commands.UserProfile.UploadProfile;
+using Application.Features.User.Queries.GetAllUser;
+using Domain.Query.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel;
 using WebApi.Contracts.Requests;
 using WebApi.Extensions;
 using WebApi.Infrastructure;
@@ -78,6 +79,14 @@ namespace WebApi.Controllers.User
         {
             var command = new UpgradeUserCommand(dto);
             var result = await _mediator.Send(command);
+
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUserQueryParams queryParams)
+        {
+            var query = new GetAllUserQuery(queryParams);
+            var result = await _mediator.Send(query);
 
             return result.Match(Ok, CustomResults.Problem);
         }
