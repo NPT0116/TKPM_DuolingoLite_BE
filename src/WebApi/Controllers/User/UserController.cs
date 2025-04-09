@@ -8,6 +8,7 @@ using Application.Features.User.Commands.Common;
 using Application.Features.User.Commands.UpgradeUser;
 using Application.Features.User.Commands.UserProfile.UploadProfile;
 using Application.Features.User.Queries.GetAllUser;
+using Application.Features.User.Queries.GetCourseUser;
 using Domain.Query.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -86,6 +87,14 @@ namespace WebApi.Controllers.User
         public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUserQueryParams queryParams)
         {
             var query = new GetAllUserQuery(queryParams);
+            var result = await _mediator.Send(query);
+
+            return result.Match(Ok, CustomResults.Problem);
+        }
+        [HttpGet("registered-course")]
+        public async Task<IActionResult> GetRegisteredCourse()
+        {
+            var query = new GetCourseUserQuery();
             var result = await _mediator.Send(query);
 
             return result.Match(Ok, CustomResults.Problem);

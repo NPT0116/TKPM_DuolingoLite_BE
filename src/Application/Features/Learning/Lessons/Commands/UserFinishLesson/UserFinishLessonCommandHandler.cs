@@ -46,7 +46,7 @@ public class UserFinishLessonCommandHandler : ICommandHandler<UserFinishLessonCo
         {
             return Result.Failure<UserFinishLessonResponseDto>(UserError.NotFound(user.Id));
         }
-        var learningProgress = await _learningProgressRepository.GetLearningProgressByUserIdAsync(user.Id);
+        var learningProgress = await _learningProgressRepository.GetLearningProgressByUserIdAndCourseIdAsync(user.Id, request.UserFinishLessonDto.CourseId);
         if (learningProgress == null)
         {
             return Result.Failure<UserFinishLessonResponseDto>(LearningProgressError.LearningProgresssForUserNotFound(user.Id));
