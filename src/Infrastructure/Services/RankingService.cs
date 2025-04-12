@@ -31,22 +31,25 @@ public class RankingService : IRankingService
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Ranking>(cachedRanking);
         }
 
-        var ranking = await _context.UserStats
-            .OrderByDescending(x => x.ExperiencePoint)
-            .Take(Top)
-            .ToListAsync();
-        var listUserRanking = new List<UserRanking>();
-        for (int i = 0; i < ranking.Count; i++)
-        {
-            var userStat = ranking[i];
-            var rank = i + 1;
-            var user = await _context.UserProfiles.FirstOrDefaultAsync(x => x.UserId == userStat.UserId);
-            if (user != null)
-            {
-                var userRanking = new UserRanking(userStat.UserId, rank, user.NickName, userStat.ExperiencePoint);
-                listUserRanking.Add(userRanking);
-            }
-        }
+var ranking = await _context.UserStats
+    .Join(_context.UserProfiles,
+          stat => stat.UserId,
+          profile => profile.UserId,
+          (stat, profile) => new { Stat = stat, Profile = profile })
+    .OrderByDescending(x => x.Stat.ExperiencePoint)
+    .ThenBy(x => x.Profile.NickName)
+    .Take(Top)
+    .ToListAsync();
+
+var listUserRanking = new List<UserRanking>();
+for (int i = 0; i < ranking.Count; i++)
+{
+    var entry = ranking[i];
+    var rank = i + 1;
+    var userRanking = new UserRanking(entry.Stat.UserId, rank, entry.Profile.NickName, entry.Stat.ExperiencePoint);
+    listUserRanking.Add(userRanking);
+}
+
         var result = new Ranking(Top)
         {
             UserRankings = listUserRanking
