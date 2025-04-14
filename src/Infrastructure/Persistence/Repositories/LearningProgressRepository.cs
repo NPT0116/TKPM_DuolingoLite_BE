@@ -1,4 +1,5 @@
 using System;
+using Domain.Entities.Learning.Courses;
 using Domain.Entities.Learning.LearningProgresses;
 using Domain.Repositories;
 using Infrastructure.Data;
@@ -20,9 +21,20 @@ public class LearningProgressRepository : ILearningProgressRepository
         return learningProgress;
     }
 
+
     public async Task<int> GetEnrolledUserCountForLessonAsync(Guid courseId, int lessonOrder)
     {
         return await _context.LearningProgresses.CountAsync(x => x.Course.Id == courseId && x.LessonOrder >= lessonOrder);
+    }
+
+    public Task<List<LearningProgress>> GetCoursesByUserIdAsync(Guid userId)
+    {
+        var learningProgresses = _context.LearningProgresses
+            .Include(x => x.Course)
+            .Include(x => x.Course.Lessons)
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
+        return learningProgresses;
     }
 
     public async Task<LearningProgress?> GetLearningProgressByIdAsync(Guid id)
