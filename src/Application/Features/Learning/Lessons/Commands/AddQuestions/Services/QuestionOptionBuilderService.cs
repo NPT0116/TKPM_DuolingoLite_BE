@@ -143,7 +143,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions.Services
                 var existingOption = await _optionRepository.GetOptionById(option.OptionId);
                 if(existingOption == null) continue;
                 var questionOption = _factory.Create(QuestionType.BuildSentence, question, 
-                    existingOption, position, null, null, null, position++);
+                    existingOption, -1, null, null, null, -1);
                 optionList.Add(questionOption.Value);
             }
 

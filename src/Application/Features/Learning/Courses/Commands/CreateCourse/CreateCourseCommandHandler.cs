@@ -24,11 +24,11 @@ namespace Application.Features.Learning.Courses
             var courseCount = await _courseRepository.GetCourseCount();
             var level = courseCount + 1;
 
-            var courseAtLevel = await _courseRepository.GetCourseByLevel(level);
-            if(courseAtLevel != null)
-            {
-                return Result.Failure<Course>(CourseError.CourseLevelMustBeUnique(level));
-            }
+            // var courseAtLevel = await _courseRepository.GetCourseByLevel(level);
+            // if(courseAtLevel != null)
+            // {
+            //     return Result.Failure<Course>(CourseError.CourseLevelMustBeUnique(level));
+            // }
 
             var courseWithTheSameName = await _courseRepository.GetCourseByName(request.CreateCourseDto.Name);
             if(courseWithTheSameName != null)
@@ -44,13 +44,13 @@ namespace Application.Features.Learning.Courses
                 return Result.Failure<Course>(course.Error);
             }
 
-            if(courseCount > 0)
-            {
-                var latestCourse = await _courseRepository.GetCourseByLevel(courseCount);
-                if(latestCourse != null)
-                    latestCourse.SetNextCourse(course.Value);
+            // if(courseCount > 0)
+            // {
+            //     var latestCourse = await _courseRepository.GetCourseByLevel(courseCount);
+            //     if(latestCourse != null)
+            //         latestCourse.SetNextCourse(course.Value);
 
-            }
+            // }
 
             await _courseRepository.CreateCourse(course.Value);
             await _context.SaveChangesAsync(cancellationToken);

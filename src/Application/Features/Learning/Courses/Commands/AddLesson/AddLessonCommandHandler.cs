@@ -28,6 +28,12 @@ namespace Application.Features.Learning.Courses.AddLesson
                 return Result.Failure<Lesson>(CourseError.CourseNotFound(request.CourseId));
             }
 
+            var userTakingCourseCount = await _courseRepository.GetUserTakingCourseCount(request.CourseId);
+            if(userTakingCourseCount > 0)
+            {
+                return Result.Failure<Lesson>(CourseError.CannotAddLessonToTakenCourse(request.CourseId));
+            }
+
             var (title, xpEarned) = request.CreateLessonDto;
             var order = course.Lessons.Count + 1; 
             var lesson = Lesson.Create(title, xpEarned, order);

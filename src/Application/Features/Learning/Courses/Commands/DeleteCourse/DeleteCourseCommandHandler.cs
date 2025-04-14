@@ -32,15 +32,6 @@ namespace Application.Features.Learning.Courses.Commands.DeleteCourse
                 return Result.Failure(CourseError.CourseIsBeingFollowedByUser);
             }
 
-            if(courseToDelete.Level > 1)
-            {
-                var previousCourse = await _courseRepository.GetCourseByLevel(courseToDelete.Level - 1);
-                if(previousCourse != null)
-                {
-                    previousCourse.SetNextCourse(null);
-                }
-            }
-
             await _courseRepository.DeleteCourse(courseToDelete);
             return Result.Success();
         }

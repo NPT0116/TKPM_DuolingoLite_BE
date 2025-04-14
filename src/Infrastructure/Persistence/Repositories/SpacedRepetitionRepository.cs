@@ -68,5 +68,11 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.SpacedRepetitionRecords
                 .AnyAsync(r => r.UserId == userId && r.QuestionId == questionId);
         }
+
+        public async Task<int> GetSpacedRepetitionRecordCountForQuestionAsync(Guid questionId)
+        {
+            return await _context.SpacedRepetitionRecords
+                .CountAsync(r => r.QuestionId == questionId);
+        }
     }
 } 

@@ -6,6 +6,8 @@ using Application.Features.Learning.Courses;
 using Application.Features.Learning.Courses.AddLesson;
 using Application.Features.Learning.Courses.Commands.DeleteCourse;
 using Application.Features.Learning.Courses.Commands.DeleteLesson;
+using Application.Features.Learning.Courses.Commands.EditCourse;
+using Application.Features.Learning.Courses.Commands.UpdateLesson;
 using Application.Features.Learning.Courses.Commands.UserRegisterCourse;
 using Application.Features.Learning.Courses.Queries.GetActiveCourseWithAUser;
 using Application.Features.Learning.Courses.Queries.GetCourseDetail;
@@ -14,6 +16,7 @@ using Application.Features.Learning.Lessons.Commands;
 using Application.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Extensions;
 using WebApi.Infrastructure;
 
@@ -95,12 +98,35 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
-        [HttpDelete("{courseId}/last-lesson")]
-        public async Task<IActionResult> DeleteLastLesson([FromRoute] Guid courseId, CancellationToken cancellationToken = default)
+        [HttpDelete("{courseId}/lesson/{lessonOrder}")]
+        public async Task<IActionResult> DeleteLastLesson(
+            [FromRoute] Guid courseId,
+            [FromRoute] int lessonOrder, 
+            CancellationToken cancellationToken = default)
         {
-            var command = new DeleteLastLessonCommand(courseId);
+            var command = new DeleteLessonCommand(courseId, lessonOrder);
             var result = await _mediator.Send(command, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
+        }
+
+        [HttpPut("{courseId}")]
+        public async Task<IActionResult> UpdateCourse([FromRoute] Guid courseId, [FromBody] EditCourseDto editCourseDto)
+        {
+            var command = new EditCourseCommand(courseId, editCourseDto);
+            var result = await _mediator.Send(command);
+            return result.Match(Ok, CustomResults.Problem);
         }        
+
+        [HttpPut("{courseId}/lesson/{lessonOrder}")]
+        public async Task<IActionResult> UpdateLesson(
+            [FromRoute] Guid courseId,
+            [FromRoute] int lessonOrder,
+            [FromBody] UpdateLessonDto updateLessonDto)
+        {
+            var command = new UpdateLessonCommand(courseId, lessonOrder, updateLessonDto);
+            var result = await _mediator.Send(command);
+            return result.Match(Ok, CustomResults.Problem);
+        }
+            
     }
 }

@@ -13,8 +13,19 @@ public class QuestionRepository : IQuestionRepository
     {
         _context = context;
     }
-    public Task<Question?> GetQuestionByIdAsync(Guid id)
+    public async Task<Question?> GetQuestionByIdAsync(Guid id)
     {
-        return _context.Questions.FirstOrDefaultAsync(x => x.Id == id);
+        return await _context.Questions.FirstOrDefaultAsync(x => x.Id == id);
     }
+
+    public async Task<List<Question>> GetQuestionsThatUseOption(Guid optionId)
+    {
+        return await _context.Questions
+            .Include(q => q.Options)
+                .ThenInclude(qo => qo.Option)
+            .Include(q => q.Image)
+            .Include(q => q.Audio)
+            .Where(q => q.Options.Any(o => o.Id == optionId))
+            .ToListAsync();
+    }   
 }

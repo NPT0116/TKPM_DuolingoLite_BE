@@ -25,6 +25,11 @@ namespace Infrastructure.Persistence.Repositories
             return option;
         }
 
+        public void DeleteOption(Option option)
+        {
+            _context.Remove(option);
+        }
+
         public async Task<Option?> FindOption(string? englishText, string? vietnameseText)
         {
             return await _context.Options
