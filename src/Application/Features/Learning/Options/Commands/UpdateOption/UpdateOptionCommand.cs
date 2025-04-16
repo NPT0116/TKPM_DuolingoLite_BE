@@ -9,11 +9,11 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption;
 
 public record UpdateOptionDto(
     string? vietnameseText,
-    string? imageUrl,
-    string? audioUrl,
+    string? image,
+    string? audio,
     string? englishText,
-    bool isAudioGenerated,
-    bool isImageGenerated
+    bool needAudio,
+    bool needImage
 );
 
 public record UpdateOptionCommand(

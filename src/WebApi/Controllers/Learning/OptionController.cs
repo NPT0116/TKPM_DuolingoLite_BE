@@ -41,7 +41,7 @@ namespace WebApi.Controllers.Learning
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOption(
-            [FromQuery] Guid id,
+            [FromRoute] Guid id,
             [FromBody] UpdateOptionDto dto)
         {
             var command = new UpdateOptionCommand(id, dto);
