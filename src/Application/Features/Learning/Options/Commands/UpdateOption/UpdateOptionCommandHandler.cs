@@ -57,6 +57,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
                 await _storageService.DeleteFileAsync(file, cancellationToken);
             }
             
+            await _context.SaveChangesAsync();
             await transaction.CommitAsync(cancellationToken);
             return Result.Success(result.Value);            
 
