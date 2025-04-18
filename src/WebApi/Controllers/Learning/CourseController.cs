@@ -15,6 +15,7 @@ using Application.Features.Learning.Courses.Queries.GetCourseList;
 using Application.Features.Learning.Lessons.Commands;
 using Application.Interface;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Extensions;
@@ -42,6 +43,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto createCourseDto, CancellationToken cancellationToken = default)
         {
@@ -51,6 +53,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost("{id}/lesson")]
         public async Task<IActionResult> AddLesson([FromRoute] Guid id, [FromBody] CreateLessonDto createLessonDto, CancellationToken cancellationToken = default)
         {
@@ -72,6 +75,8 @@ namespace WebApi.Controllers.Learning
             var result = await _mediator.Send(query, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }
+
+        [Authorize(Roles ="User,Admin")]
         [HttpPost("finish-lesson")]
 
         public async Task<IActionResult> FinishLesson([FromBody] UserFinishLessonRequestDto requestDto, CancellationToken cancellationToken = default)
@@ -82,6 +87,7 @@ namespace WebApi.Controllers.Learning
             var result = await _mediator.Send(command, cancellationToken);
             return result.Match(Ok, CustomResults.Problem);
         }
+        [Authorize]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterCourse([FromBody] UserRegisterCourseRequestDto userRegisterCourseDto, CancellationToken cancellationToken = default)
         {
@@ -90,6 +96,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse([FromRoute] Guid id, CancellationToken cancellationToken = default)
         {
@@ -98,6 +105,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpDelete("{courseId}/lesson/{lessonOrder}")]
         public async Task<IActionResult> DeleteLastLesson(
             [FromRoute] Guid courseId,
@@ -109,6 +117,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPut("{courseId}")]
         public async Task<IActionResult> UpdateCourse([FromRoute] Guid courseId, [FromBody] EditCourseDto editCourseDto)
         {
@@ -117,6 +126,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }        
 
+        [Authorize(Roles ="Admin")]
         [HttpPut("{courseId}/lesson/{lessonOrder}")]
         public async Task<IActionResult> UpdateLesson(
             [FromRoute] Guid courseId,

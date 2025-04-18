@@ -26,6 +26,7 @@ namespace WebApi.Controllers.Learning
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost("lesson-report")]
         public async Task<IActionResult> ProcessLessonReport([FromBody] LessonReportDto request)
         {
@@ -39,6 +40,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize]
         [HttpGet("reviews-records-due")]
         public async Task<IActionResult> GetDueReviews(
             [FromQuery] GetDueReviewsQueryParam queryParam)
@@ -49,6 +51,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize]
         [HttpPut("record/{recordId}/review")]
         public async Task<IActionResult> UpdateReview(
             Guid recordId,
@@ -59,15 +62,17 @@ namespace WebApi.Controllers.Learning
 
             return result.Match(Ok, CustomResults.Problem);
         }
-    [HttpGet("reviews-question-due")]
-    public async Task<IActionResult> GetDueReviewsQuestion(
-        [FromQuery]  ReviewQuestionQueryParam reviewQuestionQueryParam)
-    {
-        var query = new ReviewQuestionQuery(reviewQuestionQueryParam);
-        var result = await _mediator.Send(query);
+    
+        [Authorize]
+        [HttpGet("reviews-question-due")]
+        public async Task<IActionResult> GetDueReviewsQuestion(
+            [FromQuery]  ReviewQuestionQueryParam reviewQuestionQueryParam)
+        {
+            var query = new ReviewQuestionQuery(reviewQuestionQueryParam);
+            var result = await _mediator.Send(query);
 
-        return result.Match(Ok, CustomResults.Problem);
-    }
+            return result.Match(Ok, CustomResults.Problem);
+        }
     }
 
     public class UpdateReviewRequest
