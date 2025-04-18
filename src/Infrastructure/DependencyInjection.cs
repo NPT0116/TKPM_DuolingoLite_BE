@@ -31,6 +31,7 @@ using VNPAY.NET;
 using Domain.Entities.Learning.SpacedRepetition;
 using Infrastructure.Config;
 using Application.Features.Learning.Lessons.Commands.AddQuestions.Services;
+using System.Security.Claims;
 
 namespace Infrastructure;
 
@@ -85,7 +86,8 @@ public static class DependencyInjection
                 ValidAudience = jwtSettings.Audience,
                 IssuerSigningKey = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(jwtSettings.Secret ?? 
-                        throw new InvalidOperationException("JWT Secret cannot be null")))
+                        throw new InvalidOperationException("JWT Secret cannot be null"))),
+                RoleClaimType = ClaimTypes.Role
             };
         });
 

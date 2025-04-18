@@ -24,7 +24,7 @@ private readonly JwtSettings _jwtSettings;
                 Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
             SecurityAlgorithms.HmacSha256);
             
-        var claims = new[]
+        var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email!),
@@ -34,8 +34,9 @@ private readonly JwtSettings _jwtSettings;
 
         foreach(var role in roles)
         {
-            claims.Append(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim(ClaimTypes.Role, role)); // ✅ thêm đúng
         }
+
 
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
