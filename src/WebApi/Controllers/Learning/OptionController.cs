@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Application.Features.Learning.Options.Commands.CreateOption;
 using Application.Features.Learning.Options.Commands.DeleteOption;
 using Application.Features.Learning.Options.Commands.UpdateOption;
+using Application.Features.Learning.Options.Commands.DeleteOption;
+using Application.Features.Learning.Options.Commands.UpdateOption;
 using Application.Features.Learning.Options.Queries.FindOptionByEnglish;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +43,7 @@ namespace WebApi.Controllers.Learning
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOption(
-            [FromQuery] Guid id,
+            [FromRoute] Guid id,
             [FromBody] UpdateOptionDto dto)
         {
             var command = new UpdateOptionCommand(id, dto);

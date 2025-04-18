@@ -71,16 +71,25 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
                 image, audio, type, questionConfiguration, optionConfiguration, lesson.Questions.Count() + 1
             );
             if(createQuestion.IsFailure) return Result.Failure(createQuestion.Error);
+            var newQuestion = createQuestion.Value;
 
-            var createOptions = await _questionOptionBuilder.BuildQuestionOptions(options, createQuestion.Value, type, sentence);
+            var createOptions = await _questionOptionBuilder.BuildQuestionOptions(options, newQuestion, type, sentence);
             if(createOptions.IsFailure) return Result.Failure(createOptions.Error);
             var questionOptions = createOptions.Value;
             
-            if(options.Any()) createQuestion.Value.AddOptions(questionOptions);
+            if(options.Any()) newQuestion.AddOptions(questionOptions);
 
-            lesson.AddQuestion(createQuestion.Value);
+            lesson.AddQuestion(newQuestion);
 
-            if(englishText != null) await _wordGenerator.GenerateWords(englishText);
+            if(englishText != null)
+            {
+                var questionWords = await _wordGenerator.GenerateWords(newQuestion, englishText);
+                if(questionWords.IsFailure) return Result.Failure(questionWords.Error);
+                foreach(var questionWord in questionWords.Value)
+                {
+                    newQuestion.AddWord(questionWord);
+                }
+            } 
             await _context.SaveChangesAsync(cancellationToken);
             return Result.Success();
         }

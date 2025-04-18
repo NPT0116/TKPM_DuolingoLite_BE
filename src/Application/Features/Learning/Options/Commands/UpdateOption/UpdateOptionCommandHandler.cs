@@ -57,6 +57,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
                 await _storageService.DeleteFileAsync(file, cancellationToken);
             }
             
+            await _context.SaveChangesAsync();
             await transaction.CommitAsync(cancellationToken);
             return Result.Success(result.Value);            
 
@@ -128,7 +129,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
             )
         {
             Domain.Entities.Media.Media? newAudio = null;
-            if(dto.isAudioGenerated)
+            if(dto.needAudio)
             {
                 if(string.IsNullOrEmpty(dto.englishText))
                 {
@@ -150,7 +151,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
             }
             else
             {
-                if(string.IsNullOrEmpty(dto.audioUrl))
+                if(string.IsNullOrEmpty(dto.audio))
                 {
                     var isAudioUsed = questions.Any(q => q.QuestionConfiguration.Audio);
                     if(isAudioUsed)
@@ -162,9 +163,9 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
                 {
                     if(option.Audio != null)
                     {
-                        if(dto.audioUrl != option.Audio.Url)
+                        if(dto.audio != option.Audio.Url)
                         {
-                            var newMedia = await UploadNewAudio(dto.audioUrl, cancellationToken);
+                            var newMedia = await UploadNewAudio(dto.audio, cancellationToken);
                             if(newMedia.IsFailure) return Result.Failure<Domain.Entities.Media.Media?>(newMedia.Error);
                             newAudio = newMedia.Value;
 
@@ -178,7 +179,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
                     }
                     else
                     {
-                        var newMedia = await UploadNewAudio(dto.audioUrl, cancellationToken);
+                        var newMedia = await UploadNewAudio(dto.audio, cancellationToken);
 
                         if(newMedia.IsFailure) return Result.Failure<Domain.Entities.Media.Media?>(newMedia.Error);
                         newAudio = newMedia.Value;
@@ -197,7 +198,7 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
             )
         {
             Domain.Entities.Media.Media? newImage = null;
-            if(string.IsNullOrEmpty(dto.imageUrl))
+            if(string.IsNullOrEmpty(dto.image))
             {
                 var isImageUsed = questions.Any(q => q.QuestionConfiguration.Image);
                 if(isImageUsed)
@@ -215,16 +216,16 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
             {
                 if(option.Image != null)
                 {
-                    if(dto.imageUrl != option.Image.Url)
+                    if(dto.image != option.Image.Url)
                     {   
                         var newMedia = await _mediaRepository.UploadFileAsync(
-                            dto.imageUrl,
-                            dto.imageUrl,
+                            dto.image,
+                            dto.image,
                             MediaType.Image,
                             10,
                             DateTime.UtcNow,
                             DateTime.UtcNow,
-                            dto.imageUrl,
+                            dto.image,
                             cancellationToken
                         );
 
@@ -242,13 +243,13 @@ namespace Application.Features.Learning.Options.Commands.UpdateOption
                 else
                 {
                     var newMedia = await _mediaRepository.UploadFileAsync(
-                        dto.imageUrl,
-                        dto.imageUrl,
+                        dto.image,
+                        dto.image,
                         MediaType.Image,
                         10,
                         DateTime.UtcNow,
                         DateTime.UtcNow,
-                        dto.imageUrl,
+                        dto.image,
                         cancellationToken
                     );
 
