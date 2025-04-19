@@ -12,6 +12,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Extensions;
 using WebApi.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers.Learning
 {
@@ -33,6 +34,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateOption([FromBody] CreateOptionDto dto)
         {
@@ -41,6 +43,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOption(
             [FromRoute] Guid id,
@@ -51,6 +54,7 @@ namespace WebApi.Controllers.Learning
             return result.Match(Ok, CustomResults.Problem);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOption([FromRoute] Guid id)
         {

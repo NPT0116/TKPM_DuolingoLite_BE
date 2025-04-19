@@ -15,6 +15,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Infrastructure.Worker;
 using Domain;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("awsSettings.json");
@@ -84,12 +87,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
 // Các service khác
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services
     .AddDomain()
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
+
 
 
 builder.Host.UseSerilog((context, configuration) => 

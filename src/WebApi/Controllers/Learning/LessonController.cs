@@ -3,6 +3,7 @@ using Application.Features.Learning.Lessons.Commands.AddQuestions;
 using Application.Features.Learning.Lessons.Commands.RemoveQuestion;
 using Application.Features.Learning.Lessons.Queries.GetListOfLessonFromCourseId;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 using WebApi.Contracts.Requests;
@@ -28,6 +29,7 @@ public class LessonController: ControllerBase
         return result.Match(Ok, CustomResults.Problem);
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpPost("{id}/add-question")]
     public async Task<IActionResult> CreateQuestion([FromRoute] Guid id, [FromBody] QuestionDto dto)
     {
@@ -44,6 +46,7 @@ public class LessonController: ControllerBase
     //     return result.Match(Ok, CustomResults.Problem);
     // }
 
+    [Authorize(Roles ="Admin")]
     [HttpDelete("{id}/question")]
     public async Task<IActionResult> DeleteQuestion([FromRoute] Guid id, [FromQuery] int questionOrder)
     {

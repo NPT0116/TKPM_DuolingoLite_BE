@@ -17,20 +17,26 @@ private readonly JwtSettings _jwtSettings;
         _jwtSettings = jwtSettings.Value;
     }
 
-    public string GenerateToken(ApplicationUser user)
+    public string GenerateToken(ApplicationUser user, List<string> roles)
     {
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
             SecurityAlgorithms.HmacSha256);
-
-        var claims = new[]
+            
+        var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email!),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
         };
+
+        foreach(var role in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role)); // ✅ thêm đúng
+        }
+
 
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,

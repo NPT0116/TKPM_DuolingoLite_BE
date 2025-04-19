@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models.Enums;
 using SharedKernel;
 
 namespace Infrastructure.Identity;
@@ -52,6 +53,7 @@ public class IdentityService : IIdentityService
         };
 
         var result = await _userManager.CreateAsync(user, password);
+        await _userManager.AddToRoleAsync(user, Domain.Entities.Users.Role.User.ToString());
 
         return (result.ToApplicationResult(), user.Id);
     }
@@ -119,7 +121,9 @@ public class IdentityService : IIdentityService
             return (Result.Failure(UserError.InvalidPassword), string.Empty);
         }
 
-        return (Result.Success(), _jwtService.GenerateToken(user));
+        var roles = await _userManager.GetRolesAsync(user);
+
+        return (Result.Success(), _jwtService.GenerateToken(user, roles.ToList()));
     }
 
     public async Task<UserDto?> GetCurrentUserAsync()
