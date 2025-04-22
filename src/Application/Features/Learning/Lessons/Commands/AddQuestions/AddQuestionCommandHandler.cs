@@ -81,7 +81,7 @@ namespace Application.Features.Learning.Lessons.Commands.AddQuestions
 
             lesson.AddQuestion(newQuestion);
 
-            if(englishText != null)
+            if(englishText != null && !String.IsNullOrEmpty(englishText))
             {
                 var questionWords = await _wordGenerator.GenerateWords(newQuestion, englishText);
                 if(questionWords.IsFailure) return Result.Failure(questionWords.Error);
