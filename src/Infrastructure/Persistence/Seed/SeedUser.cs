@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
+using Application.Interface;
 using Bogus;
 using Domain.Entities.Users;
 using Domain.Repositories;
@@ -25,6 +26,7 @@ namespace Infrastructure.Persistence.Seed
         private readonly IUserRepository _userRepository;
         private readonly ApplicationDbContext _context;
 
+        
         public SeedUser(
             UserRegisterCommandHandler userRegisterCommandHandler, 
             IUserRepository userRepository, 
