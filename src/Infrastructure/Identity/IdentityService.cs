@@ -145,4 +145,13 @@ public class IdentityService : IIdentityService
             LastName = user.LastName
         };
     }
+
+    public async Task<string?> GetUserRole(Guid userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId.ToString());
+        if(user == null) return null;
+
+        var roles = await _userManager.GetRolesAsync(user);
+        return roles.ToList().Last();
+    }
 }
