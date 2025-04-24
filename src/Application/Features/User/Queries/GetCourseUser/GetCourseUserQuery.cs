@@ -11,7 +11,8 @@ public record GetCourseUserQueryResponseDto(
     Guid CourseId,
     int LessonOrder,
     int TotalLesson,
-    string CourseName
+    string CourseName,
+    bool IsCompleted
 );
 
 public record GetCourseUserQuery: IQuery<List<GetCourseUserQueryResponseDto>>;

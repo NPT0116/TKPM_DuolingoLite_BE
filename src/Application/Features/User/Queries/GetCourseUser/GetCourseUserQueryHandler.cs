@@ -31,7 +31,8 @@ public class GetCourseUserQueryHandler: IQueryHandler<GetCourseUserQuery, List<G
             x.Course.Id,
             x.LessonOrder,
             x.Course.Lessons.Count,
-            x.Course.Name
+            x.Course.Name,
+            x.IsCompleted
         )).ToList();
 
         return result;
