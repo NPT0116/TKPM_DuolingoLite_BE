@@ -20,6 +20,7 @@ public class GetActiveCourseWithAUserQueryHandler : IQueryHandler<GetActiveCours
         {
             return Result.Failure<GetActiveCourseWithAUserResponseDto>(LearningProgressError.LearningProgresssForUserNotFound(request.UserId));
         }
+        
         var returnBody = new GetActiveCourseWithAUserResponseDto(
             lp.Course.Id,
             lp.LessonOrder,
