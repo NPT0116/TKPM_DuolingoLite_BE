@@ -4,9 +4,9 @@
   "NextCourse": null,
   "Lessons": [
     {
-      "Title": "Lesson 3",
+      "Title": "Lesson 1",
       "XpEarned": 100,
-      "Order": 3,
+      "Order": 1,
       "Questions": [
         {
           "Instruction": "Chọn cặp từ",
@@ -446,9 +446,9 @@
       ]
     },
     {
-      "Title": "Lesson 4",
+      "Title": "Lesson 2",
       "XpEarned": 100,
-      "Order": 4,
+      "Order": 2,
       "Questions": [
         {
           "Instruction": "Đọc câu này",
@@ -828,9 +828,9 @@
       ]
     },
     {
-      "Title": "Lesson 5",
+      "Title": "Lesson 3",
       "XpEarned": 100,
-      "Order": 5,
+      "Order": 3,
       "Questions": [
         {
           "Instruction": "Đọc câu này",
