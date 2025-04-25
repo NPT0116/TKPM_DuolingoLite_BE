@@ -65,14 +65,15 @@ namespace Application.Features.User.Queries.GetUserProfile
             DateTime endOfWeek = startOfWeek.AddDays(6);
 
             var userActivities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(user.Id, startOfWeek, endOfWeek);
-
+            var role = await _identityService.GetUserRole(user.Id);
             return new UserWithProfileResponseDto(
                 user.Id, 
                 user.FirstName, 
                 user.LastName, 
                 user.Email, 
                 userProfile.NickName, 
-                userProfile.ProfileImage?.Url, 
+                userProfile.ProfileImage?.Url,
+                role, 
                 userProfile.Subscription,
                 userActivities,
                 userStats

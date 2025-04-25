@@ -1,6 +1,7 @@
 using System;
 using Application.Abstractions.Messaging;
 using Application.Features.User.Queries.GetUserProfile;
+using Application.Interface;
 using Domain.Entities.Users;
 using Domain.Repositories;
 using MediatR;
@@ -12,9 +13,11 @@ public class GetAllUserQueryHandler :IRequestHandler<GetAllUserQuery, Result<Pag
 {
 
     private readonly IUserRepository _userRepository;
-    public GetAllUserQueryHandler(IUserRepository userRepository)
+    private readonly IIdentityService _identityService;
+    public GetAllUserQueryHandler(IUserRepository userRepository, IIdentityService identityService)
     {
         _userRepository = userRepository;
+        _identityService = identityService;
     }
 
     public async Task<Result<PaginationResult<UserWithProfileResponseDto>>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
@@ -34,6 +37,7 @@ public class GetAllUserQueryHandler :IRequestHandler<GetAllUserQuery, Result<Pag
         {
             var userActivities = await _userRepository.GetUserActivitiesWithinDateRangeByUserId(user.UserId, startOfWeek, endOfWeek);
             var userStats = await _userRepository.GetUserStatsById(user.UserId);
+            var userRole = await _identityService.GetUserRole(user.UserId);
             var userProfile = new UserWithProfileResponseDto(
                 user.Id,
                 user.FirstName,
@@ -41,6 +45,7 @@ public class GetAllUserQueryHandler :IRequestHandler<GetAllUserQuery, Result<Pag
                 user.Email,
                 user.NickName,
                 user.ProfileImage?.Url,
+                userRole,
                 user.Subscription,
                 userActivities,
                 userStats

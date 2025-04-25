@@ -12,6 +12,7 @@ public record UserWithProfileResponseDto(
     string Email,
     string NickName,
     string ProfileImageUrl,
+    string role,
     Subscription Subscription,
     List<UserActivity> UserActivities,
     UserStats UserStats

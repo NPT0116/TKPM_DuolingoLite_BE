@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.User.Commands.Register;
 using Application.Interface;
+using Application.Interface;
 using Bogus;
 using Domain.Entities.Users;
 using Domain.Repositories;
@@ -12,6 +13,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.Enums;
+using SharedKernel;
 
 namespace Infrastructure.Persistence.Seed
 {
@@ -24,6 +26,7 @@ namespace Infrastructure.Persistence.Seed
         private readonly IUserRepository _userRepository;
         private readonly ApplicationDbContext _context;
 
+        
         public SeedUser(
             UserRegisterCommandHandler userRegisterCommandHandler, 
             IUserRepository userRepository, 
@@ -58,7 +61,9 @@ namespace Infrastructure.Persistence.Seed
                 }
             }
             await _context.SaveChangesAsync();
-            // Seed roles
+            
+            var seedAdmin = await SeedAdminUser();
+            
 
 
             var faker = new Faker<UserRegisterCommand>()
@@ -70,29 +75,7 @@ namespace Infrastructure.Persistence.Seed
                 password
             ), null));
 
-            var admin = new ApplicationUser()
-            {
-                FirstName = "Nguyen",
-                LastName = "Hong Quan"
-            };
-
-            var (adminResult, adminUserId) = await _identityService.CreateUserAsync(
-                "Nguyen",
-                "Hong Quan",
-                "nquan003@gmail.com",
-                "admin",
-                "123456"
-            );
-
-            if(adminResult.IsSuccess)
-            {
-                await _context.SaveChangesAsync();
-                var adminUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == adminUserId);
-                if(adminUser != null)
-                    await _userManager.AddToRoleAsync(adminUser, Domain.Entities.Users.Role.Admin.ToString());
-            }
-
-
+            
 
             for (int i = 0; i < numberOfUsers; i++)
             {
@@ -138,6 +121,71 @@ namespace Infrastructure.Persistence.Seed
                 Console.WriteLine($"UserId: {activity.UserId}, Date: {activity.Date}, IsActive: {activity.IsActive}");
             }
 
+        }
+
+        private async Task<Result> SeedAdminUser()
+        {
+            var admin = new ApplicationUser()
+            {
+                FirstName = "Nguyen",
+                LastName = "Hong Quan"
+            };
+
+            var firstName = "Nguyen";
+            var lastName = "Hong Quan";
+            var email = "nquan003@gmail.com";
+            var username = "admin";
+            var password = "123456";
+
+            var result = await _identityService.CreateUserAsync(
+                firstName,
+                lastName,
+                email,
+                username,
+                password
+            );
+
+            if(result.Result.IsFailure) return Result.Failure(result.Result.Error);
+
+            var userId = result.UserId;
+
+            var userActivity = UserActivity.Create(userId, DateTime.UtcNow, true);
+            if (userActivity.IsFailure)
+            {
+                return Result.Failure(userActivity.Error);
+            }
+
+            var userStats = UserStats.Create(userId);
+            if (userStats.IsFailure)
+            {
+                throw new ApplicationErrorException(userStats.Error);
+            }
+
+            var userProfile = Domain.Entities.Users.UserProfile.Create(
+                userId,
+                email,
+                username,
+                firstName,
+                lastName,
+                null,
+                null);
+
+            if (userProfile.IsFailure)
+            {
+                // Optionally, if an avatar was uploaded, you might consider deleting it here.
+                return Result.Failure(userProfile.Error);
+            }
+
+            // await _userRepository.CreateUserActivity(userActivity.Value);
+            await _userRepository.CreateUserStats(userStats.Value);
+            await _userRepository.CreateUserProfile(userProfile.Value);
+
+            await _context.SaveChangesAsync();
+            var adminUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if(adminUser != null)
+                await _userManager.AddToRoleAsync(adminUser, Domain.Entities.Users.Role.Admin.ToString());
+
+            return Result.Success();
         }
     }
 }
