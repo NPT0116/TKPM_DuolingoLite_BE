@@ -19,6 +19,11 @@ public class GetTopRankingQueryHandler : IQueryHandler<GetTopRankingQuery, Domai
         {
             throw new Exception("Ranking not found");
         }
-    return ranking;
+        var filteredRanking = new Domain.Entities.Ranking.Ranking
+        {
+            Top = request.Top,
+            UserRankings = ranking.UserRankings.Where(u => u.NickName != "admin").ToList()
+        };
+    return filteredRanking;
     }
 }

@@ -8,6 +8,7 @@ using Application.Interface;
 using Bogus;
 using Domain.Entities.Users;
 using Domain.Repositories;
+using Google.Api;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -94,6 +95,17 @@ namespace Infrastructure.Persistence.Seed
             }
 
             await _context.SaveChangesAsync();
+
+            var stats = await _context.UserStats.ToListAsync();
+            var random = new Random();
+            foreach (var stat in stats)
+            {
+                int xp = random.Next(0, 51) * 10; // random số từ 0 đến 50, rồi nhân 10
+                stat.EarnExperience(xp);
+            }
+
+            await _context.SaveChangesAsync();
+
         }
 
         private async Task SeedDailyActivities(Guid userId, int numberOfDays)
