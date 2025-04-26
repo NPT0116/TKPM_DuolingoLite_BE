@@ -136,7 +136,9 @@ using Infrastructure.Persistence;
                         foreach(var option in options)
                         {
                             Option newOption;
-                            var existingOption = context.Options.FirstOrDefault(o => o.VietnameseText == option.VietnameseText);
+                            var existingOption = context.Options.FirstOrDefault(
+                                o => o.VietnameseText == option.VietnameseText
+                                && o.EnglishText == option.EnglishText);
                             if(existingOption != null)
                             {
                                 newOption = existingOption;
